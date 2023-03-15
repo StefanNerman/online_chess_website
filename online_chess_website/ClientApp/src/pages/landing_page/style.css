@@ -1,1 +1,8 @@
-/*# sourceMappingURL=style.css.map */
+.landingpage {
+  width: 100vw;
+  height: 100vh;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../assets/chessboard_background.png);
+}/*# sourceMappingURL=style.css.map */
