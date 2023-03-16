@@ -7,6 +7,7 @@ interface params {
     linkOnClick: Function | null
     onCheck: Function | null
     onUnCheck: Function | null
+    checked: boolean
 }
 
 const CheckboxText = (params: params) => {
@@ -21,7 +22,7 @@ const CheckboxText = (params: params) => {
 
     return (  
         <div className='checkbox-text-1'>
-            <Checkbox1 onCheck={thisOnCheck} onUnCheck={thisOnUnCheck}/>
+            <Checkbox1 onCheck={thisOnCheck} onUnCheck={thisOnUnCheck} checked={params.checked}/>
             <a onClick={() => {
                 params.linkOnClick && params.linkOnClick()
                 return

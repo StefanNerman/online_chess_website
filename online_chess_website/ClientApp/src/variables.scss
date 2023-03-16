@@ -16,23 +16,3 @@ $white-brown: rgb(175, 105, 105);
 }
 
 
-
-
-//make this look better
-@keyframes smallBubble {
-    0% {
-        opacity: 0;
-        min-width: 100%;
-        min-height: 100%;
-    }
-    90% {
-        opacity: 0.4;
-        min-width: 170%;
-        min-height: 170%;
-    }
-    100% {
-        opacity: 0;
-        min-width: 270%;
-        min-height: 270%;
-    }
-}

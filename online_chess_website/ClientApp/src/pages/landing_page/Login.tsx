@@ -7,13 +7,22 @@ interface propsObj {
 }
 
 const Login = (props: propsObj) => {
+
+
+
+
+    function onSubmit(e: any){
+        e.preventDefault()
+        console.log('nemen')
+    }
+
     return (  
         <div className='login-screen'>
             <h1>
                 Log In
                 <BackButton1 callback={() => {props.setLogin('')}} fromLeft='0.5rem' fromTop='50%'/>
             </h1>
-            <form className='login-panel'>
+            <form className='login-panel' onSubmit={(e) => onSubmit(e)}>
                 <label>username</label>
                 <input type='text' name='usernameInput'></input>
                 <label>password</label>
