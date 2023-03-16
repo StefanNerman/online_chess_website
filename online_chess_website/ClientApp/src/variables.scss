@@ -1,0 +1,38 @@
+
+$mild-brown: rgb(112, 62, 62);
+$light-brown: rgb(160, 123, 123);
+$dark-brown: rgb(100, 50, 50);
+$white-brown: rgb(175, 105, 105);
+
+
+@mixin flexify(){
+    display: flex;
+    justify-content: center;
+}
+@mixin flexDirectionAlign {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+
+//make this look better
+@keyframes smallBubble {
+    0% {
+        opacity: 0;
+        min-width: 100%;
+        min-height: 100%;
+    }
+    90% {
+        opacity: 0.4;
+        min-width: 170%;
+        min-height: 170%;
+    }
+    100% {
+        opacity: 0;
+        min-width: 270%;
+        min-height: 270%;
+    }
+}

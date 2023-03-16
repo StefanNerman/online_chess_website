@@ -1,8 +1,77 @@
-.btn-maintheme {
+@import '../variables.scss';
 
+//main theme buttons
+.btn-maintheme {
+    width: 100%;
+    max-width: 200px;
+    padding: 0.5rem 0.0625rem;
+    font-size: 120%;
+    font-weight: 555;
+    color: $white-brown;
+    background-color: $dark-brown;
+    transition: 70ms;
+    &:hover {
+        color: rgb(200, 160, 160);
+    }
+}
+.btn-maintheme-big {
+    max-width: 350px;
+    padding: 0.75rem 0.125rem;
+}
+.btn-maintheme-small {
+    max-width: 120px;
+    padding: 0.3rem 0.0325rem;
 }
 
-.btn-maintheme-big {
-    
+//back buttons
+.back-btn-1 {
+    position: absolute;
+    height: 1.25rem;
+    width: 1.25rem;
+    translate: 0 -50%;
+    background-color: rgba(1, 1, 1, 0);
+    background-image: url(../assets/backbrownarrow.png);
+    background-position: center;
+    background-size: cover;
+    rotate: 45deg;
+}   
+
+
+
+//checkbox
+.checkbox-1 {
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+    position: relative;
+    color: rgb(65, 154, 236);
+    &::before {
+        content: ''; 
+        position: absolute;
+        opacity: 0;
+        min-width:100%;
+        min-height:100%;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        background-color: rgb(65, 154, 236);
+    }
+    &:checked:before {
+        animation: smallBubble 240ms;
+    }
+}
+.checkbox-text-1 {
+    margin:0.75rem 0;
+    display: flex;
+    align-items: center;
+    a {
+        margin-left: 3px;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 

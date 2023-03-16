@@ -1,8 +1,11 @@
+@import './variables.scss';
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     border: none;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .App {

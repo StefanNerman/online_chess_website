@@ -1,8 +1,80 @@
+@-webkit-keyframes smallBubble {
+  0% {
+    opacity: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  100% {
+    opacity: 0;
+    min-width: 150%;
+    min-height: 150%;
+  }
+}
+@keyframes smallBubble {
+  0% {
+    opacity: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  100% {
+    opacity: 0;
+    min-width: 150%;
+    min-height: 150%;
+  }
+}
 .landingpage {
   width: 100vw;
   height: 100vh;
+  position: relative;
   background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(../../assets/chessboard_background.png);
+  display: flex;
+  justify-content: center;
+}
+
+.login-screen {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  border-top: 7px solid rgb(112, 62, 62);
+  border-bottom: 7px solid rgb(112, 62, 62);
+  position: relative;
+  margin-top: 12vh;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  background-color: rgb(160, 123, 123);
+}
+.login-screen h1 {
+  margin-bottom: 2rem;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.login-panel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.login-panel label {
+  margin-top: 0.75rem;
+}
+.login-panel input {
+  background-color: rgb(255, 233, 233);
+  outline: none;
+  padding: 0 3px;
+}
+
+@media screen and (max-width: 580px) {
+  .login-screen {
+    margin-top: 0;
+  }
 }/*# sourceMappingURL=style.css.map */

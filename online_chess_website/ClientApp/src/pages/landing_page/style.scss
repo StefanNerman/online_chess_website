@@ -1,8 +1,55 @@
+@import "../../variables.scss";
+
 .landingpage {
     width: 100vw;
     height: 100vh;
+    position: relative;
     background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url(../../assets/chessboard_background.png);
+    background-image: 
+    url(../../assets/chessboard_background.png);
+    @include flexify;
+}
+
+.login-screen {
+    @include flexDirectionAlign;
+    width: 100%;
+    max-width: 500px;
+    height: min-content;
+    border-top: 7px solid $mild-brown;
+    border-bottom: 7px solid $mild-brown;
+    position: relative;
+    margin-top: 12vh;
+    padding:1rem;
+    padding-bottom: 2rem;
+    background-color: $light-brown;
+    h1 {
+        margin-bottom: 2rem;
+        width: 100%;
+        position: relative;
+        text-align: center
+    }
+}
+.login-panel {
+    @include flexDirectionAlign;
+    width: 100%;
+    label {
+        margin-top: 0.75rem;
+    }
+    input {
+        background-color: rgb(255, 233, 233);
+        outline: none;
+        padding: 0 3px;
+    }
+}
+
+
+
+
+
+@media screen and (max-width: 580px){
+    .login-screen{
+        margin-top: 0;
+    }
 }
