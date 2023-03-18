@@ -22,7 +22,8 @@ const Checkbox1 = (params: params) => {
     }
 
     return (  
-        <input type='checkbox' className='checkbox-1' checked={checked} onChange={handleChange}>
+        <input type='checkbox' className='checkbox-1' tabIndex={0}
+        checked={checked} onChange={handleChange}>
 
         </input>
     );

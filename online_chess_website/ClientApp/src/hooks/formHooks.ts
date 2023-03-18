@@ -2,8 +2,8 @@ import {useState} from 'react'
 
 
 
-export default function useForm(): Array<object | Function>{
-    const [state, setState] = useState({})
+export function useForm(initialValue: object): [any, Function]{
+    const [state, setState] = useState(initialValue)
 
     function setForm(name: string, value: any){
         setState(state => ({ ...state, [name]: value }))

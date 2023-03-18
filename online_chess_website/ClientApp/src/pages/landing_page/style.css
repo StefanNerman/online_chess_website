@@ -49,6 +49,10 @@
   padding: 0 3px;
 }
 
+.text-input-container {
+  position: relative;
+}
+
 @media screen and (max-width: 580px) {
   .login-screen {
     margin-top: 0;

@@ -12,3 +12,28 @@
     width: 100vw;
     position: absolute;
 }
+
+
+
+.asterix-red-left {
+    position: relative;
+    &::before {
+        content: '*';
+        position: absolute;
+        display: block;
+        z-index: 11;
+        left: -14px;
+        color:$mild-red;
+        font-size: 135%;
+    }
+}
+
+.automargin { margin:auto; }
+
+.alert-text-red {
+    width: max-content;
+    margin-top: 0;
+    margin-bottom: 0;
+    color:$mild-red;
+    font-size: 90%;
+}
