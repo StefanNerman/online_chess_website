@@ -4,17 +4,19 @@ import BackButton1 from '../../components/back_btn_1';
 import ButtonMtSmall from '../../components/btn_maintheme_small'
 import CheckboxText from '../../components/checkbox_text_1'
 import * as api from '../../http_calls'
+import { isStringAllowed } from './LandingPage'
+import { addRedAsterix } from '../../utils/visual_prompts'
 
 interface propsObj {
     setLogin: any //its a setState
 }
 
+let isUsernameValid = false
+let isPasswordValid = false
 
 const Signup = (props: propsObj) => {
 
     const [loginInfo, setLoginInfo] = useForm({checked: false})
-    let isUsernameValid = false
-    let isPasswordValid = false
 
     function clickUserAgreementLink() {
         alert('epic troll')
@@ -22,10 +24,10 @@ const Signup = (props: propsObj) => {
 
     function doesUserNameExist(e: any){ 
         let value = e.target.value 
-        if(!isStringAllowed(value)) return
+        if(!isStringAllowed(value, false)) return
 
         /*
-        api.axiosPost('/is-username-taken', {username: value})
+        api.axiosPost('api/is-username-taken', {username: value})
         .then(response => {
             //if username taken
             //let alertText = document.getElementById('belowUsernameAlert')!
@@ -41,27 +43,10 @@ const Signup = (props: propsObj) => {
         setLoginInfo(e.target.name, value)
     }
 
-    function isStringAllowed(string: string): boolean {
-        if(string.includes(`'`)) return badSymbolAlert()
-        if(string.includes(`"`)) return badSymbolAlert()
-        if(string.includes('`')) return badSymbolAlert()
-        let alertText = document.getElementById('bottomAlertText')!
-        alertText.innerText = ''
-
-        function badSymbolAlert(): boolean {
-            let alertText = document.getElementById('bottomAlertText')!
-            alertText.innerText = `', ",` + ' ` signs are not allowed!'
-            return false
-        }
-        return true
-    }
-
-
     function onSubmit(e: any){
-        //remember to change all ' to ` and prevent other signs that you dont want to be used
         e.preventDefault()
         if(!isAllInfoProvided()) return
-        console.log('SUBMIT: ' + loginInfo)
+        console.log('SUBMIT:', loginInfo)
         submitData(loginInfo)
     }
 
@@ -70,26 +55,29 @@ const Signup = (props: propsObj) => {
             username: data.username,
             password: data.password
         }
-        
+        return
+        api.axiosPost('api/create-user', sendData)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(response => {
+            console.log(response)
+        })
     }
     function isAllInfoProvided(): boolean {
         let out = true
         if(!loginInfo.checked) {
-            addRequiredPromt(document.getElementById('userAgreementBox')!)
+            addRedAsterix(document.getElementById('userAgreementBox')!)
             out = false} else document.getElementById('userAgreementBox')?.classList.remove('asterix-red-left')
         if(!loginInfo.username) {
-            addRequiredPromt(document.getElementById('usernamePromptHolder')!)
+            addRedAsterix(document.getElementById('usernamePromptHolder')!)
             out = false} else document.getElementById('usernamePromptHolder')?.classList.remove('asterix-red-left')
         if(!loginInfo.password) {
-            addRequiredPromt(document.getElementById('passwordPromptHolder')!)
+            addRedAsterix(document.getElementById('passwordPromptHolder')!)
             out = false} else document.getElementById('passwordPromptHolder')?.classList.remove('asterix-red-left')
         if(!isUsernameValid) out = false
         if(!isPasswordValid) out = false
         return out
-    }
-
-    function addRequiredPromt(element: HTMLElement | undefined){
-        element?.classList.add('asterix-red-left')
     }
     
    
@@ -111,7 +99,10 @@ const Signup = (props: propsObj) => {
                 <div className='text-input-container'>
                     <span id='passwordPromptHolder'></span>
                     <input type='password' name='password' id='signupPassword'
-                    onChange={(e) => isStringAllowed(e.target.value) && setLoginInfo('password', e.target.value)}></input>
+                    onChange={(e) => {
+                        isPasswordValid = true
+                        isStringAllowed(e.target.value, true) && setLoginInfo('password', e.target.value)
+                    }}></input>
                 </div>
                 <CheckboxText text='I accept the user agreement' linkOnClick={clickUserAgreementLink}
                 onCheck={() => {setLoginInfo('checked', true)}} 
