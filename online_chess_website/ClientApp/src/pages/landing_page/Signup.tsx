@@ -55,8 +55,7 @@ const Signup = (props: propsObj) => {
             username: data.username,
             password: data.password
         }
-        return
-        api.axiosPost('api/create-user', sendData)
+        api.axiosGet('api/weatherforecast', sendData)
         .then(response => {
             console.log(response)
         })
