@@ -36,12 +36,8 @@ const Login = (props: propsObj) => {
     }
 
     function submitData(data: any){
-        let sendData = {
-            username: data.username,
-            password: data.password
-        }
         return
-        api.axiosGet('api/validate_login', sendData)
+        api.axiosGet(`api/login/${data.username}/${data.password}`)
         .then(response => {
             console.log(response)
             loginComplete()

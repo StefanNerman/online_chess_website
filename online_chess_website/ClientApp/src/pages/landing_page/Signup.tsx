@@ -25,22 +25,17 @@ const Signup = (props: propsObj) => {
     function doesUserNameExist(e: any){ 
         let value = e.target.value 
         if(!isStringAllowed(value, false)) return
-
-        /*
-        api.axiosPost('api/is-username-taken', {username: value})
+        api.axiosGet(`api/signup/${value}`)
         .then(response => {
-            //if username taken
-            //let alertText = document.getElementById('belowUsernameAlert')!
-            //alertText.innerText = 'Username taken!'
-            //else
+            let alertText = document.getElementById('belowUsernameAlert')!
+            if(!response.data){         
+                alertText.innerText = 'Username taken!'
+                return
+            }
+            alertText.innerText = ''
             isUsernameValid = true
             setLoginInfo(e.target.name, value)})
-        .catch(response => {})
-        */
-
-        //delete below later
-        isUsernameValid = true
-        setLoginInfo(e.target.name, value)
+        .catch(response => {console.log(response)})
     }
 
     function onSubmit(e: any){
@@ -55,7 +50,7 @@ const Signup = (props: propsObj) => {
             username: data.username,
             password: data.password
         }
-        api.axiosGet('api/weatherforecast', sendData)
+        api.axiosPost('api/signup', sendData)
         .then(response => {
             console.log(response)
         })

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "online_chess_website", "online_chess_website\online_chess_website.csproj", "{457F63D2-2136-490E-B5AC-EF3088A5090C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "online_chess_website", "online_chess_website\online_chess_website.csproj", "{457F63D2-2136-490E-B5AC-EF3088A5090C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericClassesLibrary", "GenericClassesLibrary\GenericClassesLibrary.csproj", "{F537506F-BBC6-4CA9-AD9D-275BA2139431}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{457F63D2-2136-490E-B5AC-EF3088A5090C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{457F63D2-2136-490E-B5AC-EF3088A5090C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{457F63D2-2136-490E-B5AC-EF3088A5090C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F537506F-BBC6-4CA9-AD9D-275BA2139431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F537506F-BBC6-4CA9-AD9D-275BA2139431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F537506F-BBC6-4CA9-AD9D-275BA2139431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F537506F-BBC6-4CA9-AD9D-275BA2139431}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
