@@ -13,13 +13,14 @@ public class SignupController : ControllerBase
 {
 
     [HttpPost]
-    public void Post([FromBody] JsonElement data)
+    public bool Post([FromBody] JsonElement data)
     {
         LoginSignupData? loginData = JsonConvert.DeserializeObject<LoginSignupData>(data.ToString());
         if(loginData != null)
         {
-            AutentificationSignup.CreateNewUser(loginData);
+            return AutentificationSignup.CreateNewUser(loginData);
         }
+        return false;
     }
 
     [HttpGet("{username}")]

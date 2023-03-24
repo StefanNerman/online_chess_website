@@ -3,8 +3,9 @@ import BackButton1 from '../../components/back_btn_1';
 import ButtonMtSmall from '../../components/btn_maintheme_small'
 import { useForm } from '../../hooks/formHooks'
 import { isStringAllowed } from './LandingPage'
-import * as api from '../../http_calls'
+import * as api from '../../api/http_calls'
 import { addRedAsterix } from '../../utils/visual_prompts'
+import { useNavigate } from 'react-router-dom'
 
 interface propsObj {
     setLogin: any //its a setState
@@ -13,6 +14,7 @@ interface propsObj {
 const Login = (props: propsObj) => {
 
     const [loginInfo, setLoginInfo] = useForm({username: '', password: ''})
+    const navigate = useNavigate()
 
 
     function onSubmit(e: any){
@@ -36,20 +38,18 @@ const Login = (props: propsObj) => {
     }
 
     function submitData(data: any){
-        return
-        api.axiosGet(`api/login/${data.username}/${data.password}`)
+        api.axiosPost(`api/login`, data)
         .then(response => {
-            console.log(response)
-            loginComplete()
+            response.data ? loginComplete() : alert('Username or password incorrect.')
         })
         .catch(error => {
-            console.log(error)
+            console.log('ERROR: ', error)
             alert('Username or password incorrect.')
         })
     }
 
     function loginComplete(){
-
+        navigate('/main-menu/login')
     }
 
     return (  

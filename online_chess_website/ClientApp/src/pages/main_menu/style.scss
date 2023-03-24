@@ -1,0 +1,11 @@
+.mainmenu {
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: 
+    url(../../assets/chessboard_background.png);
+    @include flexify;
+}

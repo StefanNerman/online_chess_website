@@ -3,9 +3,10 @@ import {useForm} from '../../hooks/formHooks';
 import BackButton1 from '../../components/back_btn_1';
 import ButtonMtSmall from '../../components/btn_maintheme_small'
 import CheckboxText from '../../components/checkbox_text_1'
-import * as api from '../../http_calls'
+import * as api from '../../api/http_calls'
 import { isStringAllowed } from './LandingPage'
 import { addRedAsterix } from '../../utils/visual_prompts'
+import { useNavigate } from 'react-router-dom'
 
 interface propsObj {
     setLogin: any //its a setState
@@ -17,6 +18,7 @@ let isPasswordValid = false
 const Signup = (props: propsObj) => {
 
     const [loginInfo, setLoginInfo] = useForm({checked: false})
+    const navigate = useNavigate()
 
     function clickUserAgreementLink() {
         alert('epic troll')
@@ -30,12 +32,13 @@ const Signup = (props: propsObj) => {
             let alertText = document.getElementById('belowUsernameAlert')!
             if(!response.data){         
                 alertText.innerText = 'Username taken!'
+                isUsernameValid = false
                 return
             }
             alertText.innerText = ''
             isUsernameValid = true
             setLoginInfo(e.target.name, value)})
-        .catch(response => {console.log(response)})
+        .catch(response => {console.log('ERROR: ', response)})
     }
 
     function onSubmit(e: any){
@@ -52,12 +55,18 @@ const Signup = (props: propsObj) => {
         }
         api.axiosPost('api/signup', sendData)
         .then(response => {
-            console.log(response)
+            response.data ? signupComplete() : alert('Something went wrong.')
         })
         .catch(response => {
-            console.log(response)
+            console.log('ERROR: ', response)
+            alert('Something went wrong.')
         })
     }
+
+    function signupComplete(){
+        navigate('/main-menu/signup')
+    }
+
     function isAllInfoProvided(): boolean {
         let out = true
         if(!loginInfo.checked) {

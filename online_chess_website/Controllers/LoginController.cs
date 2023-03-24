@@ -1,7 +1,8 @@
-﻿using GenericClassesLibrary.Generic;
+﻿using GenericClassesLibrary;
+using GenericClassesLibrary.Generic;
 using Microsoft.AspNetCore.Mvc;
-
-
+using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace online_chess_website.Controllers;
 
@@ -9,10 +10,24 @@ namespace online_chess_website.Controllers;
 [ApiController]
 public class LoginController : ControllerBase
 {
-    [HttpGet("{username, password}")]
+    /*
+    //TO DELETE
+    [HttpGet("{username}/{password}")]
     public bool Get(string username, string password)
     {
-        bool credidentialsCheckResult =  AutentificationLogin.CheckCredidentals(username, password);
-        return credidentialsCheckResult;
+        Console.WriteLine(username + ":" + password);
+        return false : true
+    }
+    */
+
+    [HttpPost]
+    public bool Post([FromBody] JsonElement data)
+    {
+        LoginSignupData? loginData = JsonConvert.DeserializeObject<LoginSignupData>(data.ToString());
+        if (loginData != null)
+        {
+            return AutentificationLogin.CheckCredidentals(loginData.username, loginData.password);
+        }
+        return false;
     }
 }

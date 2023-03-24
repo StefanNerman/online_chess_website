@@ -1,14 +1,22 @@
 import React from 'react'
 import './style.css'
 import BtnMtBig from '../../components/btn_maintheme_big'
-import { playOffline } from './LandingPage'
-
+import { useNavigate } from 'react-router-dom'
 
 interface propsObj {
     setLogin: any //its a setState
 }
 
 const LoginScreen = (props: propsObj) => {
+
+
+    const navigate = useNavigate()
+
+    function playOffline(){
+        navigate(`/main-menu/offline`)
+    }
+
+
     return (  
         <div className='login-screen'>
                 <h1>Log In</h1>

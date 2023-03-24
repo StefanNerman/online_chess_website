@@ -10,10 +10,11 @@ namespace GenericClassesLibrary;
 
 public class AutentificationSignup
 {
-    public static void CreateNewUser(LoginSignupData data)
+    public static bool CreateNewUser(LoginSignupData data)
     {
         Console.WriteLine(data.username);
         Console.WriteLine(data.password);
+        return true;
     }
 
     public static bool IsUsernameFree(string username)

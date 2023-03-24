@@ -13,7 +13,7 @@ const App = () => {
         <div className="App">
             <Routes>
                 <Route path="/" element={<LandingPage />} />
-                <Route path="/main-menu" element={<MainMenu />} />
+                <Route path="/main-menu/:loginOperation" element={<MainMenu />} />
                 <Route path="/game-page" element={<GamePage />} />
             </Routes>
         </div>
