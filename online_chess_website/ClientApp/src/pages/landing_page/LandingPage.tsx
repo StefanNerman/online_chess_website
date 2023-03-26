@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './style.css'
 import LoginScreen from './LoginScreen'
 import Login from './Login'
 import Signup from './Signup'
+import Offline from './Offline'
 
 export function isStringAllowed(string: string, isPassword: boolean): boolean {
     if(isPassword && string.length > 21) return badSymbolAlert(`Passwords cannot be over 21 letters long!`)
@@ -22,10 +23,15 @@ export function isStringAllowed(string: string, isPassword: boolean): boolean {
     return true
 }
 
+export let operation: string = ''
+
 const LandingPage = () => {
 
     const [loginOperation, setLoginOperation] = useState('')
 
+    useEffect(() => {
+        operation = loginOperation 
+    }, [loginOperation])
 
 
     return (  
@@ -33,6 +39,7 @@ const LandingPage = () => {
             {loginOperation === '' && <LoginScreen setLogin={setLoginOperation}/>}
             {loginOperation === 'login' && <Login setLogin={setLoginOperation}/>}
             {loginOperation === 'signup' && <Signup setLogin={setLoginOperation}/>}
+            {loginOperation === 'offline' && <Offline />}
         </div>
     );
 }

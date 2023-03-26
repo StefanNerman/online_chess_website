@@ -1,5 +1,7 @@
+@import '../../variables.scss';
+
 .mainmenu {
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     position: relative;
     background-position: left;
@@ -7,5 +9,110 @@
     background-size: cover;
     background-image: 
     url(../../assets/chessboard_background.png);
+    @include flexDirectionAlign;
+    justify-content: center;
+}
+.mainmenu main {
+    width: 100%;
+    max-width: 1200px;
     @include flexify;
+}
+.mainmenu-container {
+    width:100%;
+    @include flexDirectionAlign;
+}
+
+.gamesearchpanel-frame {
+    width: 100%;
+    min-width: 50%;
+    @include flexify;
+}
+.gamesearchpanel-screen {
+    @include topBottomBorderThick;
+    background-color: $light-brown;
+    width: 98%;
+    height: 100%;
+    height: 700px;
+    position: relative;
+    @include flexDirectionAlign;
+}
+.gamesearchpanel-content {
+    width: 100%;
+    @include flexify;
+}
+.gamesearchpanel-button-container {
+    width: 100%;
+    @include flexDirectionAlign;
+}
+
+
+.extrapanel-frame {
+    width: 100%;
+    min-width: 25%;
+    @include flexify;
+}
+.extrapanel-screen {
+    @include topBottomBorderThick;
+    background-color: $light-brown;
+    width: 98%;
+    position: relative;
+    text-align: center;
+}
+
+
+//GAMESLECTION COMPONENT
+.gameselection-container {
+    padding: 0.5rem;
+    width:100%;
+    @include flexDirectionAlign;
+}
+.gameselection-description {
+    width: 100%;
+    max-width: 350px;
+    margin-top: 1px;
+}
+
+
+
+//NAVBAR
+.floating-navbar-frame {
+    width: 100%;
+    max-width: 1200px;
+    @include flexify;
+}
+
+.floating-navbar-screen {
+    margin: 0.5rem 0;
+    position: relative;
+    background-color: $mild-brown;
+    width: 99.5%;
+    height: 65px;
+    border-top: 7px solid $dark-brown;
+}
+
+
+
+@media screen and (max-width: 800px) {
+    .mainmenu main {
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        margin-top: calc(60px + 0.5rem);
+    }
+    .gamesearchpanel-content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .extrapanel-frame {
+        margin-top: 0.5rem;
+    }
+    .floating-navbar-frame {
+        visibility: collapse;
+        max-height: 0;
+        max-width: 0;
+    }
+    .mainmenu {
+        justify-content:start;
+    }
 }

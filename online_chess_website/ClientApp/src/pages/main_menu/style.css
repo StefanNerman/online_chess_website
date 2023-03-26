@@ -1,1 +1,131 @@
-/*# sourceMappingURL=style.css.map */
+.mainmenu {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../assets/chessboard_background.png);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mainmenu main {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+}
+
+.mainmenu-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gamesearchpanel-frame {
+  width: 100%;
+  min-width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.gamesearchpanel-screen {
+  border-top: 7px solid rgb(112, 62, 62);
+  border-bottom: 7px solid rgb(112, 62, 62);
+  background-color: rgb(160, 123, 123);
+  width: 98%;
+  height: 100%;
+  height: 700px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gamesearchpanel-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.gamesearchpanel-button-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.extrapanel-frame {
+  width: 100%;
+  min-width: 25%;
+  display: flex;
+  justify-content: center;
+}
+
+.extrapanel-screen {
+  border-top: 7px solid rgb(112, 62, 62);
+  border-bottom: 7px solid rgb(112, 62, 62);
+  background-color: rgb(160, 123, 123);
+  width: 98%;
+  position: relative;
+  text-align: center;
+}
+
+.gameselection-container {
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gameselection-description {
+  width: 100%;
+  max-width: 350px;
+  margin-top: 1px;
+}
+
+.floating-navbar-frame {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+}
+
+.floating-navbar-screen {
+  margin: 0.5rem 0;
+  position: relative;
+  background-color: rgb(112, 62, 62);
+  width: 99.5%;
+  height: 65px;
+  border-top: 7px solid rgb(100, 50, 50);
+}
+
+@media screen and (max-width: 800px) {
+  .mainmenu main {
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    margin-top: calc(60px + 0.5rem);
+  }
+  .gamesearchpanel-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .extrapanel-frame {
+    margin-top: 0.5rem;
+  }
+  .floating-navbar-frame {
+    visibility: collapse;
+    max-height: 0;
+    max-width: 0;
+  }
+  .mainmenu {
+    justify-content: start;
+  }
+}/*# sourceMappingURL=style.css.map */

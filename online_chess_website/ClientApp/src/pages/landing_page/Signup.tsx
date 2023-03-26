@@ -64,7 +64,7 @@ const Signup = (props: propsObj) => {
     }
 
     function signupComplete(){
-        navigate('/main-menu/signup')
+        navigate('/main-menu')
     }
 
     function isAllInfoProvided(): boolean {
@@ -111,7 +111,8 @@ const Signup = (props: propsObj) => {
                 onCheck={() => {setLoginInfo('checked', true)}} 
                 onUnCheck={() => {setLoginInfo('checked', false)}} 
                 checked={false} elementIdName='userAgreementBox'></CheckboxText>
-                <ButtonMtSmall text='submit' callback={() => {}} />
+                <ButtonMtSmall text='submit' callback={() => {}} 
+                mousein={() => {}} mouseout={() => {}}/>
                 <p id='bottomAlertText' className='alert-text-red automargin'></p>
             </form>
         </div>

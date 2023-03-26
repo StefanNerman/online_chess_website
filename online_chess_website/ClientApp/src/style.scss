@@ -9,7 +9,7 @@
 }
 
 .App {
-    width: 100vw;
+    width: 100%;
     position: absolute;
 }
 
@@ -36,4 +36,23 @@
     margin-bottom: 0;
     color:$mild-red;
     font-size: 90%;
+}
+
+
+.navbar {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    padding: 0;
+    width: 100%;
+    height: 60px;
+    @include flexify;
+}
+.navbar-screen {
+    height:100%;
+    width: 100%;
+    background-color: $dark-brown;
+    max-width: 800px;
+    z-index: 3;
 }

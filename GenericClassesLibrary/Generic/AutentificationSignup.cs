@@ -12,8 +12,6 @@ public class AutentificationSignup
 {
     public static bool CreateNewUser(LoginSignupData data)
     {
-        Console.WriteLine(data.username);
-        Console.WriteLine(data.password);
         return true;
     }
 

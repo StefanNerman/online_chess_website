@@ -49,7 +49,7 @@ const Login = (props: propsObj) => {
     }
 
     function loginComplete(){
-        navigate('/main-menu/login')
+        navigate('/main-menu')
     }
 
     return (  
@@ -75,7 +75,7 @@ const Login = (props: propsObj) => {
                         isStringAllowed(e.target.value, true) && setLoginInfo('password', e.target.value)
                     }}></input>
                 </div>
-                <ButtonMtSmall text='submit' callback={() => {}} />
+                <ButtonMtSmall text='submit' callback={() => {}} mousein={() => {}} mouseout={() => {}}/>
                 <p id='bottomAlertText' className='alert-text-red automargin'></p>
             </form>
         </div>
