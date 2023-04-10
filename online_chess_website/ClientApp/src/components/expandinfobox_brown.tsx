@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import './components.css'
 
 
 interface params {
@@ -8,18 +8,35 @@ interface params {
 
 const ExpandInfoBox = (params: params) => {
 
-    function expandText(){
+    const [ isExpanded, setIsExpanded ] = useState(false)
 
+    function expandText(event: any){
+        const textElement = event.target.parentElement.parentElement.children[1]
+        const buttonElement = event.target.parentElement.children[1]
+        if(isExpanded){
+            setIsExpanded(false)
+            textElement.style.animationName = 'shrink'
+            textElement.classList.add('fully-removed')
+            buttonElement.classList.remove('rotate-before-element-neg135')
+        } else {
+            setIsExpanded(true)
+            textElement.classList.remove('fully-removed')
+            buttonElement.classList.add('rotate-before-element-neg135')
+        }
     }
 
 
-    return (  
-        <div className='expandinfobox-container'>
-            <p>Expand</p>
-            <button onClick={expandText}></button>
-            <div className='expandinfobox-text'>{params.text}</div>
-        </div>
+    return ( 
+        <div>
+            <div className='expandinfobox-container' onClick={e => expandText(e)}>
+                <p>Info</p>
+                <button></button>
+            </div>
+            <div className='expandinfobox-text fully-removed'>{params.text}</div>
+        </div> 
     );
 }
+
+
  
 export default ExpandInfoBox;

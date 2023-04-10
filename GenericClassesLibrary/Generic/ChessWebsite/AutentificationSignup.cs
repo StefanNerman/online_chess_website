@@ -1,12 +1,11 @@
-﻿using GenericClassesLibrary.Generic;
-using GenericClassesLibrary.Interface;
+﻿using GenericClassesLibrary.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericClassesLibrary;
+namespace GenericClassesLibrary.Generic.ChessWebsite;
 
 public class AutentificationSignup
 {

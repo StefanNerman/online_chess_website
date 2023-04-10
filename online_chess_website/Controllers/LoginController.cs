@@ -1,5 +1,5 @@
 ﻿using GenericClassesLibrary;
-using GenericClassesLibrary.Generic;
+using GenericClassesLibrary.Generic.ChessWebsite;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text.Json;
@@ -10,24 +10,16 @@ namespace online_chess_website.Controllers;
 [ApiController]
 public class LoginController : ControllerBase
 {
-    /*
-    //TO DELETE
-    [HttpGet("{username}/{password}")]
-    public bool Get(string username, string password)
-    {
-        Console.WriteLine(username + ":" + password);
-        return false : true
-    }
-    */
 
     [HttpPost]
-    public bool Post([FromBody] JsonElement data)
+    public async Task<int> Post([FromBody] JsonElement data)
     {
         LoginSignupData? loginData = JsonConvert.DeserializeObject<LoginSignupData>(data.ToString());
         if (loginData != null)
         {
-            return AutentificationLogin.CheckCredidentals(loginData.username, loginData.password);
+            int result = await AutentificationLogin.CheckCredidentals(loginData.username, loginData.password);
+            return result;
         }
-        return false;
+        return 0;
     }
 }

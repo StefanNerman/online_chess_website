@@ -8,6 +8,9 @@ interface propsObj {
 
 const LoginScreen = (props: propsObj) => {
 
+    function playOffline(){
+        props.setLogin('offline')
+    }
 
     return (  
         <div className='login-screen'>
@@ -23,7 +26,7 @@ const LoginScreen = (props: propsObj) => {
                 mousein={() => {}} mouseout={() => {}}/>
                 <label>Don't want to play online?</label>
                 <BtnMtBig  text='Play offline' 
-                callback={() => {props.setLogin('offline')}}
+                callback={() => {playOffline()}}
                 mousein={() => {}} mouseout={() => {}}/>
             </div>
         </div>

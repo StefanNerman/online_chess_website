@@ -11,6 +11,15 @@
   position: absolute;
 }
 
+.fully-removed {
+  visibility: collapse;
+  max-width: 0;
+  max-height: 0 !important;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 .asterix-red-left {
   position: relative;
 }
@@ -45,15 +54,75 @@
   right: 0;
   padding: 0;
   width: 100%;
-  height: 60px;
+  height: 65px;
   display: flex;
   justify-content: center;
 }
 
 .navbar-screen {
+  padding-left: 10px;
+  position: relative;
   height: 100%;
   width: 100%;
   background-color: rgb(100, 50, 50);
   max-width: 800px;
   z-index: 3;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-expandmenu-box {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  bottom: 7px;
+  display: flex;
+}
+.navbar-expandmenu-box button {
+  position: relative;
+  width: 51px;
+  height: 51px;
+  background-color: transparent;
+}
+.navbar-expandmenu-box button::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  top: 3px;
+  left: 3px;
+  bottom: 3px;
+  right: 3px;
+  background-image: url(./assets/hamburger.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.navbar-profilebox {
+  display: flex;
+  align-items: center;
+}
+
+.logo-embed-default-nav {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.profile-img-40 {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-size: contain;
+}
+
+.rotate-neg135 {
+  rotate: -135px;
+}
+
+@media screen and (max-width: 350px) {
+  .logo-embed-default-nav {
+    left: 8px;
+    translate: none;
+  }
 }/*# sourceMappingURL=style.css.map */

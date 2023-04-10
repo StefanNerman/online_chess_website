@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using GenericClassesLibrary;
 using GenericClassesLibrary.Interface;
 using System.Text.Json;
-using GenericClassesLibrary.Generic;
 using Newtonsoft.Json;
+using GenericClassesLibrary.Generic.ChessWebsite;
 
 namespace online_chess_website.Controllers;
 

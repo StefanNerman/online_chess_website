@@ -38,7 +38,7 @@ const GamePanel = (props: props) => {
                 <div className='gamesearchpanel-content'>
                     <div className='gamesearchpanel-button-container'>
                         <h5>Play online</h5>
-                        <GameSelectionComponent description='Find a match online against a random opponent with a close to similar skill level.' 
+                        <GameSelectionComponent description='Find a match online against a random opponent of similar skill level.' 
                         buttonText='Quickplay'
                         onButtonClick={() => {}} onButtonMouseIn={() => {}} onButtonMouseOut={() => {}}/>
                         <GameSelectionComponent description='Create a private game that your friend can join via link.' 
@@ -50,8 +50,8 @@ const GamePanel = (props: props) => {
                     </div>
                     <div className='gamesearchpanel-button-container'>
                         <h5>Play offline</h5>
-                        <GameSelectionComponent description='Here you can controll both colors on your machine.' 
-                        buttonText='Play locally'
+                        <GameSelectionComponent description='Here you can play alone or against a friend offline.' 
+                        buttonText='Local game'
                         onButtonClick={() => {}} onButtonMouseIn={() => {}} onButtonMouseOut={() => {}}/>
                         <GameSelectionComponent description='Select a diffuculty and test your skills against a chess-bot.' 
                         buttonText='Play against bots'

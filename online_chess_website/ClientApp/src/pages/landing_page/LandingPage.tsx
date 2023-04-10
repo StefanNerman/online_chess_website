@@ -23,14 +23,13 @@ export function isStringAllowed(string: string, isPassword: boolean): boolean {
     return true
 }
 
-export let operation: string = ''
 
 const LandingPage = () => {
 
     const [loginOperation, setLoginOperation] = useState('')
 
     useEffect(() => {
-        operation = loginOperation 
+        sessionStorage.setItem('loginOperation', loginOperation)
     }, [loginOperation])
 
 

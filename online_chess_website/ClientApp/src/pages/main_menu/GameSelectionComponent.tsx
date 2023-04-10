@@ -2,6 +2,7 @@ import React from 'react'
 import ButtonMTBig from '../../components/btn_maintheme_big'
 import ExpandInfoBox from '../../components/expandinfobox_brown'
 
+
 interface params {
     onButtonMouseIn: Function
     onButtonMouseOut: Function

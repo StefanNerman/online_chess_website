@@ -20,4 +20,8 @@ $mild-red: rgb(228, 0, 0);
     border-top: 7px solid $mild-brown;
     border-bottom: 7px solid $mild-brown;
 }
+@mixin flaign {
+    display: flex;
+    align-items: center;
+}
 
