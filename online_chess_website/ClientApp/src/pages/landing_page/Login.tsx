@@ -2,7 +2,7 @@ import React from 'react'
 import BackButton1 from '../../components/back_btn_1';
 import ButtonMtSmall from '../../components/btn_maintheme_small'
 import { useForm } from '../../hooks/formHooks'
-import { isStringAllowed } from './LandingPage'
+import { isStringAllowed, createSession } from './LandingPage'
 import * as api from '../../api/http_calls'
 import { addRedAsterix } from '../../utils/visual_prompts'
 import { useNavigate } from 'react-router-dom'
@@ -15,7 +15,6 @@ const Login = (props: propsObj) => {
 
     const [loginInfo, setLoginInfo] = useForm({username: '', password: ''})
     const navigate = useNavigate()
-
 
     function onSubmit(e: any){
         e.preventDefault()
@@ -40,15 +39,20 @@ const Login = (props: propsObj) => {
     function submitData(data: any){
         api.axiosPost(`api/login`, data)
         .then(response => {
-            response.data ? loginComplete() : alert('Username or password incorrect.')
+            console.log(response)
+            response.data? loginComplete(response.data) : alert('Username or password incorrect.')
         })
         .catch(error => {
             console.log('ERROR: ', error)
-            alert('Username or password incorrect.')
+            alert('Something went wrong.')
         })
     }
 
-    function loginComplete(){
+    function loginComplete(userId: number){
+        sessionStorage.setItem('username', loginInfo.username)
+        sessionStorage.setItem('userId', userId.toString())
+        sessionStorage.setItem('profileExists', 'true')
+        createSession(userId)
         navigate('/main-menu')
     }
 

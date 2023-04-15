@@ -14,7 +14,7 @@ public class MySQL: IMySQLDataAccess
 
     public async Task<List<T>> GetData<T, U>(string sql, U parameters, string connectionString)
     {
-        using(MySqlConnection conn = new MySqlConnection(connectionString))
+        using (MySqlConnection conn = new MySqlConnection(connectionString))
         {
             var rows = await conn.QueryAsync<T>(sql, parameters);
             return rows.ToList();
@@ -26,6 +26,14 @@ public class MySQL: IMySQLDataAccess
         using (MySqlConnection conn = new MySqlConnection(connectionString))
         {
             return conn.ExecuteAsync(sql, parameters);
+        }
+    }
+
+    public void DeleteData<T>(string sql, T parameters, string connectionString)
+    {
+        using (MySqlConnection conn =new MySqlConnection(connectionString))
+        {
+            conn.ExecuteAsync(sql, parameters);
         }
     }
 }

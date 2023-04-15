@@ -4,7 +4,7 @@ import BackButton1 from '../../components/back_btn_1';
 import ButtonMtSmall from '../../components/btn_maintheme_small'
 import CheckboxText from '../../components/checkbox_text_1'
 import * as api from '../../api/http_calls'
-import { isStringAllowed } from './LandingPage'
+import { isStringAllowed, createSession } from './LandingPage'
 import { addRedAsterix } from '../../utils/visual_prompts'
 import { useNavigate } from 'react-router-dom'
 
@@ -27,7 +27,7 @@ const Signup = (props: propsObj) => {
     function doesUserNameExist(e: any){ 
         let value = e.target.value 
         if(!isStringAllowed(value, false)) return
-        api.axiosGet(`api/signup/${value}`)
+        api.axiosGet(`api/signup/${value ? value : ''}`)
         .then(response => {
             let alertText = document.getElementById('belowUsernameAlert')!
             if(!response.data){         
@@ -55,7 +55,7 @@ const Signup = (props: propsObj) => {
         }
         api.axiosPost('api/signup', sendData)
         .then(response => {
-            response.data ? signupComplete() : alert('Something went wrong.')
+            response.data ? signupComplete(response.data) : alert('Something went wrong.')
         })
         .catch(response => {
             console.log('ERROR: ', response)
@@ -63,7 +63,11 @@ const Signup = (props: propsObj) => {
         })
     }
 
-    function signupComplete(){
+    async function signupComplete(userId: number){
+        sessionStorage.setItem('username', loginInfo.username)
+        sessionStorage.setItem('userId', userId.toString())
+        sessionStorage.setItem('profileExists', 'false')
+        await createSession(userId)
         navigate('/main-menu')
     }
 
@@ -107,7 +111,7 @@ const Signup = (props: propsObj) => {
                         isStringAllowed(e.target.value, true) && setLoginInfo('password', e.target.value)
                     }}></input>
                 </div>
-                <CheckboxText text='I accept the user agreement' linkOnClick={clickUserAgreementLink}
+                <CheckboxText text='I accept the terms and conditions' linkOnClick={clickUserAgreementLink}
                 onCheck={() => {setLoginInfo('checked', true)}} 
                 onUnCheck={() => {setLoginInfo('checked', false)}} 
                 checked={false} elementIdName='userAgreementBox'></CheckboxText>

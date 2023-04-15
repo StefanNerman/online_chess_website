@@ -3,6 +3,7 @@ using GenericClassesLibrary.Interface;
 using System.Text.Json;
 using Newtonsoft.Json;
 using GenericClassesLibrary.Generic.ChessWebsite;
+using online_chess_website.Data;
 
 namespace online_chess_website.Controllers;
 
@@ -12,19 +13,35 @@ public class SignupController : ControllerBase
 {
 
     [HttpPost]
-    public bool Post([FromBody] JsonElement data)
+    public async Task<int> Post([FromBody] JsonElement data)
     {
         LoginSignupData? loginData = JsonConvert.DeserializeObject<LoginSignupData>(data.ToString());
         if(loginData != null)
         {
-            return AutentificationSignup.CreateNewUser(loginData);
+            string connectionString = ConnectionStrings.defaultConnectionString;
+            int result = await AutentificationSignup.CreateNewUser(loginData.username, loginData.password, connectionString);
+            ProfileManager pm = new ProfileManager();
+            pm.CreateProfile(result, connectionString);
+
+            /*
+            IProfileInfo profile = await pm.GetProfile(result, connectionString);
+            UserProfileData sendData = new UserProfileData(result, profile);
+            */
+
+            return result;
         }
-        return false;
+        return 0;
     }
 
     [HttpGet("{username}")]
-    public bool Get(string username)
+    public async Task<bool> Get(string username)
     {
-        return AutentificationSignup.IsUsernameFree(username);
+        if(username == "")
+        {
+            return true;
+        }
+        string connectionString = ConnectionStrings.GetString("defaultString");
+        bool result = await AutentificationSignup.IsUsernameFree(username, connectionString);
+        return result;
     }
 }

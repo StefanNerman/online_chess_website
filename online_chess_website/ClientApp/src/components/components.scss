@@ -36,6 +36,22 @@
     rotate: 45deg;
 }   
 
+//NAVBAR BUTTONS
+.navbar-button {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+        p {
+            text-decoration: underline;
+        }
+    }
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}
 
 
 //checkbox
@@ -137,6 +153,7 @@
     max-width: 220px;
     align-items: center;
     overflow-x: hidden;
+    cursor: pointer;
 }
 
 .profileinfo-text {
@@ -150,12 +167,26 @@
     p {
         margin: 0;
         font-size: 75%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        &::before {
+            content: '';
+            position: absolute;
+            left: -200%;
+            background-image: url(../assets/logo_whiteknight.png);
+            background-position: center;
+            background-size: contain;
+            height: 85%;
+            width: 10px;
+        }
     }
 }   
 
 
 //LOGO
 .logo-frame {
+    cursor: pointer;
     h2 {
         color: rgb(255, 236, 182);
         position: relative;

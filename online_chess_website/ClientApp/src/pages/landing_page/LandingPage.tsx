@@ -4,6 +4,7 @@ import LoginScreen from './LoginScreen'
 import Login from './Login'
 import Signup from './Signup'
 import Offline from './Offline'
+import * as api from './../../api/http_calls'
 
 export function isStringAllowed(string: string, isPassword: boolean): boolean {
     if(isPassword && string.length > 21) return badSymbolAlert(`Passwords cannot be over 21 letters long!`)
@@ -23,6 +24,19 @@ export function isStringAllowed(string: string, isPassword: boolean): boolean {
     return true
 }
 
+export async function createSession(userId: number){
+    return new Promise((resolve, reject) => {
+        api.axiosGet(`api/sessions/${userId}`)
+        .then(result => {
+            sessionStorage.setItem("sessionToken", result.data.toString())
+            document.cookie = `ST=${result.data.toString()};expires=Fri, 18 September 2099 11:00:00 UTC; path=/`
+            resolve(result)
+        })
+        .catch(err => {
+            reject(err)
+        })
+    })
+}
 
 const LandingPage = () => {
 

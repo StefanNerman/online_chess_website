@@ -115,11 +115,31 @@
 .floating-navbar-profilebox {
   height: 100%;
   flex-grow: 0;
+  margin-left: 0.75rem;
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
   display: flex;
   align-items: center;
+}
+
+.floating-navbar-buttons-frame {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.floating-navbar-buttons-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 35%, 7rem);
 }
 
 @media screen and (max-width: 800px) {
