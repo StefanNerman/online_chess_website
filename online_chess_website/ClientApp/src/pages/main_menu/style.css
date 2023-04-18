@@ -1,6 +1,5 @@
 .mainmenu {
-  width: 100%;
-  min-height: 100vh;
+  min-height: 100svh;
   position: relative;
   background-position: left;
   background-repeat: no-repeat;
@@ -139,7 +138,18 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  gap: clamp(1rem, 35%, 7rem);
+  gap: clamp(1rem, 20%, 3rem);
+}
+
+.floating-navbar-signout-box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: calc(100% - 150px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 800px) {

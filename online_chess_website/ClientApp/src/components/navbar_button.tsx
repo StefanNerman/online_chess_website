@@ -10,7 +10,7 @@ const NavbarButton = (props: props) => {
 
 
     return (  
-        <div onClick={props.click()} className='navbar-button'>
+        <div onClick={() => props.click()} className='navbar-button'>
             <p>{props.text}</p>
         </div>
     );

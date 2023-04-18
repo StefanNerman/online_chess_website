@@ -1,1 +1,84 @@
-/*# sourceMappingURL=style.css.map */
+.gamepage {
+  min-height: 100svh;
+  background-position: right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../../assets/chessboard_background.png);
+  display: flex;
+  justify-content: center;
+}
+
+.gamepage-content {
+  margin-top: 6rem;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gamepage-gamepanel {
+  margin: 0.5rem;
+  background-color: rgb(160, 123, 123);
+  border-top: 7px solid rgb(112, 62, 62);
+  border-bottom: 7px solid rgb(112, 62, 62);
+  width: 100%;
+  height: 700px;
+}
+
+.playerinfo-container {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.playerinfobox-frame {
+  max-width: 300px;
+  min-width: 220px;
+  position: relative;
+  display: flex;
+  background-color: rgb(160, 123, 123);
+  border-top: 7px solid rgb(112, 62, 62);
+  padding: 0.5rem;
+}
+
+.playerinfobox-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: red;
+  margin-right: 1rem;
+}
+
+.playerinfobox-info h4 {
+  margin: 0;
+}
+.playerinfobox-info p {
+  margin: 0;
+}
+
+@media screen and (max-width: 650px) {
+  .playerinfobox-frame {
+    margin: 0 0.25rem;
+    min-width: 0;
+    max-width: 165px;
+    padding: 0.33rem;
+  }
+  .playerinfobox-image {
+    width: 35px;
+    height: 35px;
+    margin-right: 0.5rem;
+  }
+  .playerinfobox-info {
+    overflow: hidden;
+  }
+  .playerinfobox-info h4 {
+    font-size: 0.8em;
+    margin: 0;
+  }
+  .playerinfobox-info p {
+    font-size: 0.8em;
+    margin: 0;
+  }
+}/*# sourceMappingURL=style.css.map */

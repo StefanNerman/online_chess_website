@@ -15,12 +15,15 @@ public class SessionsController : ControllerBase
     [HttpPost]
     public void Post([FromBody] JsonElement data)
     {
-        Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         DeleteSessionRequestData? requestData = JsonConvert.DeserializeObject<DeleteSessionRequestData>(data.ToString());
         if (requestData != null)
         {
             string connectionString = ConnectionStrings.GetString("defaultString");
-            Sessions.DeleteSession(int.Parse(requestData.userId), connectionString);
+            if(requestData.userId != null)
+            {
+                int userId = int.Parse(requestData.userId);
+                Sessions.DeleteSession(userId, connectionString);
+            }
         }
     }
 

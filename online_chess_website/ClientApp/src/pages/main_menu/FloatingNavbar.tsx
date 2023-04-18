@@ -3,6 +3,8 @@ import ProfileBox from '../../components/profile_info'
 import LogoBig from '../../components/logo_big'
 import * as api from '../../api/http_calls'
 import NavbarButton from '../../components/navbar_button'
+import SignoutButton from '../../components/signout_button'
+import {useNavigate} from 'react-router-dom'
 
 interface props {
     offline: boolean
@@ -10,12 +12,7 @@ interface props {
 
 const FloatingNavbar = (params: props) => {
 
-    interface profile {
-        username: string
-        userRank: number
-        picture: string
-    }
-
+    const navigate = useNavigate()
     const [profile, setProfile] = useState({
         username: '',
         userRank: 0,
@@ -23,7 +20,7 @@ const FloatingNavbar = (params: props) => {
     })
 
     useEffect(() => {
-        api.axiosGet(`api/profiles/${parseInt(sessionStorage.getItem('userId')!)}`)
+        sessionStorage.getItem('loginOperation') === 'offline' || api.axiosGet(`api/profiles/${parseInt(sessionStorage.getItem('userId')!)}`)
         .then((response) => {
             console.log(response.data)
             setProfile(response.data)
@@ -46,11 +43,14 @@ const FloatingNavbar = (params: props) => {
                 {/*SETTINGS NEWS SOCIAL MY_PROFILE*/}
                 <div className='floating-navbar-buttons-frame'>
                     <div className='floating-navbar-buttons-container'>
-                        <NavbarButton text={'settings'} click={() => {}}/>
-                        <NavbarButton text={'news'} click={() => {}}/>
-                        <NavbarButton text={'social'} click={() => {}}/>
-                        <NavbarButton text={'my profile'} click={() => {}}/>
+                        <NavbarButton text={'My profile'} click={() => {navigate('/profile')}}/>
+                        <NavbarButton text={'News'} click={() => {navigate('/news')}}/>
+                        <NavbarButton text={'Social'} click={() => {navigate('/social')}}/>
+                        <NavbarButton text={'Settings'} click={() => {navigate('/settings')}}/>
                     </div>
+                </div>
+                <div className='floating-navbar-signout-box'>
+                    <SignoutButton />
                 </div>
             </div>
         </div>

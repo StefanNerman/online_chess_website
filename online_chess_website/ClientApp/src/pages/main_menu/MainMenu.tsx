@@ -7,7 +7,6 @@ import ExtraPanelLeft from './ExtraPanelLeft'
 import NavbarDefault from '../../NavbarDefault';
 
 
-
 const MainMenu = () => {
 
     const [isScreenWide, setIsScreenWide] = useState(window.innerWidth > 800 ? true : false)

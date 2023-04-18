@@ -48,9 +48,26 @@
         }
     }
     p {
+        font-size: 120%;
+        font-weight: 501;
+        color: $brownish-white;
         margin: 0;
         padding: 0;
     }
+}
+
+.signout-button-frame {
+    background: none;
+    border-radius: 5px;
+    border: 3px solid $white-brown;
+    &:hover {
+        border: 3px solid $brownish-white;
+        color: $brownish-white;
+    }
+    color: $brownish-white;
+    font-weight: 501;
+    font-size: 110%;
+    padding: 7px 13px;
 }
 
 
@@ -149,16 +166,16 @@
 
 
 .profileinfo-frame {
-    @include flexify;   
+    display:flex; 
     max-width: 220px;
-    align-items: center;
+    align-items: flex;
     overflow-x: hidden;
-    cursor: pointer;
 }
 
 .profileinfo-text {
     margin-left: 5px;
     @include flexDirectionAlign;
+    align-items: flex-start;
     width: max-content;
     h6 {
         width: 100%;
@@ -166,14 +183,15 @@
     }
     p {
         margin: 0;
-        font-size: 75%;
+        margin-left: 12px;
+        font-size: 73%;
         position: relative;
         display: flex;
-        align-items: center;
+        color: gold;
         &::before {
             content: '';
             position: absolute;
-            left: -200%;
+            left: -12px;
             background-image: url(../assets/logo_whiteknight.png);
             background-position: center;
             background-size: contain;
