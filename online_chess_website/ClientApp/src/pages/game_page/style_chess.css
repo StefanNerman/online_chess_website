@@ -56,3 +56,21 @@
     height: calc(var(--tile-size) - 4px);
     user-select: none;
 }
+
+@media screen and (min-width: 400px){
+    .chess-root {
+        --tile-size: 2rem;
+    }
+}
+
+@media screen and (min-width: 400px){
+    .chess-root {
+        --tile-size: 2.5rem;
+    }
+}
+
+@media screen and (min-width: 400px){
+    .chess-root {
+        --tile-size: 3rem;
+    }
+}

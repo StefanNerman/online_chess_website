@@ -239,3 +239,14 @@
         }
     }
 }
+
+
+//TEXT BOXES
+
+.framedtextbox {
+    margin: 0.25rem;
+    padding: 1px 3px;
+    background-color: $mild-brown;
+    border: 4px solid $dark-brown;
+    color: $brownish-white;
+}

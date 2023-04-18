@@ -1,5 +1,5 @@
 .gamepage {
-  min-height: 100svh;
+  min-height: 100dvh;
   background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
@@ -23,7 +23,22 @@
   border-top: 7px solid rgb(112, 62, 62);
   border-bottom: 7px solid rgb(112, 62, 62);
   width: 100%;
-  height: 700px;
+}
+
+.gamepanel-top-section {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.gamepanel-middle-section {
+  display: flex;
+  justify-content: center;
+}
+
+.gamepanel-bottom-section {
+  margin: 0.5rem 0;
 }
 
 .playerinfo-container {
