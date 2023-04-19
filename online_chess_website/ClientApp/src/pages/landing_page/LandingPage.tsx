@@ -13,7 +13,7 @@ export function isStringAllowed(string: string, isPassword: boolean): boolean {
     if(string.includes(`"`)) return badSymbolAlert(`', " and ${'`'} signs are not allowed!`)
     if(string.includes('`')) return badSymbolAlert(`', " and ${'`'} signs are not allowed!`)
     if(string.includes(' ')) return badSymbolAlert(`Please do not use spaces!`)
-    let alertText = document.getElementById('bottomAlertText')!
+    let alertText: HTMLElement = document.getElementById('bottomAlertText')!
     alertText.innerText = ''
 
     function badSymbolAlert(message: string): boolean {
