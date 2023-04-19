@@ -1,6 +1,6 @@
 import { isStringAllowed } from "../LandingPage"
 
-test('returns false when string does not comply with name rules', () => {
+it('returns false when string does not comply with name rules', () => {
     expect(isStringAllowed('hey', true)).toBe(true)
     expect(isStringAllowed('12345678901234567890123', true)).toBe(false)
     expect(isStringAllowed('hey ', true)).toBe(false)
