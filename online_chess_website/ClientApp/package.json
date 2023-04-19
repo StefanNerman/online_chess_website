@@ -31,11 +31,15 @@
     "workbox-streams": "^6.5.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-typescript": "^7.21.4",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "ajv": "^8.11.0",
+    "babel-jest": "^29.5.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.18.0",
     "eslint-config-react-app": "^7.0.1",
@@ -78,5 +82,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/src/api/"
+  ],
+  "transformIgnorePatterns": [ "node_modules/(?!(@microsoft/sp-core-library))" ]
 }
