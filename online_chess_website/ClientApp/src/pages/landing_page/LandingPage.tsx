@@ -7,21 +7,23 @@ import Offline from './Offline'
 import * as api from './../../api/http_calls'
 
 export function isStringAllowed(string: string, isPassword: boolean): boolean {
-    if(isPassword && string.length > 21) return badSymbolAlert(`Passwords cannot be over 21 letters long!`)
-    if(!isPassword && string.length > 21) return badSymbolAlert(`Usernames cannot be over 21 letters long!`)
-    if(string.includes(`'`)) return badSymbolAlert(`', " and ${'`'} signs are not allowed!`)
-    if(string.includes(`"`)) return badSymbolAlert(`', " and ${'`'} signs are not allowed!`)
-    if(string.includes('`')) return badSymbolAlert(`', " and ${'`'} signs are not allowed!`)
-    if(string.includes(' ')) return badSymbolAlert(`Please do not use spaces!`)
-    let alertText: HTMLElement = document.getElementById('bottomAlertText')!
-    alertText.innerText = ''
-
-    function badSymbolAlert(message: string): boolean {
-        let alertText = document.getElementById('bottomAlertText')!
-        alertText.innerText = message
-        return false
-    }
+    let isStringIllegal = checkString(string, isPassword)
+    if(isStringIllegal) return badSymbolAlert(isStringIllegal)
     return true
+}
+export function checkString(str: string, isPassword: boolean): string{
+    if(isPassword && str.length > 21) return `Passwords cannot be over 21 letters long!`
+    if(!isPassword && str.length > 21) return `Usernames cannot be over 21 letters long!`
+    if(str.includes(`'`)) return `', " and ${'`'} signs are not allowed!`
+    if(str.includes(`"`)) return `', " and ${'`'} signs are not allowed!`
+    if(str.includes('`')) return `', " and ${'`'} signs are not allowed!`
+    if(str.includes(' ')) return `Please do not use spaces!`
+    return ''
+}
+function badSymbolAlert(message: string): boolean {
+    let alertText: HTMLElement = document.getElementById('bottomAlertText')!
+    if('innerText' in alertText) alertText.innerText = message
+    return false
 }
 
 export async function createSession(userId: number){
