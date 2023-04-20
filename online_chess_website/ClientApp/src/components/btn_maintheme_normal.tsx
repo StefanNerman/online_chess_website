@@ -9,9 +9,6 @@ interface buttonParamsObject {
     mouseout: Function
 }
 
-//<ButtonMainthemeBig text='press epic button' 
-//callback={() => callbackFunction(params, params, params)}/>
-
 const MainthemeButton = (params: buttonParamsObject) => {
 
     const buttonText = params.text
