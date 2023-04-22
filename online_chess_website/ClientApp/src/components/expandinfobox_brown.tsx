@@ -32,7 +32,7 @@ const ExpandInfoBox = (params: params) => {
                 <p>Info</p>
                 <button></button>
             </div>
-            <div className='expandinfobox-text fully-removed'>{params.text}</div>
+            <div className='expandinfobox-text fully-removed' role='textbox'>{params.text}</div>
         </div> 
     );
 }
