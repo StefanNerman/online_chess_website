@@ -65,7 +65,7 @@ const Login = (props: propsObj) => {
             <form className='login-panel' onSubmit={(e) => onSubmit(e)}>
                 <label>username</label>
                 <div className='text-input-container'>
-                    <span id='usernamePromptHolder'></span>
+                    <span id='usernamePromptHolder' data-testid='login-username-prompt'></span>
                     <input type='text' name='username' 
                     onChange={e => {
                         isStringAllowed(e.target.value, false) && setLoginInfo('username', e.target.value)
@@ -73,13 +73,13 @@ const Login = (props: propsObj) => {
                 </div>
                 <label>password</label>
                 <div className='text-input-container'>
-                    <span id='passwordPromptHolder'></span>
+                    <span id='passwordPromptHolder' data-testid='login-password-prompt'></span>
                     <input type='password' name='password' style={{marginBottom: '1rem'}}
                     onChange={e => {
                         isStringAllowed(e.target.value, true) && setLoginInfo('password', e.target.value)
                     }}></input>
                 </div>
-                <ButtonMtSmall text='submit' callback={() => {}} mousein={() => {}} mouseout={() => {}}/>
+                <ButtonMtSmall text='submit' callback={() => {}} mousein={() => {}} mouseout={() => {}} data-testid='login-submit-button'/>
                 <p id='bottomAlertText' className='alert-text-red automargin'></p>
             </form>
         </div>
