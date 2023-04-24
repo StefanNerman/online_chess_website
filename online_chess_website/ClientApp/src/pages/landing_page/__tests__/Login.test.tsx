@@ -14,7 +14,7 @@ describe('Login component', () => {
                 <Login setLogin={setLogin} />
             </BrowserRouter>
         )
-        const submitButton = screen.getByTestId('login-submit-button')
+        const submitButton = screen.getByText('submit')
         await user.click(submitButton)
         const usernameTextField = screen.getByTestId('login-username-prompt')
         const passwordTextField = screen.getByTestId('login-password-prompt')

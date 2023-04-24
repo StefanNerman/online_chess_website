@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import ProfileBox from '../../components/profile_info'
 import LogoBig from '../../components/logo_big'
-import * as api from '../../api/http_calls'
 import NavbarButton from '../../components/navbar_button'
 import SignoutButton from '../../components/signout_button'
 import {useNavigate} from 'react-router-dom'
+import {getProfileByUserId} from '../../utils/user_profile_info'
 
 interface props {
     offline: boolean
@@ -20,11 +20,11 @@ const FloatingNavbar = (params: props) => {
     })
 
     useEffect(() => {
-        sessionStorage.getItem('loginOperation') === 'offline' || api.axiosGet(`api/profiles/${parseInt(sessionStorage.getItem('userId')!)}`)
+        sessionStorage.getItem('loginOperation') === 'offline' || getProfileByUserId(parseInt(sessionStorage.getItem('userId')!))
         .then((response) => {
-            console.log(response.data)
-            setProfile(response.data)
+            setProfile(response)
         })
+        .catch(() => alert('could not find profile data'))
     }, [])
 
 
