@@ -11,8 +11,9 @@ type props = {
 const GamePage = ({...rest}: props) => {
 
     const { state: {
-            isOnlineGame,
-            gameMode// (quickplay | private | local | bot + [difficulty])
+        isOnlineGame,
+        gameMode,// (quickplay | private | local | bot + [difficulty])
+        color
     } = {} } = useLocation();
 
 
@@ -25,7 +26,7 @@ const GamePage = ({...rest}: props) => {
                     {isOnlineGame && <PlayerInfoPanel username={'anong'} rank={123} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>}
                 </div>
                 <div className='gamepage-gamepanel'>
-                    <GamePanel gamemode={gameMode}/>
+                    <GamePanel gamemode={gameMode} color={color}/>
                 </div>
             </div>
         </div>

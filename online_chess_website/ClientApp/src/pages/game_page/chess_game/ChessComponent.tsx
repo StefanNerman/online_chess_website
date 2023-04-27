@@ -25,8 +25,6 @@ export let isLocalGame = false
 export function setIsLocalGame(bool: boolean) {isLocalGame = bool}
 
 export let playerColor = 'white'
-//setPlayerColor is only used once in gamelogic.ts at lines 254 and 256 to make the MoveFinder be able to check if a move results in a checkmate or not
-//I know its not the optimal way but its not that big of a deal so I never bothered to fix it
 export function setPlayerColor(color: string) {playerColor = color}
 
 export function artificialMove(from: number, to: number){
@@ -35,7 +33,8 @@ export function artificialMove(from: number, to: number){
     renderPieces(tiles.getPositions())
 }
 
-
+let moveNotYetMade = true
+export let matchTime = 0
 
 //OUTCOME STRING: [move piece] + [move '>' or eat '<'] + [eaten piece (move piece if no piece was there)] + [result ('' for nothing, '*' for check, 'x' for checkmate)] + [move positions (from, to)]
 //Ex. eat: '021<1053455', check: '021>021*4263', check after eating a piece: '030<103*8347', normal move: '021>0211736', castling: '050:0118481', checkmate '010>010x3353'
@@ -45,6 +44,7 @@ async function handleMove(move: string){
     console.log('MOVE:', move)
     let moveStatus = await handleMoveApi(move)
     if(!moveStatus){/*throw an alert and return*/}
+    if(moveNotYetMade) onMachStart()
     let from = coordinateConverter(parseInt(move.slice(7, 9)))
     let to = coordinateConverter(parseInt(move.slice(9, 11)))
     let moveString = from + ' -> ' + to
@@ -57,6 +57,20 @@ async function handleMoveApi(move: string): Promise<boolean>{
         resolve(true)
     })
 }
+function onMachStart(){
+    moveNotYetMade = false
+    setInterval(() => updateTimer(), 1000)
+}
+function updateTimer(){
+    matchTime += 1
+    const timerTab = document.getElementById('gamepanel-timetab')!
+    let minutes = Math.floor(matchTime / 60).toString()
+    let seconds = (matchTime % 60).toString()
+    if(minutes.length === 1) minutes = '0' + minutes
+    if(seconds.length === 1) seconds = '0' + seconds
+    timerTab.innerText = `${minutes}:${seconds}`
+}
+
 //Called every time the king gets attacked, receives an outcome string as a param
 function handleKingAttack(move: string){
     console.log('CHECK:', move)
@@ -81,10 +95,12 @@ function handleEmptyTileClick(tilePosition: number){
 //Called every time you click on your opponents tile
 function handleWrongTileClick(tilePosition: number){
     console.log('WRONG PIECE:', tilePosition)
+    console.log(whoseTurn, playerColor)
 }
 //Called every time you click on your opponents turn
 function handleNotYourTurnClick(tilePosition: number){
     console.log('WRONG TURN CLICK:', tilePosition)
+    console.log(whoseTurn, playerColor)
     alert('Wait for your turn.')
 }
 //Called every time you select or move your piece, receives result of your click (move, check, select, unselect)
@@ -94,14 +110,16 @@ function onPlayerMove(clickResult: actionInfoObj){
 
 
 
-type props = {
+interface props {
     gamemode: string
-} & React.ComponentProps<'div'>
+    color: string
+}
 
-const Chess: React.FC<any> = ({gamemode, ...rest}: props) => {
+const Chess: React.FC<any> = ({gamemode, color}: props) => {
 
     useEffect(() => {
         setIsLocalGame(gamemode === 'local'? true : false)
+        playerColor = color
         createBoard()
         renderPieces(tiles.getPositions())
     }, [])
@@ -137,7 +155,7 @@ const Chess: React.FC<any> = ({gamemode, ...rest}: props) => {
     }
 
     return (  
-    <div className="chess-root" {...rest}>
+    <div className="chess-root">
         <div id='chessboard'>
 
         </div>

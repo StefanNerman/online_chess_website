@@ -17,7 +17,8 @@ const GamePanel = (props: props) => {
     function quickPlay(){
         navigate('/game-page', { state: { 
             isOnlineGame: true,
-            gameMode: 'quickplay'
+            gameMode: 'quickplay',
+            color: 'white'
         } })
     }
 
@@ -32,7 +33,8 @@ const GamePanel = (props: props) => {
     function localGame(){
         navigate('/game-page', { state: { 
             isOnlineGame: false,
-            gameMode: 'local'
+            gameMode: 'local',
+            color: 'white'
         }})
     }
 

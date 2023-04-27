@@ -2,23 +2,24 @@ import React from 'react'
 import ChessComponent, {setIsLocalGame} from './chess_game/ChessComponent'
 import FramedTextbox from '../../components/framed_textbox';
 
-type props = {
+interface props {
     gamemode: string
-} & React.ComponentProps<'div'>
+    color: string
+}
 
-const GamePanel = ({gamemode, ...rest}: props) => {
+const GamePanel = ({gamemode, color}: props) => {
 
     setIsLocalGame(true)
 
     return (  
-        <div {...rest}>
+        <div>
             <div className='gamepanel-top-section'>
-                <FramedTextbox text={'H2 -> F3'} id='gamepanel-movetab-left'/>
-                <FramedTextbox text={'11:48'} id='gamepanel-timetab'/>
-                <FramedTextbox text={'H2 -> F3'} id='gamepanel-movetab-right'/>
+                <FramedTextbox text={'A1 -> A1'} id='gamepanel-movetab-left'/>
+                <FramedTextbox text={'00:00'} id='gamepanel-timetab'/>
+                <FramedTextbox text={'H8 -> H8'} id='gamepanel-movetab-right'/>
             </div>
             <div className='gamepanel-middle-section'>
-                <ChessComponent gamemode={gamemode}/>
+                <ChessComponent gamemode={gamemode} color={color}/>
             </div>
             <div className='gamepanel-bottom-section'>
                 
