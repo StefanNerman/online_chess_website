@@ -78,7 +78,7 @@
     }
 }
 
- @media screen and (max-width: 650px){
+@media screen and (max-width: 650px){
     .playerinfobox-frame{
         margin: 0 0.25rem;
         min-width: 0;
@@ -101,4 +101,10 @@
             margin: 0;
         }
     }
- }
+}
+
+@media screen and (max-width: 340px) {
+    .gamepanel-top-section {
+        scale: 0.75;
+    }
+}

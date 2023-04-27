@@ -96,4 +96,9 @@
     font-size: 0.8em;
     margin: 0;
   }
+}
+@media screen and (max-width: 340px) {
+  .gamepanel-top-section {
+    scale: 0.75;
+  }
 }/*# sourceMappingURL=style.css.map */
