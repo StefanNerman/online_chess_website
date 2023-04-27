@@ -50,8 +50,9 @@ async function handleMove(move: string){
     let moveStatus = await handleMoveApi(move)
     if(!moveStatus){/*throw an alert and return*/}
     if(moveNotYetMade) onMachStart()
-    let from = coordinateConverter(parseInt(move.slice(7, 9)))
-    let to = coordinateConverter(parseInt(move.slice(9, 11)))
+    let coordinatesString = move.slice(move.length -4, move.length)
+    let from = coordinateConverter(parseInt(coordinatesString.slice(0, 2)))
+    let to = coordinateConverter(parseInt(coordinatesString.slice(2, 4)))
     let moveString = from + ' -> ' + to
     const moveDisplayTab = whoseTurn === 'black' ? document.getElementById('gamepanel-movetab-left')! : document.getElementById('gamepanel-movetab-right')!
     moveDisplayTab.innerText = moveString
