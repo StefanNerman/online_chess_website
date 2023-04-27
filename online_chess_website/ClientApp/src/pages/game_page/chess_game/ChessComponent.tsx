@@ -36,6 +36,11 @@ export function artificialMove(from: number, to: number){
 let moveNotYetMade = true
 export let matchTime = 0
 
+function startTimerInterval(){
+    return window.setInterval(updateTimer, 1000)
+}
+let timeInterval: any
+
 //OUTCOME STRING: [move piece] + [move '>' or eat '<'] + [eaten piece (move piece if no piece was there)] + [result ('' for nothing, '*' for check, 'x' for checkmate)] + [move positions (from, to)]
 //Ex. eat: '021<1053455', check: '021>021*4263', check after eating a piece: '030<103*8347', normal move: '021>0211736', castling: '050:0118481', checkmate '010>010x3353'
 
@@ -59,7 +64,7 @@ async function handleMoveApi(move: string): Promise<boolean>{
 }
 function onMachStart(){
     moveNotYetMade = false
-    setInterval(() => updateTimer(), 1000)
+    timeInterval = startTimerInterval()
 }
 function updateTimer(){
     matchTime += 1
@@ -78,9 +83,10 @@ function handleKingAttack(move: string){
 //Called every time there is a checkmate, receives an outcome string as a param
 function handleCheckmate(move: string){
     console.log('CHECKMATE:', move)
+    window.clearInterval(timeInterval)
 }
 //Called every time a piece is eaten, receives an outcome string as a param
-function handleAttack(move: string){
+function handleAttack(move: string){    
     console.log('PIECE EATEN:', move)
 }
 //Called every time a king castles, receives an outcome string as a param
