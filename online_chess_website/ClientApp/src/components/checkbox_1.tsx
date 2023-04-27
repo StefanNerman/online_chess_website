@@ -1,29 +1,29 @@
 import React, {useState} from 'react'
 
 
-interface params {
+type params = {
     checked: boolean
     onCheck: Function | null
     onUnCheck: Function | null
-}
+} & React.ComponentProps<any>
 
-const Checkbox1 = (params: params) => {
+const Checkbox1 = ({onCheck, onUnCheck, checked, ...rest}: params) => {
 
-    const [checked, setChecked] = useState(params.checked)
+    const [isChecked, setIsChecked] = useState(checked)
 
     function handleChange(){
-        if(checked){
-            params.onUnCheck && params.onUnCheck()
-            setChecked(false)
+        if(isChecked){
+            onUnCheck && onUnCheck()
+            setIsChecked(false)
         } else {
-            params.onCheck && params.onCheck()
-            setChecked(true)
+            onCheck && onCheck()
+            setIsChecked(true)
         }
     }
 
     return (  
         <input type='checkbox' className='checkbox-1' tabIndex={0}
-        checked={checked} onChange={handleChange}>
+        onChange={handleChange} data-testid='checkbox-1' {...rest} checked={isChecked}>
 
         </input>
     );

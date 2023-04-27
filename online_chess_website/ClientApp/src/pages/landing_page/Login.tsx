@@ -60,7 +60,7 @@ const Login = (props: propsObj) => {
         <div className='login-screen'>
             <h1>
                 Log In
-                <BackButton1 callback={() => {props.setLogin('')}} fromLeft='0.5rem' fromTop='50%'/>
+                <BackButton1 onClick={() => {props.setLogin('')}} style={{left: '0.5rem', top: '50%'}}/>
             </h1>
             <form className='login-panel' onSubmit={(e) => onSubmit(e)}>
                 <label>username</label>
@@ -79,7 +79,7 @@ const Login = (props: propsObj) => {
                         isStringAllowed(e.target.value, true) && setLoginInfo('password', e.target.value)
                     }}></input>
                 </div>
-                <ButtonMtSmall text='submit' callback={() => {}} mousein={() => {}} mouseout={() => {}} data-testid='login-submit-button'/>
+                <ButtonMtSmall text='submit' onClick={() => {}} data-testid='login-submit-button'/>
                 <p id='bottomAlertText' className='alert-text-red automargin'></p>
             </form>
         </div>

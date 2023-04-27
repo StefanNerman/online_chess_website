@@ -3,6 +3,7 @@ import './style_chess.css'
 import { useEffect } from 'react'
 import { tileClick, tiles, whoseTurn, autoMove, setWhoseTurn } from './gamelogic'
 import { ImagePieces as imageCodes } from './piecesImages'
+import {coordinateConverter} from '../../../utils/chessgame'
 
 interface TileObj {
     position: number,
@@ -20,7 +21,8 @@ interface actionInfoObj {
     info: string | null | actionMoveInfoObj | object
 }
 //If you are playing both colors on the same device set this to true it will change the player color every time a move is made
-export let isLocalGame = true
+export let isLocalGame = false
+export function setIsLocalGame(bool: boolean) {isLocalGame = bool}
 
 export let playerColor = 'white'
 //setPlayerColor is only used once in gamelogic.ts at lines 254 and 256 to make the MoveFinder be able to check if a move results in a checkmate or not
@@ -39,8 +41,21 @@ export function artificialMove(from: number, to: number){
 //Ex. eat: '021<1053455', check: '021>021*4263', check after eating a piece: '030<103*8347', normal move: '021>0211736', castling: '050:0118481', checkmate '010>010x3353'
 
 //Called every time a move is made, receives an outcome string as a param
-function handleMove(move: string){
+async function handleMove(move: string){
     console.log('MOVE:', move)
+    let moveStatus = await handleMoveApi(move)
+    if(!moveStatus){/*throw an alert and return*/}
+    let from = coordinateConverter(parseInt(move.slice(7, 9)))
+    let to = coordinateConverter(parseInt(move.slice(9, 11)))
+    let moveString = from + ' -> ' + to
+    const moveDisplayTab = whoseTurn === 'black' ? document.getElementById('gamepanel-movetab-left')! : document.getElementById('gamepanel-movetab-right')!
+    moveDisplayTab.innerText = moveString
+}
+async function handleMoveApi(move: string): Promise<boolean>{
+    return new Promise((resolve, reject) => {
+        /*api call*/
+        resolve(true)
+    })
 }
 //Called every time the king gets attacked, receives an outcome string as a param
 function handleKingAttack(move: string){
@@ -77,7 +92,10 @@ function onPlayerMove(clickResult: actionInfoObj){
     console.log('ANY MOVE:', clickResult)
 }
 
-const Chess: React.FC<any> = () => {
+type props = {
+} & React.ComponentProps<'div'>
+
+const Chess: React.FC<any> = ({...rest}: props) => {
 
     useEffect(() => {
         createBoard()
@@ -115,7 +133,7 @@ const Chess: React.FC<any> = () => {
     }
 
     return (  
-    <div className="chess-root">
+    <div className="chess-root" {...rest}>
         <div id='chessboard'>
 
         </div>

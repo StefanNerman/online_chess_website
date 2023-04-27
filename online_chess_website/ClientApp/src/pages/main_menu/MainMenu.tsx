@@ -4,7 +4,7 @@ import GamePanel from './GamePanel'
 import Navbar from './FloatingNavbar'
 import ExtraPanelRight from './ExtraPanelRight'
 import ExtraPanelLeft from './ExtraPanelLeft'
-import NavbarDefault from '../../NavbarDefault';
+import NavbarDefault from '../../components/NavbarDefault';
 
 
 const MainMenu = () => {

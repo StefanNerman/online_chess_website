@@ -2,32 +2,31 @@ import React from 'react'
 import Checkbox1 from './checkbox_1';
 
 
-interface params {
+type params = {
     text: string
     linkOnClick: Function | null
     onCheck: Function | null
     onUnCheck: Function | null
     checked: boolean
-    elementIdName: string | null
-}
+} & React.ComponentProps<'div'>
 
-const CheckboxText = (params: params) => {
+const CheckboxText = ({text, linkOnClick, onCheck, onUnCheck, checked, ...rest}: params) => {
 
 
     function thisOnCheck(){
-        params.onCheck && params.onCheck()
+        onCheck && onCheck()
     }
     function thisOnUnCheck(){
-        params.onUnCheck && params.onUnCheck()
+        onUnCheck && onUnCheck()
     }
 
     return (  
-        <div className='checkbox-text-1' id={params.elementIdName ? params.elementIdName : ''}>
-            <Checkbox1 onCheck={thisOnCheck} onUnCheck={thisOnUnCheck} checked={params.checked}/>
+        <div className='checkbox-text-1' {...rest}>
+            <Checkbox1 onCheck={thisOnCheck} onUnCheck={thisOnUnCheck} checked={checked}/>
             <a tabIndex={0} onClick={() => {
-                params.linkOnClick && params.linkOnClick()
+                linkOnClick && linkOnClick()
                 return
-            }}>{params.text}</a>
+            }}>{text}</a>
         </div>
     );
 }

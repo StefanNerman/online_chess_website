@@ -92,19 +92,19 @@ const Signup = (props: propsObj) => {
         <div className='login-screen'>
             <h1>
                 Sign Up
-                <BackButton1 callback={() => {props.setLogin('')}} fromLeft='0.5rem' fromTop='50%'/>
+                <BackButton1 onClick={() => {props.setLogin('')}} style={{left: '0.5rem', top: '50%'}}/>
             </h1>
             <form className='login-panel' onSubmit={(e) => onSubmit(e)} id='signupForm'>
                 <label id='usernameInputLabel'>Username</label>
                 <div className='text-input-container'>
-                    <span id='usernamePromptHolder'></span>
+                    <span id='usernamePromptHolder' data-testid='signup-username-prompt'></span>
                     <input type='text' name='username' id='signupUsername' 
                     onChange={(e) => doesUserNameExist(e)}></input>
                     <p id='belowUsernameAlert' className='alert-text-red automargin'></p>
                 </div>
                 <label>Password</label>
                 <div className='text-input-container'>
-                    <span id='passwordPromptHolder'></span>
+                    <span id='passwordPromptHolder' data-testid='signup-password-prompt'></span>
                     <input type='password' name='password' id='signupPassword'
                     onChange={(e) => {
                         isPasswordValid = true
@@ -114,9 +114,8 @@ const Signup = (props: propsObj) => {
                 <CheckboxText text='I accept the terms and conditions' linkOnClick={clickUserAgreementLink}
                 onCheck={() => {setLoginInfo('checked', true)}} 
                 onUnCheck={() => {setLoginInfo('checked', false)}} 
-                checked={false} elementIdName='userAgreementBox'></CheckboxText>
-                <ButtonMtSmall text='submit' callback={() => {}} 
-                mousein={() => {}} mouseout={() => {}}/>
+                checked={false} id='userAgreementBox'></CheckboxText>
+                <ButtonMtSmall text='submit' onClick={() => {}} />
                 <p id='bottomAlertText' className='alert-text-red automargin'></p>
             </form>
         </div>

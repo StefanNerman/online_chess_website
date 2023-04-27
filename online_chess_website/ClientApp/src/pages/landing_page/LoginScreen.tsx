@@ -18,16 +18,13 @@ const LoginScreen = (props: propsObj) => {
                 <div className='login-panel'>
                 <label>Already a member?</label>
                 <BtnMtBig  text='Log in' 
-                callback={() => {props.setLogin('login')}}
-                mousein={() => {}} mouseout={() => {}}/>
+                onClick={() => {props.setLogin('login')}}/>
                 <label>Don't have an account yet?</label>
                 <BtnMtBig  text='Create account' 
-                callback={() => {props.setLogin('signup')}}
-                mousein={() => {}} mouseout={() => {}}/>
+                onClick={() => {props.setLogin('signup')}}/>
                 <label>Don't want to play online?</label>
                 <BtnMtBig  text='Play offline' 
-                callback={() => {playOffline()}}
-                mousein={() => {}} mouseout={() => {}}/>
+                onClick={() => {playOffline()}}/>
             </div>
         </div>
     );

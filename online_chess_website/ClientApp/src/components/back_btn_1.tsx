@@ -2,19 +2,15 @@ import React from 'react'
 import './components.css'
 
 
-interface buttonParamsObject {
-    callback: Function
-    fromLeft: string
-    fromTop: string
-}
+type params = {
+    
+} & React.ComponentProps<'button'>
 
-const BackButton1 = (params: buttonParamsObject) => {
+const BackButton1 = ({...rest}: params) => {
 
-    const callback = params.callback
 
     return (
-        <button className='back-btn-1' style={{top: params.fromTop, left: params.fromLeft}}
-        onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => callback()}>
+        <button className='back-btn-1' {...rest}>
         </button>
     );
 }

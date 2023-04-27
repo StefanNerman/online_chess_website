@@ -43,10 +43,10 @@ const FloatingNavbar = (params: props) => {
                 {/*SETTINGS NEWS SOCIAL MY_PROFILE*/}
                 <div className='floating-navbar-buttons-frame'>
                     <div className='floating-navbar-buttons-container'>
-                        <NavbarButton text={'My profile'} click={() => {navigate('/profile')}}/>
-                        <NavbarButton text={'News'} click={() => {navigate('/news')}}/>
-                        <NavbarButton text={'Social'} click={() => {navigate('/social')}}/>
-                        <NavbarButton text={'Settings'} click={() => {navigate('/settings')}}/>
+                        <NavbarButton text={'My profile'} onClick={() => {navigate('/profile')}}/>
+                        <NavbarButton text={'News'} onClick={() => {navigate('/news')}}/>
+                        <NavbarButton text={'Social'} onClick={() => {navigate('/social')}}/>
+                        <NavbarButton text={'Settings'} onClick={() => {navigate('/settings')}}/>
                     </div>
                 </div>
                 <div className='floating-navbar-signout-box'>

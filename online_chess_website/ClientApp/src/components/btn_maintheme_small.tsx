@@ -2,23 +2,17 @@ import React from 'react'
 import './components.css'
 
 
-interface buttonParamsObject {
-    text: string,
-    callback: Function
-    mousein: Function
-    mouseout: Function
-}
+type params = {
+    text: string
+} & React.ComponentProps<'button'>
 
-const SmallMainthemeButton = (params: buttonParamsObject) => {
+const SmallMainthemeButton = ({text, ...rest}: params) => {
 
-    const buttonText = params.text
-    const callback: Function = params.callback
+
 
     return (
-        <button className='btn-maintheme-small btn-maintheme' 
-        onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => callback()}
-        onMouseEnter={() => params.mousein()} onMouseLeave={() => params.mouseout()}>
-            {buttonText}
+        <button className='btn-maintheme-small btn-maintheme' {...rest}>
+            {text}
         </button>
     )
 }

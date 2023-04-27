@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import './components.css'
 
 
-interface params {
+type params = {
     text: string
-}
+} & React.ComponentProps<'div'>
 
-const ExpandInfoBox = (params: params) => {
+const ExpandInfoBox = ({text, ...rest}: params) => {
 
     const [ isExpanded, setIsExpanded ] = useState(false)
 
@@ -28,11 +28,11 @@ const ExpandInfoBox = (params: params) => {
 
     return ( 
         <div>
-            <div className='expandinfobox-container' onClick={e => expandText(e)}>
+            <div className='expandinfobox-container' onClick={e => expandText(e)} {...rest}>
                 <p>Info</p>
                 <button></button>
             </div>
-            <div className='expandinfobox-text fully-removed' role='textbox'>{params.text}</div>
+            <div className='expandinfobox-text fully-removed' role='textbox'>{text}</div>
         </div> 
     );
 }

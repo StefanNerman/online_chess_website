@@ -3,22 +3,19 @@ import ButtonMTBig from '../../components/btn_maintheme_big'
 import ExpandInfoBox from '../../components/expandinfobox_brown'
 
 
-interface params {
-    onButtonMouseIn: Function
-    onButtonMouseOut: Function
+type params = {
     onButtonClick: Function
     buttonText: string
     description: string
-}
+} & React.ComponentProps<'div'>
 
 
-const GameSelectionComponent = (params: params) => {
+const GameSelectionComponent = ({onButtonClick, buttonText, description, ...rest}: params) => {
     return (  
-        <div className='gameselection-container'>
-            <ButtonMTBig text={params.buttonText} callback={() => params.onButtonClick()}
-            mousein={() => params.onButtonMouseIn()} mouseout={() => params.onButtonMouseOut()}/>
+        <div className='gameselection-container' {...rest}>
+            <ButtonMTBig text={buttonText} onClick={() => onButtonClick()} />
             <div className='gameselection-description'>
-                <ExpandInfoBox text={params.description}/>
+                <ExpandInfoBox text={description}/>
             </div>
         </div>
     );

@@ -1,17 +1,16 @@
 import React from 'react'
 
-interface props {
+type props = {
     text: string
-    click: Function
-}
+} & React.ComponentProps<'div'>
 
-const NavbarButton = (props: props) => {
+const NavbarButton = ({text, ...rest}: props) => {
 
 
 
     return (  
-        <div onClick={() => props.click()} className='navbar-button'>
-            <p>{props.text}</p>
+        <div {...rest} className='navbar-button'>
+            <p>{text}</p>
         </div>
     );
 }

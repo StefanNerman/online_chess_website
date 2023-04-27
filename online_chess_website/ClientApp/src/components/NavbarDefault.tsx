@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import LogoSmall from './components/logo_small'
+import LogoSmall from './logo_small'
 import NavbarDropdownMenu from './NavbarDropdownMenu'
-import * as visual from './utils/visual_changes'
+import * as visual from '../utils/visual_changes'
 
 interface params {
     offline: boolean

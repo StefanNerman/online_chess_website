@@ -1,16 +1,16 @@
 import React from 'react'
 
-interface params {
+type params = {
     text: string
-}
+} & React.ComponentProps<any>
 
-const FramedTextbox = (params: params) => {
+const FramedTextbox = ({text, ...rest}: params) => {
 
 
 
     return (  
-        <h4 className='framedtextbox'>
-            {params.text}
+        <h4 className='framedtextbox' {...rest}>
+            {text}
         </h4>
     );
 }
