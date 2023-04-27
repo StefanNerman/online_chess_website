@@ -1,5 +1,6 @@
 import React from 'react'
 import GameSelectionComponent from './GameSelectionComponent'
+import {useNavigate} from 'react-router-dom'
 
 
 interface props {
@@ -11,9 +12,13 @@ interface props {
 
 const GamePanel = (props: props) => {
 
+    const navigate = useNavigate()
     
     function quickPlay(){
-
+        navigate('/game-page', { state: { 
+            isOnlineGame: true,
+            gameMode: 'quickplay'
+        } })
     }
 
     function privateGame(){
@@ -25,7 +30,10 @@ const GamePanel = (props: props) => {
     }
 
     function localGame(){
-
+        navigate('/game-page', { state: { 
+            isOnlineGame: false,
+            gameMode: 'local'
+        }})
     }
 
     function botGame(){
@@ -39,22 +47,27 @@ const GamePanel = (props: props) => {
                 <div className='gamesearchpanel-content'>
                     <div className='gamesearchpanel-button-container'>
                         <h5>Play online</h5>
-                        <GameSelectionComponent description='Find a match online against a random opponent of similar skill level.' 
+                        <GameSelectionComponent 
+                        description='Find a match online against a random opponent of similar skill level.' 
                         buttonText='Quickplay'
-                        onButtonClick={() => {}}/>
-                        <GameSelectionComponent description='Create a private game that your friend can join via link.' 
+                        onButtonClick={() => {quickPlay()}}/>
+                        <GameSelectionComponent 
+                        description='Create a private game that your friend can join via link.' 
                         buttonText='Create private game'
                         onButtonClick={() => {}}/>
-                        <GameSelectionComponent description='Join private game using a link.' 
+                        <GameSelectionComponent 
+                        description='Join private game using a link.' 
                         buttonText='Join private game'
                         onButtonClick={() => {}}/>
                     </div>
                     <div className='gamesearchpanel-button-container'>
                         <h5>Play offline</h5>
-                        <GameSelectionComponent description='Here you can play alone or against a friend offline.' 
+                        <GameSelectionComponent 
+                        description='Here you can play alone or against a friend offline.' 
                         buttonText='Local game'
-                        onButtonClick={() => {}}/>
-                        <GameSelectionComponent description='Select a diffuculty and test your skills against a chess-bot.' 
+                        onButtonClick={() => {localGame()}}/>
+                        <GameSelectionComponent 
+                        description='Select a diffuculty and test your skills against a chess-bot.' 
                         buttonText='Play against bots' 
                         onButtonClick={() => {}}/>
                     </div>

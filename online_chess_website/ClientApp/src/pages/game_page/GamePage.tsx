@@ -2,20 +2,30 @@ import React, { useEffect } from 'react'
 import './style.css'
 import GamePanel from './GamePanel'
 import PlayerInfoPanel from './PlayerInfoPanel'
+import { useLocation } from 'react-router-dom'
 
+type props = {
+    
+} & React.ComponentProps<'div'>
 
-const GamePage = () => {
+const GamePage = ({...rest}: props) => {
+
+    const { state: {
+            isOnlineGame,
+            gameMode// (quickplay | private | local | bot + [difficulty])
+    } = {} } = useLocation();
+
 
 
     return (
-        <div className="gamepage">
+        <div className="gamepage" {...rest}>
             <div className='gamepage-content'>
                 <div className='playerinfo-container'>
-                    <PlayerInfoPanel username={'anonwithlongddd'} rank={123} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>
-                    <PlayerInfoPanel username={'anong'} rank={123} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>
+                    {isOnlineGame && <PlayerInfoPanel username={'anonwithlongddd'} rank={123} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>}
+                    {isOnlineGame && <PlayerInfoPanel username={'anong'} rank={123} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>}
                 </div>
                 <div className='gamepage-gamepanel'>
-                    <GamePanel />
+                    <GamePanel gamemode={gameMode}/>
                 </div>
             </div>
         </div>

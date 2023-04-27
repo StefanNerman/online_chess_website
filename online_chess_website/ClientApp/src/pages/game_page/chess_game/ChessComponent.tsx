@@ -92,12 +92,16 @@ function onPlayerMove(clickResult: actionInfoObj){
     console.log('ANY MOVE:', clickResult)
 }
 
+
+
 type props = {
+    gamemode: string
 } & React.ComponentProps<'div'>
 
-const Chess: React.FC<any> = ({...rest}: props) => {
+const Chess: React.FC<any> = ({gamemode, ...rest}: props) => {
 
     useEffect(() => {
+        setIsLocalGame(gamemode === 'local'? true : false)
         createBoard()
         renderPieces(tiles.getPositions())
     }, [])
