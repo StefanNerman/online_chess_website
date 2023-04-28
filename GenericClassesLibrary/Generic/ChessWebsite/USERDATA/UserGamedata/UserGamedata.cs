@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericClassesLibrary.Generic.ChessWebsite;
+namespace GenericClassesLibrary.Generic.ChessWebsite.USERDATA.UserGamedata;
 
 public class UserGamedata
 {
     public UserGamedata(int id, int total, int wins, int losses, int draws)
     {
-        this.Id= id;
-        this.Total= total;
-        this.Wins= wins;
-        this.Losses= losses;
-        this.Draws= draws;  
+        Id = id;
+        Total = total;
+        Wins = wins;
+        Losses = losses;
+        Draws = draws;
     }
     public int Id { get; set; }
     public int Total { get; set; }

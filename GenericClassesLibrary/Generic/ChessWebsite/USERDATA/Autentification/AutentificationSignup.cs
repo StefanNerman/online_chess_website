@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GenericClassesLibrary.Generic.ChessWebsite;
+namespace GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Autentification;
 
 public class AutentificationSignup
 {
@@ -25,7 +25,7 @@ public class AutentificationSignup
         MySQL db = new MySQL();
         string sql = $"SELECT * FROM user_credidentals WHERE userName = '{username}'";
         List<UserLoginInfo> result = await db.GetData<UserLoginInfo, dynamic>(sql, new { }, connectionString);
-        if(result.Count > 0) { return false; }
+        if (result.Count > 0) { return false; }
         return true;
     }
 }

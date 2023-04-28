@@ -1,6 +1,7 @@
-﻿using GenericClassesLibrary.Generic.ChessWebsite;
+﻿using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.UserGamedata;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using online_chess_website.Data;
 using System.Text.Json;
 
 namespace online_chess_website.Controllers;
@@ -12,7 +13,8 @@ public class UserGameDataController : ControllerBase
     [HttpGet("{id}")]
     public async Task<UserGamedata> Get(int id)
     {
-        UserGamedata gamedata = await UserGamedataManager.GetGamedata(id);
+        string connectionString = ConnectionStrings.defaultConnectionString;
+        UserGamedata gamedata = await UserGamedataManager.GetGamedata(id, connectionString);
         return gamedata;
     }
 
@@ -26,6 +28,7 @@ public class UserGameDataController : ControllerBase
         {
             return;
         }
-        UserGamedataManager.UpdateGamedata(loginData);
+        string connectionString = ConnectionStrings.defaultConnectionString;
+        UserGamedataManager.UpdateGamedata(loginData, connectionString);
     }
 }

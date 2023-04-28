@@ -1,4 +1,4 @@
-﻿using GenericClassesLibrary.Generic.ChessWebsite;
+﻿using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Profile;
 using GenericClassesLibrary.Interface;
 using Microsoft.AspNetCore.Mvc;
 using online_chess_website.Data;

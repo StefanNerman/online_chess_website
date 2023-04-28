@@ -2,8 +2,10 @@
 using GenericClassesLibrary.Interface;
 using System.Text.Json;
 using Newtonsoft.Json;
-using GenericClassesLibrary.Generic.ChessWebsite;
 using online_chess_website.Data;
+using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Autentification;
+using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.UserGamedata;
+using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Profile;
 
 namespace online_chess_website.Controllers;
 

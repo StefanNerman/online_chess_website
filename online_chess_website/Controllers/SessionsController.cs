@@ -1,5 +1,5 @@
 ﻿using GenericClassesLibrary.DataAccess;
-using GenericClassesLibrary.Generic.ChessWebsite;
+using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Sessions;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using online_chess_website.Data;

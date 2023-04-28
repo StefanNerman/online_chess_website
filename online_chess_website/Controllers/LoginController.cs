@@ -1,5 +1,5 @@
 ﻿using GenericClassesLibrary;
-using GenericClassesLibrary.Generic.ChessWebsite;
+using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Autentification;
 using GenericClassesLibrary.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
