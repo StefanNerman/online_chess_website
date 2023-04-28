@@ -41,14 +41,16 @@ function startTimerInterval(){
 }
 let timeInterval: any
 
-//OUTCOME STRING: [move piece] + [move '>' or eat '<'] + [eaten piece (move piece if no piece was there)] + [result ('' for nothing, '*' for check, 'x' for checkmate)] + [move positions (from, to)]
+//OUTCOME STRING: [move piece] + [move '>', eat '<', castle: ':'] + [eaten piece (move piece if no piece was there)] + [result ('' for nothing, '*' for check, 'x' for checkmate)] + [move positions (from, to)]
 //Ex. eat: '021<1053455', check: '021>021*4263', check after eating a piece: '030<103*8347', normal move: '021>0211736', castling: '050:0118481', checkmate '010>010x3353'
 
 //Called every time a move is made, receives an outcome string as a param
 async function handleMove(move: string){
     console.log('MOVE:', move)
-    let moveStatus = await handleMoveApi(move)
-    if(!moveStatus){/*throw an alert and return*/}
+    if(!isLocalGame){
+        let moveStatus = await handleMoveApi(move)
+        if(!moveStatus){/*make an alert and return*/}
+    }
     if(moveNotYetMade) onMachStart()
     let coordinatesString = move.slice(move.length -4, move.length)
     let from = coordinateConverter(parseInt(coordinatesString.slice(0, 2)))
