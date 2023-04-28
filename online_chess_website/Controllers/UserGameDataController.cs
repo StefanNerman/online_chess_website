@@ -14,7 +14,6 @@ public class UserGameDataController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IUserGamedata> Get(int id)
     {
-        Console.WriteLine(id);
         string connectionString = ConnectionStrings.defaultConnectionString;
         IUserGamedata gamedata = await UserGamedataManager.GetGamedata(id, connectionString);
         return gamedata;
