@@ -10,15 +10,15 @@ public class UserGamedata
 {
     public UserGamedata(int id, int total, int wins, int losses, int draws)
     {
-        Id = id;
-        Total = total;
-        Wins = wins;
-        Losses = losses;
-        Draws = draws;
+        id = id;
+        games_total = total;
+        games_won = wins;
+        games_lost = losses;
+        draws = draws;
     }
-    public int Id { get; set; }
-    public int Total { get; set; }
-    public int Wins { get; set; }
-    public int Losses { get; set; }
-    public int Draws { get; set; }
+    public int id { get; set; }
+    public int games_total { get; set; }
+    public int games_won { get; set; }
+    public int games_lost { get; set; }
+    public int draws { get; set; }
 }
