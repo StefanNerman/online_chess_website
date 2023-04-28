@@ -16,4 +16,9 @@ public static class UserGamedataManager
     {
         //updates the data
     }
+
+    public static async void CreateGamedata(int id)
+    {
+
+    }
 }

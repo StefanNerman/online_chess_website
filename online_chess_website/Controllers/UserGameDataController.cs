@@ -22,7 +22,7 @@ public class UserGameDataController : ControllerBase
     public void Post([FromBody] JsonElement data)
     { 
         UpdateUserGamedata? loginData = JsonConvert.DeserializeObject<UpdateUserGamedata>(data.ToString());
-        if(loginData== null)
+        if(loginData == null)
         {
             return;
         }
