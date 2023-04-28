@@ -12,6 +12,8 @@ interface props {
 
 const FloatingNavbar = (params: props) => {
 
+    
+
     const navigate = useNavigate()
     const [profile, setProfile] = useState({
         username: '',

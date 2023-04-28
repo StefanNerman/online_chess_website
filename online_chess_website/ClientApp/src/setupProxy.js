@@ -10,7 +10,8 @@ const context =  [
   "/api/login",
   "/api/sessions",
   "/api/sessions/delete",
-  "/api/profiles"
+  "/api/profiles",
+  "/api/user_game_data"
 ];
 
 module.exports = function(app) {

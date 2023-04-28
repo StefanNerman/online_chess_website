@@ -30,7 +30,7 @@ public class SignupController : ControllerBase
             UserProfileData sendData = new UserProfileData(result, profile);
             */
 
-            UserGamedataManager.CreateGamedata(result);
+            UserGamedataManager.CreateGamedata(result, connectionString);
 
             return result;
         }

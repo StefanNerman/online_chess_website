@@ -19,7 +19,7 @@ public static class UserGamedataManager
     public static async void UpdateGamedata(UpdateUserGamedata newData, string connectionString)
     {
         MySQL db = new MySQL();
-        string sql = $"UPDATE user_gamedata SET games_total = games_total + 1, games_won = games_won + {newData.wins}, games_lost = games_lost + {newData.losses}, draws = draws + {newData.draws}";
+        string sql = $"UPDATE user_gamedata SET games_total = games_total + 1, games_won = games_won + {newData.wins}, games_lost = games_lost + {newData.losses}, draws = draws + {newData.draws} WHERE id = {newData.userId}";
         await db.SaveData(sql, new { }, connectionString);
     }
 
