@@ -11,11 +11,6 @@ const GamePanel = ({gamemode, color}: props) => {
 
     setIsLocalGame(true)
 
-    //on online game:
-    //1 http request made to establish a websocket
-    //2 function runs when server sends move information
-    //3 make move on client
-
     return (  
         <div>
             <div className='gamepanel-top-section'>
