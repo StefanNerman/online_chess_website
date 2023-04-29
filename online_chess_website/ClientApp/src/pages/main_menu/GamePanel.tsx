@@ -3,10 +3,10 @@ import GameSelectionComponent from './GameSelectionComponent'
 import {useNavigate} from 'react-router-dom'
 import {findQuickplayMatch} from './matchmaking'
 
+import * as api from '../../api/http_calls'
 interface props {
     offline: boolean
 }
-
 
 
 
@@ -25,7 +25,7 @@ const GamePanel = (props: props) => {
     }
 
     function privateGame(){
-
+        api.axiosPost('api/profiles/update', {userId: 26, userRank: 0, profilePicture: ""})
     }
 
     function joinPrivateGame(){
@@ -58,7 +58,7 @@ const GamePanel = (props: props) => {
                         <GameSelectionComponent 
                         description='Create a private game that your friend can join via link.' 
                         buttonText='Create private game'
-                        onButtonClick={() => {}}/>
+                        onButtonClick={() => {privateGame()}}/>
                         <GameSelectionComponent 
                         description='Join private game using a link.' 
                         buttonText='Join private game'

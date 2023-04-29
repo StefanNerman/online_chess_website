@@ -18,14 +18,9 @@ public class ProfileManager
     }
     public void UpdateProfile(int userId, int rank, string profilePicture, string connectionString)
     {
-        Console.Write(CreateUpdateProfileString(44, ""));
-        Console.Write(CreateUpdateProfileString(0, ""));
-        Console.Write(CreateUpdateProfileString(0, "asdfasdf"));
-        Console.Write(CreateUpdateProfileString(44, "asdfadsfasdf"));
-        Console.Write(CreateUpdateProfileString(414, " "));
-
         string sql = CreateUpdateProfileString(rank, profilePicture);
         if(sql == "UPDATE profiles SET") { return; }
+        sql = sql + $" WHERE userId = {userId}";
         MySQL db = new MySQL();
         db.SaveData(sql, new { }, connectionString);
     }
@@ -40,11 +35,11 @@ public class ProfileManager
         {
             if (sql == $"UPDATE profiles SET userRank = {rank}")
             {
-                sql = sql + $", profilePicture = {pfp}";
+                sql = sql + $", profilePicture = '{pfp}'";
             }
             else
             {
-                sql = sql + $" profilePicture = {pfp}";
+                sql = sql + $" profilePicture = '{pfp}'";
             }
         }
         return sql;
