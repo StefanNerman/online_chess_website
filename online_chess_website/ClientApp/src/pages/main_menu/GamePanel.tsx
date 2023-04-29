@@ -1,7 +1,7 @@
 import React from 'react'
 import GameSelectionComponent from './GameSelectionComponent'
 import {useNavigate} from 'react-router-dom'
-
+import {findQuickplayMatch} from './matchmaking'
 
 interface props {
     offline: boolean
@@ -15,11 +15,13 @@ const GamePanel = (props: props) => {
     const navigate = useNavigate()
     
     function quickPlay(){
+        let userId = sessionStorage.getItem('userId')!
+        findQuickplayMatch(parseInt(userId), 1)
         navigate('/game-page', { state: { 
             isOnlineGame: true,
             gameMode: 'quickplay',
             color: 'white'
-        } })
+        }})
     }
 
     function privateGame(){
