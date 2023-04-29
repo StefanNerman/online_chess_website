@@ -18,7 +18,36 @@ public class ProfileManager
     }
     public void UpdateProfile(int userId, int rank, string profilePicture, string connectionString)
     {
-        //make it so that if your pass rank or pfp as null it doesnt update them and keeps the old ones
+        Console.Write(CreateUpdateProfileString(44, ""));
+        Console.Write(CreateUpdateProfileString(0, ""));
+        Console.Write(CreateUpdateProfileString(0, "asdfasdf"));
+        Console.Write(CreateUpdateProfileString(44, "asdfadsfasdf"));
+        Console.Write(CreateUpdateProfileString(414, " "));
+
+        string sql = CreateUpdateProfileString(rank, profilePicture);
+        if(sql == "UPDATE profiles SET") { return; }
+        MySQL db = new MySQL();
+        db.SaveData(sql, new { }, connectionString);
+    }
+    private string CreateUpdateProfileString(int rank, string pfp)
+    {
+        string sql = "UPDATE profiles SET";
+        if (rank > 0)
+        {
+            sql = sql + $" userRank = {rank}";
+        }
+        if (pfp != "")
+        {
+            if (sql == $"UPDATE profiles SET userRank = {rank}")
+            {
+                sql = sql + $", profilePicture = {pfp}";
+            }
+            else
+            {
+                sql = sql + $" profilePicture = {pfp}";
+            }
+        }
+        return sql;
     }
 
     public async Task<IProfileInfo> GetProfile(int userId, string connectionString)

@@ -12,9 +12,9 @@ public static class PlayerRankCalculator
     {
         double total = wins + losses + draws;
         double victoryRatio = wins / (total - draws);
-        if(victoryRatio < 0.4) 
+        if(victoryRatio < 0.25) 
         {
-            victoryRatio = victoryRatio + 0.05;
+            victoryRatio = victoryRatio + 0.08;
         }
         int rank = Convert.ToInt32(total * victoryRatio);
         return rank;
