@@ -74,6 +74,18 @@
   text-align: center;
 }
 
+.statistics-panel ul {
+  margin: 0;
+  padding-left: 0.25rem;
+}
+.statistics-panel li {
+  text-decoration: none;
+  list-style: none;
+  margin: 0;
+  padding: 0.125rem 1rem;
+  text-align: start;
+}
+
 .gameselection-container {
   padding: 0.5rem;
   width: 100%;

@@ -55,7 +55,9 @@ const GamePanel = (props: props) => {
     }
 
     function botGame(){
-       
+            api.axiosPost('api/rating/update', {userId: 28, rank: 2845, opponentRank: 2820, gameResult: 1})
+            api.axiosPost('api/rating/update', {userId: 27, rank: 2820, opponentRank: 2845, gameResult: 0})
+            api.axiosPost('api/user_game_data/update', {userId: 28, wins: 1, losses: 0, draws: 0})
     }
 
     return (  
