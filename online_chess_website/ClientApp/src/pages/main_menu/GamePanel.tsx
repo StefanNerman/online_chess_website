@@ -2,21 +2,35 @@ import React from 'react'
 import GameSelectionComponent from './GameSelectionComponent'
 import {useNavigate} from 'react-router-dom'
 import {findQuickplayMatch} from './matchmaking'
-
 import * as api from '../../api/http_calls'
+import {getProfileByUserId} from '../../utils/user_profile_info'
+import {isQueingController} from '../../App'
+
 interface props {
     offline: boolean
 }
 
-
+interface profile {
+    userRank: number
+    userId: number
+    profilePicture: string
+}
 
 const GamePanel = (props: props) => {
 
     const navigate = useNavigate()
     
-    function quickPlay(){
+    async function quickPlay(){
+        isQueingController(true)
         let userId = sessionStorage.getItem('userId')!
-        findQuickplayMatch(parseInt(userId), 1)
+        let profile = await getProfileByUserId(parseInt(userId))
+        findQuickplayMatch(parseInt(userId), profile.userRank)
+        .then(response => {
+            openQuickplayGame(response)
+        })
+    }
+    function openQuickplayGame(matchInfo: any){
+        return
         navigate('/game-page', { state: { 
             isOnlineGame: true,
             gameMode: 'quickplay',
@@ -25,11 +39,11 @@ const GamePanel = (props: props) => {
     }
 
     function privateGame(){
-        api.axiosPost('api/profiles/update', {userId: 26, userRank: 0, profilePicture: ""})
+
     }
 
     function joinPrivateGame(){
-
+        
     }
 
     function localGame(){
@@ -41,7 +55,7 @@ const GamePanel = (props: props) => {
     }
 
     function botGame(){
-
+       
     }
 
     return (  
@@ -62,7 +76,7 @@ const GamePanel = (props: props) => {
                         <GameSelectionComponent 
                         description='Join private game using a link.' 
                         buttonText='Join private game'
-                        onButtonClick={() => {}}/>
+                        onButtonClick={() => {joinPrivateGame()}}/>
                     </div>
                     <div className='gamesearchpanel-button-container'>
                         <h5>Play offline</h5>
@@ -73,7 +87,7 @@ const GamePanel = (props: props) => {
                         <GameSelectionComponent 
                         description='Select a diffuculty and test your skills against a chess-bot.' 
                         buttonText='Play against bots' 
-                        onButtonClick={() => {}}/>
+                        onButtonClick={() => {botGame()}}/>
                     </div>
                 </div>
             </div>

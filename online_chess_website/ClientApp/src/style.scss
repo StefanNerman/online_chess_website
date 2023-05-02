@@ -161,6 +161,32 @@
 }
 
 
+.screenquemode-frame {
+    position: absolute;
+    top:0;bottom:0;right:0;left:0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    @include flexify;
+    align-items: center;
+}
+
+.screenquemode-content {
+    background-color: $light-brown;
+    @include topBottomBorderThick;
+    padding: 1rem;
+    @include flexDirectionAlign;
+    button {
+        border-radius: 7px;
+        background-color: $dark-brown;
+        color: $light-brown;
+        font-size: 123%;
+        font-weight: 600;
+        margin-top: 1rem;
+        padding: 0.75rem 2rem;
+    }
+}
+
+
 .profile-img-40 {
     border-radius: 50%;
     width: 40px;

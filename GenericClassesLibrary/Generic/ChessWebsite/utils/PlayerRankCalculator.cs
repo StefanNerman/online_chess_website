@@ -8,15 +8,12 @@ namespace GenericClassesLibrary.Generic.ChessWebsite.utils;
 
 public static class PlayerRankCalculator
 {
-    public static int Calculate(int wins, int losses, int draws)
+    public static int Calculate(double playerA, double playerB, double gameResult)
     {
-        double total = wins + losses + draws;
-        double victoryRatio = wins / (total - draws);
-        if(victoryRatio < 0.25) 
-        {
-            victoryRatio = victoryRatio + 0.08;
-        }
-        int rank = Convert.ToInt32(total * victoryRatio);
-        return rank;
+
+        //E = 1 / 1 + 10^(pB - pA)/ 400
+        //R = R + 20(result - E)
+
+        return 2;
     }
 }

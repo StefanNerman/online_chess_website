@@ -9,6 +9,7 @@ import ProfilePage from './pages/profile_page/ProfilePage'
 import NewsPage from './pages/news_page/NewsPage'
 import SettingsPage from './pages/settings_page/SettingsPage'
 import SocialPage from './pages/social_page/SocialPage'
+import ScreenQueMode from './ScreenQueMode'
 
 
 window.addEventListener('beforeunload', async () => {
@@ -27,6 +28,8 @@ window.addEventListener('beforeunload', async () => {
     window.close()
 }, true)
 
+export let isQueingController: Function
+
 const App = () => {
 
     useEffect(() => {
@@ -34,8 +37,12 @@ const App = () => {
         if(sessionToken) document.cookie = `ST=${sessionToken};expires=Fri, 18 September 2099 11:00:00 UTC; path=/`
     })
 
+    const [isQueing, setIsQueing] = useState(false)
+    isQueingController = setIsQueing
+
     return (
         <div className="App">
+            {isQueing && <ScreenQueMode />}
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/main-menu" element={<MainMenu />} />

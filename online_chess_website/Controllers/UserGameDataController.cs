@@ -1,4 +1,6 @@
-﻿using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.UserGamedata;
+﻿using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Profile;
+using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.UserGamedata;
+using GenericClassesLibrary.Generic.ChessWebsite.utils;
 using GenericClassesLibrary.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -22,14 +24,14 @@ public class UserGameDataController : ControllerBase
 
     [Route("update")]
     [HttpPost]
-    public void Post([FromBody] JsonElement data)
+    public async void Post([FromBody] JsonElement data)
     { 
-        UpdateUserGamedata? loginData = JsonConvert.DeserializeObject<UpdateUserGamedata>(data.ToString());
-        if(loginData == null)
+        UpdateUserGamedata? clientData = JsonConvert.DeserializeObject<UpdateUserGamedata>(data.ToString());
+        if(clientData == null)
         {
             return;
         }
         string connectionString = ConnectionStrings.defaultConnectionString;
-        UserGamedataManager.UpdateGamedata(loginData, connectionString);
+        UserGamedataManager.UpdateGamedata(clientData, connectionString);
     }
 }
