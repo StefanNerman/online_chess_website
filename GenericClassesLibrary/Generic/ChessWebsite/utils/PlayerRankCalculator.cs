@@ -14,6 +14,9 @@ public static class PlayerRankCalculator
         //E = 1 / 1 + 10^(pB - pA)/ 400
         //R = R + 20(result - E)
 
-        return 2;
+        double powerOf = (playerB - playerA) / 400;
+        double expectedScore = 1 / (1 + Math.Pow(10, powerOf));
+        int newRank = Convert.ToInt32(playerA + 20 * (gameResult - expectedScore));
+        return newRank;
     }
 }
