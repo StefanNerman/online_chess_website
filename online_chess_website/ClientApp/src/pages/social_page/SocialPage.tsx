@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
+let webSocket: WebSocket
+
 const SocialPage = () => {
 
     const [message, setMessage] = useState('')
     const [id, setId] = useState('')
-    let webSocket: WebSocket
 
     function onClick(){
         webSocket = new WebSocket("ws://localhost:5033/ws")
@@ -23,7 +24,17 @@ const SocialPage = () => {
     }
 
     function onSend(){
-        webSocket.send('important message')
+        let sendData = `{"message": "${message}", "id": "${id}"}`
+        console.log(webSocket)
+        webSocket.send(sendData)
+    }
+
+    function onClose(){
+        if(!webSocket || webSocket.readyState !== WebSocket.OPEN){
+            return console.log('connection is closed')
+        }
+        console.log(webSocket)
+        webSocket.close(1000, 'Client terminated connection')
     }
 
     return (  
@@ -35,6 +46,7 @@ const SocialPage = () => {
             <div>
 
             </div>
+            <button onClick={() => onClose()} style={{padding: '1rem', marginLeft: '1rem'}}>close connection</button>
         </div>
     );
 }

@@ -27,14 +27,37 @@ app.Use(async (context, next) =>
 {
     if (context.WebSockets.IsWebSocketRequest)
     {
-        Console.WriteLine("websocket connecting");
         WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
+        Console.WriteLine("websocket connecting");
+        await WSReceiveMessage(webSocket, async (result, buffer) => 
+        { 
+            if(result.MessageType == WebSocketMessageType.Text)
+            {
+                Console.WriteLine("text message received");
+                return;
+            }
+            if (result.MessageType == WebSocketMessageType.Close)
+            {
+                Console.WriteLine("close message received");
+                return;
+            }
+        });
     }
     else
     {
-        if(next != null) { await next(context); }
+        await next();
     }
 });
+
+async Task WSReceiveMessage(WebSocket webSocket, Action<WebSocketReceiveResult, byte[]> handleMessage)
+{
+    var buffer = new byte[1024 * 4];
+    while(webSocket.State == WebSocketState.Open)
+    {
+        var result = await webSocket.ReceiveAsync(buffer: new ArraySegment<byte>(buffer), cancellationToken: CancellationToken.None);
+        handleMessage(result, buffer);
+    }
+}
 
 
 app.MapControllerRoute(
