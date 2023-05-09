@@ -22,7 +22,8 @@ const SocialPage = () => {
             console.log(e)
         }
     }
-
+    //https://www.youtube.com/watch?v=ycVgXe6v1VQ&t=2681s&ab_channel=LesJackson 
+    //1 hour 41 minutes
     function onSend(){
         let sendData = `{"message": "${message}", "id": "${id}"}`
         console.log(webSocket)
