@@ -8,7 +8,6 @@ const SocialPage = () => {
 
     function onClick(){
         webSocket = new WebSocket("ws://localhost:5033/ws")
-        //when port changed to 5033 it works for some reason
         webSocket.onopen = (e) => {
             console.log(e)
         }
