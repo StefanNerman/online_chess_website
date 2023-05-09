@@ -5,14 +5,14 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
   env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'http://localhost:43289';
 
 const context =  [
-  "/api/weatherforecast",
   "/api/signup",
   "/api/login",
   "/api/sessions",
   "/api/sessions/delete",
   "/api/profiles",
   "/api/user_game_data",
-  "/api/rating"
+  "/api/rating",
+  "/api/websocket"
 ];
 
 module.exports = function(app) {
@@ -21,7 +21,8 @@ module.exports = function(app) {
     secure: false,
     headers: {
       Connection: 'Keep-Alive'
-    }
+    },
+    ws: true
   });
 
   app.use(appProxy);

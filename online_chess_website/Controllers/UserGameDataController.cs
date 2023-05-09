@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using online_chess_website.Data;
 using System.Text.Json;
+using System.Net.WebSockets;
 
 namespace online_chess_website.Controllers;
 

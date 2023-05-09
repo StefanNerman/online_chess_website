@@ -7,11 +7,24 @@ const SocialPage = () => {
     let webSocket: WebSocket
 
     function onClick(){
-        
+        webSocket = new WebSocket("ws://localhost:5033/ws")
+        //when port changed to 5033 it works for some reason
+        webSocket.onopen = (e) => {
+            console.log(e)
+        }
+        webSocket.onclose = (e) => {
+            console.log(e)
+        }
+        webSocket.onerror = (e) => {
+            console.log(e)
+        }
+        webSocket.onmessage = (e) => {
+            console.log(e)
+        }
     }
 
     function onSend(){
-        
+        webSocket.send('important message')
     }
 
     return (  

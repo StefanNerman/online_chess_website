@@ -1,15 +1,13 @@
-
+using System.Net.WebSockets;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
 
@@ -18,6 +16,25 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 
+var webSocketOptions = new WebSocketOptions
+{
+    KeepAliveInterval = TimeSpan.FromMinutes(2)
+};
+
+app.UseWebSockets(webSocketOptions);
+
+app.Use(async (context, next) =>
+{
+    if (context.WebSockets.IsWebSocketRequest)
+    {
+        Console.WriteLine("websocket connecting");
+        WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
+    }
+    else
+    {
+        if(next != null) { await next(context); }
+    }
+});
 
 
 app.MapControllerRoute(
