@@ -10,16 +10,16 @@ const SocialPage = () => {
     function onClick(){
         webSocket = new WebSocket("ws://localhost:5033/ws")
         webSocket.onopen = (e) => {
-            console.log(e)
+            console.log("WEBSOCKET OPENED: " + e)
         }
         webSocket.onclose = (e) => {
-            console.log(e)
+            console.log("WEBSOCKET CLOSING: " + e)
         }
         webSocket.onerror = (e) => {
-            console.log(e)
+            console.log("WEBSOCKET ERROR: " + e)
         }
         webSocket.onmessage = (e) => {
-            console.log(e)
+            console.log("WEBSOCKET MESSAGE: " + e)
         }
     }
 
