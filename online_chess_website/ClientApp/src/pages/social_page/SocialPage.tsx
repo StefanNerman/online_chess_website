@@ -20,7 +20,11 @@ const SocialPage = () => {
         }
         webSocket.onmessage = (e) => {
             console.log("WEBSOCKET MESSAGE: ", e)
+            handleMessage(e)
         }
+    }
+    function handleMessage(e: any){
+        
     }
 
     function onSend(){
