@@ -17,6 +17,7 @@ const SocialPage = () => {
         }
         webSocket.onerror = (e) => {
             console.log("WEBSOCKET ERROR: ", e)
+            handleError(e)
         }
         webSocket.onmessage = (e) => {
             console.log("WEBSOCKET MESSAGE: ", e)
@@ -24,9 +25,10 @@ const SocialPage = () => {
         }
     }
     function handleMessage(e: any){
-        
+
     }
 
+    function handleError(e:any){}
     function onSend(){
         let send = JSON.stringify({protocol:"SEND_INFO",data:{message:message,id:id}})
         console.log("MESSAGE SENT: ", send)
