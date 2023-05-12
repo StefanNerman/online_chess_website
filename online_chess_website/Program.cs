@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddWebsocketManager();
 
 var app = builder.Build();
 

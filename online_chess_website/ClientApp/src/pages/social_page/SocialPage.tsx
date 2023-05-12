@@ -24,9 +24,8 @@ const SocialPage = () => {
     }
 
     function onSend(){
-        let sendData = `protocol:SEND_INFO; `
         console.log(webSocket)
-        webSocket.send(sendData)
+        webSocket.send(JSON.stringify({protocol:"SEND_INFO",data:{message:message,id:id}}))
     }
 
     function onClose(){

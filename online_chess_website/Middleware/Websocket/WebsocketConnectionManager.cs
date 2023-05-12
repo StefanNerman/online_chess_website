@@ -4,16 +4,16 @@ using System.Net.WebSockets;
 
 namespace online_chess_website.Middleware.Websocket;
 
-public static class WebsocketConnectionManager
+public class WebsocketConnectionManager
 {
-    private static ConcurrentDictionary<string, WebSocket> usersConnected = new ConcurrentDictionary<string, WebSocket>();
+    private ConcurrentDictionary<string, WebSocket> usersConnected = new ConcurrentDictionary<string, WebSocket>();
 
-    public static ConcurrentDictionary<string, WebSocket> GetAllUsersConnected()
+    public ConcurrentDictionary<string, WebSocket> GetAllUsersConnected()
     {
         return usersConnected;
     }
 
-    public static void AddConnection(string token, WebSocket websocket)
+    public void AddConnection(string token, WebSocket websocket)
     {
         usersConnected.TryAdd(token, websocket);
         Console.WriteLine("Connection added: " + token);

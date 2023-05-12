@@ -12,9 +12,12 @@ public class WebsocketConnection
 {
     private readonly RequestDelegate _next;
 
-    public WebsocketConnection(RequestDelegate next)
+    private readonly WebsocketConnectionManager _manager;
+
+    public WebsocketConnection(RequestDelegate next, WebsocketConnectionManager manager)
     {
         _next = next;
+        _manager = manager;
     }
     
     public async Task InvokeAsync(HttpContext context)
@@ -26,7 +29,7 @@ public class WebsocketConnection
             if (token != "")
             {
                 WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
-                WebsocketConnectionManager.AddConnection(token,webSocket);
+                _manager.AddConnection(token,webSocket);
                 await WSReceiveMessage(webSocket, async (result, buffer) =>
                 {
                     if (result.MessageType == WebSocketMessageType.Text)
