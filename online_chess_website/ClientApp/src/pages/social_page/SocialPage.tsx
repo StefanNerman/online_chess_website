@@ -10,29 +10,30 @@ const SocialPage = () => {
     function onClick(){
         webSocket = new WebSocket("ws://localhost:5033/ws")
         webSocket.onopen = (e) => {
-            console.log("WEBSOCKET OPENED: " + e)
+            console.log("WEBSOCKET OPENED: ", e)
         }
         webSocket.onclose = (e) => {
-            console.log("WEBSOCKET CLOSING: " + e)
+            console.log("WEBSOCKET CLOSING: ", e)
         }
         webSocket.onerror = (e) => {
-            console.log("WEBSOCKET ERROR: " + e)
+            console.log("WEBSOCKET ERROR: ", e)
         }
         webSocket.onmessage = (e) => {
-            console.log("WEBSOCKET MESSAGE: " + e)
+            console.log("WEBSOCKET MESSAGE: ", e)
         }
     }
 
     function onSend(){
-        console.log(webSocket)
-        webSocket.send(JSON.stringify({protocol:"SEND_INFO",data:{message:message,id:id}}))
+        let send = JSON.stringify({protocol:"SEND_INFO",data:{message:message,id:id}})
+        console.log("MESSAGE SENT: ", send)
+        webSocket.send(send)
     }
 
     function onClose(){
         if(!webSocket || webSocket.readyState !== WebSocket.OPEN){
             return console.log('connection is closed')
         }
-        console.log(webSocket)
+        console.log("CLIENT CLOSED CONNECTION")
         webSocket.close(1000, 'Client terminated connection')
     }
 
