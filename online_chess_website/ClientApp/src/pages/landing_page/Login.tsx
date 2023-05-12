@@ -39,7 +39,6 @@ const Login = (props: propsObj) => {
     function submitData(data: any){
         api.axiosPost(`api/login`, data)
         .then(response => {
-            console.log(response)
             response.data? loginComplete(response.data) : alert('Username or password incorrect.')
         })
         .catch(error => {

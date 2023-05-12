@@ -3,6 +3,7 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using GenericClassesLibrary.Generic.ChessWebsite.utils;
 using Microsoft.AspNetCore.Http;
 
 namespace online_chess_website.Middleware.Websocket;
@@ -20,22 +21,31 @@ public class WebsocketConnection
     {
         if (context.WebSockets.IsWebSocketRequest)
         {
-            WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
-            Console.WriteLine("websocket connecting");
-            await WSReceiveMessage(webSocket, async (result, buffer) =>
+            string userCookie = context.Request.Headers.Cookie;
+            string token = CookieParser.GetValue(userCookie, "ST");
+            if (token != "")
             {
-                if (result.MessageType == WebSocketMessageType.Text)
+                WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
+                WebsocketConnectionManager.AddConnection(token,webSocket);
+                await WSReceiveMessage(webSocket, async (result, buffer) =>
                 {
-                    Console.WriteLine("text message received");
-                    Console.WriteLine(Encoding.UTF8.GetString(buffer, 0, result.Count));
-                    return;
-                }
-                if (result.MessageType == WebSocketMessageType.Close)
-                {
-                    Console.WriteLine("close message received");
-                    return;
-                }
-            });
+                    if (result.MessageType == WebSocketMessageType.Text)
+                    {
+                        Console.WriteLine("message received");
+                        Console.WriteLine(Encoding.UTF8.GetString(buffer, 0, result.Count));
+                        return;
+                    }
+                    if (result.MessageType == WebSocketMessageType.Close)
+                    {
+                        Console.WriteLine("close request received");
+                        return;
+                    }
+                });
+            }
+            else
+            {
+                await _next(context);
+            }
         }
         else
         {
