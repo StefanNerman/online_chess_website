@@ -36,7 +36,8 @@ public class WebsocketConnection
                     {
                         string clientMessage = Encoding.UTF8.GetString(buffer, 0, result.Count);
                         Console.WriteLine(clientMessage);
-                        //when receive move message 1 call database to change gamestate 2 get opponents token using matchid 3 send message to the opponent
+                        WebsocketReceivedMessageHandler messageHandler = new WebsocketReceivedMessageHandler();
+                        await messageHandler.HandleMessage(clientMessage, _manager);
                         return;
                     }
                     if (result.MessageType == WebSocketMessageType.Close)
@@ -55,12 +56,6 @@ public class WebsocketConnection
         {
             await _next(context);
         }
-    }
-
-    private async Task SendStringAsync(WebSocket socket, string message)
-    {
-        var buffer = Encoding.UTF8.GetBytes("STRING MESSAGE: " + message);
-        await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
     }
 
     private async Task ReceiveMessage(WebSocket webSocket, Action<WebSocketReceiveResult, byte[]> handleMessage)
