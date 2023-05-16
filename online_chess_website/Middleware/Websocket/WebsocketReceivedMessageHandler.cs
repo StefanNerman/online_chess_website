@@ -15,7 +15,7 @@ public class WebsocketReceivedMessageHandler
         {
             var data = JsonConvert.DeserializeObject<dynamic>(message);
 
-            
+            //TO DELETE
             if (data.protocol == "SEND_INFO")
             {
                 var ws = manager.GetAllUsersConnected().FirstOrDefault(s => s.Key == data.data.message.ToString());

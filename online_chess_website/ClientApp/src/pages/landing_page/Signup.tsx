@@ -27,6 +27,7 @@ const Signup = (props: propsObj) => {
     function doesUserNameExist(e: any){ 
         let value = e.target.value 
         if(!isStringAllowed(value, false)) return
+        if(!value) return
         api.axiosGet(`api/signup/${value ? value : ''}`)
         .then(response => {
             let alertText = document.getElementById('belowUsernameAlert')!
