@@ -4,6 +4,8 @@ let webSocket: WebSocket
 
 const SocialPage = () => {
 
+    //Delete all the websocket stuff later but leave it for now as a practical example of working websocket
+
     const [message, setMessage] = useState('')
     const [id, setId] = useState('')
 
