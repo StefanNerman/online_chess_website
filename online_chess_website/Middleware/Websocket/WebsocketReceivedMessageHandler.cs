@@ -34,13 +34,4 @@ public class WebsocketReceivedMessageHandler
         var buffer = Encoding.UTF8.GetBytes("STRING MESSAGE: " + message);
         await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
     }
-
-    private WebSocket GetSocketByToken(string token, WebsocketConnectionManager manager)
-    {
-        ConcurrentDictionary<string, WebSocket>  usersConnected = manager.GetAllUsersConnected();
-        //DELETE
-        // WebSocket websocket = usersConnected.get( token )
-        //return websocket
-        return usersConnected[token];
-    }
 }
