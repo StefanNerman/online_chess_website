@@ -34,6 +34,9 @@ public class WebsocketConnection
                 {
                     if (result.MessageType == WebSocketMessageType.Text)
                     {
+                        Console.WriteLine(token);
+                        Console.WriteLine(_manager.GetAllUsersConnected()[token]);
+                        Console.WriteLine(_manager.GetAllUsersConnected());
                         string clientMessage = Encoding.UTF8.GetString(buffer, 0, result.Count);
                         Console.WriteLine(clientMessage);
                         WebsocketReceivedMessageHandler messageHandler = new WebsocketReceivedMessageHandler();
