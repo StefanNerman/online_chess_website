@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GenericClassesLibrary.Generic.ChessWebsite.utils;
 using Microsoft.AspNetCore.Http;
+using online_chess_website.Middleware.GameFinder;
 
 namespace online_chess_website.Middleware.Websocket;
 
@@ -14,14 +15,19 @@ public class WebsocketConnection
 
     private readonly WebsocketConnectionManager _manager;
 
-    public WebsocketConnection(RequestDelegate next, WebsocketConnectionManager manager)
+    private readonly QuemodeActions _quemodeManager;
+
+    public WebsocketConnection(RequestDelegate next, WebsocketConnectionManager manager, QuemodeActions quemodeActions)
     {
         _next = next;
         _manager = manager;
+        _quemodeManager = quemodeActions;
     }
     
     public async Task InvokeAsync(HttpContext context)
     {
+        _quemodeManager.Run();
+
         if (context.WebSockets.IsWebSocketRequest)
         {
             string userCookie = context.Request.Headers.Cookie;

@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Net.WebSockets;
 using System.Text;
 using System.Linq;
+using online_chess_website.Middleware.GameFinder;
 
 namespace online_chess_website.Middleware.Websocket;
 

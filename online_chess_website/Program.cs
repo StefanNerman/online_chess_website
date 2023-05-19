@@ -1,3 +1,4 @@
+using online_chess_website.Middleware.GameFinder;
 using online_chess_website.Middleware.Websocket;
 using System.Net.WebSockets;
 
@@ -5,6 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<QuemodeManager>();
+builder.Services.AddTransient<QuemodeActions>((context) =>
+{
+    QuemodeManager manager = context.GetService<QuemodeManager>();
+    return new QuemodeActions(manager);
+});
 builder.Services.AddWebsocketManager();
 
 var app = builder.Build();
