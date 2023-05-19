@@ -27,9 +27,14 @@ const GamePanel = (props: props) => {
         findQuickplayMatch(parseInt(userId), profile.userRank)
         .then(response => {
             openQuickplayGame(response)
+
+            //Remember to assign new functions to the onclose, onmessage, onopen and onerror methods so that mathcmaking time events dont trigger on game time
+
         })
+        .catch(result => console.log(result))
     }
     function openQuickplayGame(matchInfo: any){
+        isQueingController(false)
         return
         navigate('/game-page', { state: { 
             isOnlineGame: true,

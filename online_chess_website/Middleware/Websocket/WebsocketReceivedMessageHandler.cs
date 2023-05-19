@@ -13,13 +13,20 @@ public class WebsocketReceivedMessageHandler
         // client will send the match id in the message, use the match id to get opponent and client tokens from the database
         if (message != null || message != "")
         {
-            var data = JsonConvert.DeserializeObject<dynamic>(message);
+            var clientMessage = JsonConvert.DeserializeObject<dynamic>(message);
+
+            Console.WriteLine(clientMessage.ToString());
+
+            if(clientMessage.protocol == "FIND_MATCH") 
+            { 
+                
+            }
 
             //TO DELETE
-            if (data.protocol == "SEND_INFO")
+            if (clientMessage.protocol == "SEND_INFO")
             {
-                var ws = manager.GetAllUsersConnected().FirstOrDefault(s => s.Key == data.data.message.ToString());
-                await SendStringAsync(ws.Value, data.data.id.ToString());
+                var ws = manager.GetAllUsersConnected().FirstOrDefault(s => s.Key == clientMessage.data.message.ToString());
+                await SendStringAsync(ws.Value, clientMessage.data.id.ToString());
             }
             
 
