@@ -22,7 +22,7 @@ public class WebsocketReceivedMessageHandler
             {
                 int userId = int.Parse(clientMessage.data.userId.ToString());
                 int rank = int.Parse(clientMessage.data.rank.ToString());
-                quemode.AddUserToQue(new UserQuedata(token, userId, rank));
+                quemode.AddUserToQue(token, new UserQuedata(userId, rank));
             }
 
             //TO DELETE

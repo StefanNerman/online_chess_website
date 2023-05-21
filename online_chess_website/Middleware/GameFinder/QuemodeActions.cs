@@ -12,8 +12,8 @@ public class QuemodeActions
         _manager = manager;
     }
 
-    public void AddUserToQue(UserQuedata quedata)
+    public void AddUserToQue(string token, UserQuedata quedata)
     {
-        Console.WriteLine(quedata.ToString());
+        _manager.AddUserToQue(token, quedata);
     }
 }
