@@ -11,7 +11,7 @@ public class WebsocketReceivedMessageHandler
 {
     public async Task HandleMessage(string token, string message, WebsocketConnectionManager manager, QuemodeActions quemode)
     {
-        // client will send the match id in the message, use the match id to get opponent and client tokens from the database
+
         if (message != null || message != "")
         {
             var clientMessage = JsonConvert.DeserializeObject<dynamic>(message);
@@ -19,8 +19,10 @@ public class WebsocketReceivedMessageHandler
             Console.WriteLine(clientMessage.ToString());
 
             if(clientMessage.protocol == "FIND_MATCH") 
-            { 
-                
+            {
+                int userId = int.Parse(clientMessage.data.userId.ToString());
+                int rank = int.Parse(clientMessage.data.rank.ToString());
+                quemode.AddUserToQue(new UserQuedata(token, userId, rank));
             }
 
             //TO DELETE
