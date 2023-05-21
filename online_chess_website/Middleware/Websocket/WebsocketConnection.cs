@@ -15,19 +15,17 @@ public class WebsocketConnection
 
     private readonly WebsocketConnectionManager _manager;
 
-    private readonly QuemodeActions _quemodeManager;
+    private readonly QuemodeActions _quemodeActions;
 
     public WebsocketConnection(RequestDelegate next, WebsocketConnectionManager manager, QuemodeActions quemodeActions)
     {
         _next = next;
         _manager = manager;
-        _quemodeManager = quemodeActions;
+        _quemodeActions = quemodeActions;
     }
     
     public async Task InvokeAsync(HttpContext context)
     {
-        _quemodeManager.Run();
-
         if (context.WebSockets.IsWebSocketRequest)
         {
             string userCookie = context.Request.Headers.Cookie;
@@ -42,7 +40,7 @@ public class WebsocketConnection
                     {
                         string clientMessage = Encoding.UTF8.GetString(buffer, 0, result.Count);
                         WebsocketReceivedMessageHandler messageHandler = new WebsocketReceivedMessageHandler();
-                        await messageHandler.HandleMessage(clientMessage, _manager);
+                        await messageHandler.HandleMessage(token, clientMessage, _manager, _quemodeActions);
                         return;
                     }
                     if (result.MessageType == WebSocketMessageType.Close)

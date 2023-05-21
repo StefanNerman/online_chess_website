@@ -6,7 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddSingleton<QuemodeManager>();
 builder.Services.AddTransient<QuemodeActions>((context) =>
 {
@@ -14,6 +13,8 @@ builder.Services.AddTransient<QuemodeActions>((context) =>
     return new QuemodeActions(manager);
 });
 builder.Services.AddWebsocketManager();
+
+
 
 var app = builder.Build();
 

@@ -14,6 +14,6 @@ public class QuemodeActions
 
     public void Run()
     {
-        Console.WriteLine(_manager.val1 + _manager.val2);
+        
     }
 }

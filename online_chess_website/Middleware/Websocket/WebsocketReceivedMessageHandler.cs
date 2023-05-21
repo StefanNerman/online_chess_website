@@ -9,7 +9,7 @@ namespace online_chess_website.Middleware.Websocket;
 
 public class WebsocketReceivedMessageHandler
 {
-    public async Task HandleMessage(string message, WebsocketConnectionManager manager)
+    public async Task HandleMessage(string token, string message, WebsocketConnectionManager manager, QuemodeActions quemode)
     {
         // client will send the match id in the message, use the match id to get opponent and client tokens from the database
         if (message != null || message != "")
