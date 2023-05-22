@@ -1,7 +1,4 @@
-﻿
-
-
-namespace online_chess_website.Middleware.GameFinder;
+﻿namespace online_chess_website.Middleware.GameFinder;
 
 public class MatchFinder
 {
@@ -12,9 +9,16 @@ public class MatchFinder
         _queManager = queManager;
     }
 
+    public void FindMatches(Object stateInfo)
+    {
+        Console.WriteLine("Timer ideration");
+        Console.WriteLine(_queManager.GetUserQueData().Keys.Count);
+        //loop through the usersinque if find match launch functions without awaiting them 
+        //if no matches, return
+    }
     public void LaunchProcess()
     {
         Console.WriteLine("MatchFinder launched");
-        //await for another method that contains a while loop
+        Timer timer = new Timer(FindMatches, null, 1000, 4000);
     }
 }

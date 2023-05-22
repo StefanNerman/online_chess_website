@@ -25,9 +25,6 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 
-MatchFinder matchFinder = new MatchFinder(app.Services.GetService<QuemodeManager>());
-matchFinder.LaunchProcess();
-
 var webSocketOptions = new WebSocketOptions
 {
     KeepAliveInterval = TimeSpan.FromMinutes(2)
@@ -37,11 +34,13 @@ app.UseWebSockets(webSocketOptions);
 
 app.UseWebsocketServer();
 
+MatchFinder matchFinder = new MatchFinder(app.Services.GetService<QuemodeManager>());
+matchFinder.LaunchProcess();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
 
 app.Run();
