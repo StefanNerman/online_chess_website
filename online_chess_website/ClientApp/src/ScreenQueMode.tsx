@@ -1,13 +1,13 @@
 import React from 'react'
 import { isQueingController } from './App';
-
+import { defaultWebSocket } from './pages/main_menu/matchmaking';
 
 
 const ScreenQueMode = () => {
 
     function handleClick(){
         isQueingController(false)
-        //api call to cancel websocket and gamesearching
+        defaultWebSocket?.close()
     }
 
     return (  

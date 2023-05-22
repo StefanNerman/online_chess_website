@@ -31,7 +31,7 @@ const GamePanel = (props: props) => {
             //Remember to assign new functions to the onclose, onmessage, onopen and onerror methods so that mathcmaking time events dont trigger on game time
 
         })
-        .catch(result => console.log(result))
+        .catch(result => console.log("Websocket connection: " + result))
     }
     function openQuickplayGame(matchInfo: any){
         isQueingController(false)

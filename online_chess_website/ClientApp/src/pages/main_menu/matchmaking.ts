@@ -14,14 +14,14 @@ export async function findQuickplayMatch(userId: number, userRank: number): Prom
             }))
         }
         defaultWebSocket.onmessage = (e: Event) => {
-
+            //resolve promise
         }
         defaultWebSocket.onclose = (e: Event) => {
-            reject("websocket connection failed")
+            reject("closed")
         }
         defaultWebSocket.onerror = (e: Event) => {
             console.log("ERROR: An error occured while trying to connecto a websocket at matchmaking.ts" , e)
-            reject("websocket connection failed")
+            reject("failed")
         }
     })
 }
