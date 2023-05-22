@@ -1,4 +1,6 @@
-﻿namespace online_chess_website.Middleware.GameFinder;
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace online_chess_website.Middleware.GameFinder;
 
 public class MatchFinder
 {
@@ -9,12 +11,37 @@ public class MatchFinder
         _queManager = queManager;
     }
 
-    public void FindMatches(Object stateInfo)
+    private void FindMatches(Object stateInfo)
     {
-        Console.WriteLine("Timer ideration");
-        Console.WriteLine(_queManager.GetUserQueData().Keys.Count);
-        //loop through the usersinque if find match launch functions without awaiting them 
-        //if no matches, return
+        Console.WriteLine("MatchFinder ideration");
+        TokenRankPair[] queUsers = FormatQueData();
+        foreach (var queUser in queUsers)
+        {
+            foreach(var nestedQueUser in queUsers)
+            {
+                if(nestedQueUser.Token != queUser.Token)
+                {
+                    int rankDifference = nestedQueUser.Rank - queUser.Rank;
+                    if(rankDifference < 0) { rankDifference = rankDifference * -1; }
+                    if(rankDifference > 200) { 
+                        //mach the users up
+                        //mach the users up
+                    }
+                }
+            }
+        }
+    }
+
+    private TokenRankPair[] FormatQueData()
+    {
+        var que = _queManager.GetUserQueData().ToArray();
+        TokenRankPair[] tokenRankPairs = new TokenRankPair[que.Length];
+        for(var i = 0;i < que.Length; i++)
+        {
+            var queUser = que[i];
+            tokenRankPairs[i] = new TokenRankPair(queUser.Key, queUser.Value.userRank);
+        }
+        return tokenRankPairs;
     }
 
     private static Timer mainTimer;
