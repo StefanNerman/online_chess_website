@@ -21,6 +21,7 @@ public class WebsocketConnectionManager
 
     public bool RemoveConnection(string token)
     {
+        Console.WriteLine("Connection removed: " + token);
         return usersConnected.TryRemove(token, out WebSocket websocket);
     }
 }

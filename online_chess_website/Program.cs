@@ -14,8 +14,6 @@ builder.Services.AddTransient<QuemodeActions>((context) =>
 });
 builder.Services.AddWebsocketManager();
 
-
-
 var app = builder.Build();
 
 
@@ -27,6 +25,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 
+MatchFinder matchFinder = new MatchFinder(app.Services.GetService<QuemodeManager>());
+matchFinder.LaunchProcess();
 
 var webSocketOptions = new WebSocketOptions
 {
