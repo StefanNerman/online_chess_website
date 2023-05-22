@@ -45,8 +45,8 @@ public class WebsocketConnection
                     }
                     if (result.MessageType == WebSocketMessageType.Close)
                     {
-                        _quemodeActions.RemoveUserFromQue(token)
-                        _manager.RemoveConnection(token)
+                        _quemodeActions.RemoveUserFromQue(token);
+                        _manager.RemoveConnection(token);
                         return;
                     }
                 });
