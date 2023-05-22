@@ -12,8 +12,13 @@ public class QuemodeActions
         _manager = manager;
     }
 
-    public void AddUserToQue(string token, UserQuedata quedata)
+    public bool AddUserToQue(string token, UserQuedata quedata)
     {
-        _manager.AddUserToQue(token, quedata);
+        return _manager.AddUserToQue(token, quedata);
+    }
+
+    public bool RemoveUserFromQue(string token)
+    {
+        return _manager.RemoveUserFromQue(token);
     }
 }

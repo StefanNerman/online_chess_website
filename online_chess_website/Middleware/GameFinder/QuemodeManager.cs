@@ -9,8 +9,13 @@ public class QuemodeManager
 
     public ConcurrentDictionary<string, UserQuedata> GetUserQueData() { return usersInQuemode; }
 
-    public void AddUserToQue(string token, UserQuedata userQuedata)
+    public bool AddUserToQue(string token, UserQuedata userQuedata)
     {
-        usersInQuemode.TryAdd(token, userQuedata);
+        return usersInQuemode.TryAdd(token, userQuedata);
+    }
+
+    public bool RemoveUserFromQue(string token)
+    {
+        return usersInQuemode.TryRemove(token, out UserQuedata quedata);
     }
 }

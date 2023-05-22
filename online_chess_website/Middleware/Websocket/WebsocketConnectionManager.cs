@@ -13,9 +13,14 @@ public class WebsocketConnectionManager
         return usersConnected;
     }
 
-    public void AddConnection(string token, WebSocket websocket)
+    public bool AddConnection(string token, WebSocket websocket)
     {
-        usersConnected.TryAdd(token, websocket);
         Console.WriteLine("Connection added: " + token);
+        return usersConnected.TryAdd(token, websocket);
+    }
+
+    public bool RemoveConnection(string token)
+    {
+        return usersConnected.TryRemove(token, out WebSocket websocket);
     }
 }
