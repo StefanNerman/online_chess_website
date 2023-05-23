@@ -42,8 +42,8 @@ public class MatchFinder
                         string matchSetupInfoMessage = await setup.CreateMatch(pair.Token, nestedPair.Token);
                         WebSocket p1Socket = _websocketConnectionManager.GetAllUsersConnected()[pair.Token];
                         WebSocket p2Socket = _websocketConnectionManager.GetAllUsersConnected()[nestedPair.Token];
-                        SendStringAsync(p1Socket, matchSetupInfoMessage);
-                        SendStringAsync(p2Socket, matchSetupInfoMessage);
+                        await SendStringAsync(p1Socket, matchSetupInfoMessage);
+                        await SendStringAsync(p2Socket, matchSetupInfoMessage);
                         break;
                     }
                 }
@@ -54,6 +54,8 @@ public class MatchFinder
 
     private async Task SendStringAsync(WebSocket socket, string message)
     {
+        Console.WriteLine(message);
+        Console.WriteLine(socket.ToString());
         var buffer = Encoding.UTF8.GetBytes("STRING MESSAGE: " + message);
         await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
     }

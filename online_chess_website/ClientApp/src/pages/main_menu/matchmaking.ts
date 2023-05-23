@@ -15,6 +15,7 @@ export async function findQuickplayMatch(userId: number, userRank: number): Prom
         }
         defaultWebSocket.onmessage = (e: Event) => {
             //resolve promise
+            console.log(e)
         }
         defaultWebSocket.onclose = (e: Event) => {
             reject("closed")
