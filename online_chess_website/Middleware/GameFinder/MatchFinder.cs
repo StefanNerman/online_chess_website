@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Linq;
 
 namespace online_chess_website.Middleware.GameFinder;
 
@@ -13,23 +14,30 @@ public class MatchFinder
 
     private void FindMatches(Object stateInfo)
     {
-        Console.WriteLine("MatchFinder ideration");
-        TokenRankPair[] queUsers = FormatQueData();
-        foreach (var queUser in queUsers)
+        TokenRankPair[] pairs = FormatQueData();
+        for (int i = 0; i < pairs.Length; i++)
         {
-            foreach(var nestedQueUser in queUsers)
+            TokenRankPair pair = pairs[i];
+            for(int j = 0; j < pairs.Length; j++)
             {
-                if(nestedQueUser.Token != queUser.Token)
+                if (pairs[j] == null || pairs[i] == null) { continue; }
+                TokenRankPair nestedPair = pairs[j];
+                if(pair != nestedPair)
                 {
-                    int rankDifference = nestedQueUser.Rank - queUser.Rank;
-                    if(rankDifference < 0) { rankDifference = rankDifference * -1; }
-                    if(rankDifference > 200) { 
-                        //mach the users up
-                        //mach the users up
+                    int dif = pair.Rank - nestedPair.Rank;
+                    if(dif < 0) { dif = dif * -1; }
+                    if (dif < 200) {
+                        Console.WriteLine($"Players paired: {pair.Token} {pair.Rank} and {nestedPair.Token} {nestedPair.Rank}");
+                        pairs[i] = null;
+                        pairs[j] = null;
+                        _queManager.RemoveUserFromQue(pair.Token);
+                        _queManager.RemoveUserFromQue(nestedPair.Token);
+                        break;
                     }
                 }
             }
         }
+        return;
     }
 
     private TokenRankPair[] FormatQueData()
@@ -48,6 +56,6 @@ public class MatchFinder
     public void LaunchProcess()
     {
         Console.WriteLine("MatchFinder launched");
-        mainTimer = new Timer(FindMatches, null, 1000, 4000);
+        mainTimer = new Timer(FindMatches, null, 1000, 2000);
     }
 }
