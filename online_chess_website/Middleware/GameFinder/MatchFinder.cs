@@ -37,7 +37,7 @@ public class MatchFinder
         mainTimer = new Timer(FindMatches, null, 1000, 2000);
     }
 
-    private void FindMatches(Object stateInfo)
+    private async Task FindMatches(Object stateInfo)
     {
         TokenRankPair[] pairs = FormatQueData();
         for (int i = 0; i < pairs.Length; i++)
@@ -57,7 +57,7 @@ public class MatchFinder
                         pairs[j] = null;
                         _queManager.RemoveUserFromQue(pair.Token);
                         _queManager.RemoveUserFromQue(nestedPair.Token);
-                        Pairing(pair.Token, nestedPair.Token);
+                        await Pairing(pair.Token, nestedPair.Token);
                         break;
                     }
                 }
@@ -69,15 +69,16 @@ public class MatchFinder
     private async Task Pairing(string token, string nestedToken)
     {
         MatchSetup setup = new MatchSetup();
-        string matchSetupInfoMessage = await setup.CreateMatch(token, nestedToken);
+        string[] matchSetupInfoMessage = await setup.CreateMatch(token, nestedToken);
         WebSocket p1Socket = _websocketConnectionManager.GetAllUsersConnected()[token];
         WebSocket p2Socket = _websocketConnectionManager.GetAllUsersConnected()[nestedToken];
-        await SendStringAsync(p1Socket, matchSetupInfoMessage);
-        await SendStringAsync(p2Socket, matchSetupInfoMessage);
+        await SendStringAsync(p1Socket, matchSetupInfoMessage[0]);
+        await SendStringAsync(p2Socket, matchSetupInfoMessage[1]);
     }
 
     private async Task SendStringAsync(WebSocket socket, string message)
     {
+        Console.WriteLine(message);
         var buffer = Encoding.UTF8.GetBytes("STRING MESSAGE: " + message);
         await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
     }
