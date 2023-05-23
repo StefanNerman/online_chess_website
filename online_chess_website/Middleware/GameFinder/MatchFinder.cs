@@ -18,7 +18,26 @@ public class MatchFinder
         _websocketConnectionManager = websocketConnectionManager;
     }
 
-    private async void FindMatches(Object stateInfo)
+    private TokenRankPair[] FormatQueData()
+    {
+        var que = _queManager.GetUserQueData().ToArray();
+        TokenRankPair[] tokenRankPairs = new TokenRankPair[que.Length];
+        for (var i = 0; i < que.Length; i++)
+        {
+            var queUser = que[i];
+            tokenRankPairs[i] = new TokenRankPair(queUser.Key, queUser.Value.userRank);
+        }
+        return tokenRankPairs;
+    }
+
+    private static Timer mainTimer;
+    public void LaunchProcess()
+    {
+        Console.WriteLine("MatchFinder launched");
+        mainTimer = new Timer(FindMatches, null, 1000, 2000);
+    }
+
+    private void FindMatches(Object stateInfo)
     {
         TokenRankPair[] pairs = FormatQueData();
         for (int i = 0; i < pairs.Length; i++)
@@ -38,12 +57,7 @@ public class MatchFinder
                         pairs[j] = null;
                         _queManager.RemoveUserFromQue(pair.Token);
                         _queManager.RemoveUserFromQue(nestedPair.Token);
-                        MatchSetup setup = new MatchSetup();
-                        string matchSetupInfoMessage = await setup.CreateMatch(pair.Token, nestedPair.Token);
-                        WebSocket p1Socket = _websocketConnectionManager.GetAllUsersConnected()[pair.Token];
-                        WebSocket p2Socket = _websocketConnectionManager.GetAllUsersConnected()[nestedPair.Token];
-                        await SendStringAsync(p1Socket, matchSetupInfoMessage);
-                        await SendStringAsync(p2Socket, matchSetupInfoMessage);
+                        Pairing(pair.Token, nestedPair.Token);
                         break;
                     }
                 }
@@ -52,30 +66,19 @@ public class MatchFinder
         return;
     }
 
+    private async Task Pairing(string token, string nestedToken)
+    {
+        MatchSetup setup = new MatchSetup();
+        string matchSetupInfoMessage = await setup.CreateMatch(token, nestedToken);
+        WebSocket p1Socket = _websocketConnectionManager.GetAllUsersConnected()[token];
+        WebSocket p2Socket = _websocketConnectionManager.GetAllUsersConnected()[nestedToken];
+        await SendStringAsync(p1Socket, matchSetupInfoMessage);
+        await SendStringAsync(p2Socket, matchSetupInfoMessage);
+    }
+
     private async Task SendStringAsync(WebSocket socket, string message)
     {
-        Console.WriteLine(message);
-        Console.WriteLine(socket.ToString());
         var buffer = Encoding.UTF8.GetBytes("STRING MESSAGE: " + message);
         await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
-    }
-
-    private TokenRankPair[] FormatQueData()
-    {
-        var que = _queManager.GetUserQueData().ToArray();
-        TokenRankPair[] tokenRankPairs = new TokenRankPair[que.Length];
-        for(var i = 0;i < que.Length; i++)
-        {
-            var queUser = que[i];
-            tokenRankPairs[i] = new TokenRankPair(queUser.Key, queUser.Value.userRank);
-        }
-        return tokenRankPairs;
-    }
-
-    private static Timer mainTimer;
-    public void LaunchProcess()
-    {
-        Console.WriteLine("MatchFinder launched");
-        mainTimer = new Timer(FindMatches, null, 1000, 2000);
     }
 }
