@@ -34,7 +34,7 @@ app.UseWebSockets(webSocketOptions);
 
 app.UseWebsocketServer();
 
-MatchFinder matchFinder = new MatchFinder(app.Services.GetService<QuemodeManager>());
+MatchFinder matchFinder = new MatchFinder(app.Services.GetService<QuemodeManager>(), app.Services.GetService<WebsocketConnectionManager>());
 matchFinder.LaunchProcess();
 
 app.MapControllerRoute(

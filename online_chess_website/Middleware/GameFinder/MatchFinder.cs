@@ -1,18 +1,24 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using online_chess_website.Middleware.Websocket;
+using online_chess_website.Multiplayer;
 using System.Linq;
+using System.Net.WebSockets;
+using System.Text;
 
 namespace online_chess_website.Middleware.GameFinder;
 
 public class MatchFinder
 {
     private QuemodeManager _queManager;
+    private WebsocketConnectionManager _websocketConnectionManager;
 
-    public MatchFinder(QuemodeManager queManager)
+    public MatchFinder(QuemodeManager queManager, WebsocketConnectionManager websocketConnectionManager)
     {
         _queManager = queManager;
+        _websocketConnectionManager = websocketConnectionManager;
     }
 
-    private void FindMatches(Object stateInfo)
+    private async void FindMatches(Object stateInfo)
     {
         TokenRankPair[] pairs = FormatQueData();
         for (int i = 0; i < pairs.Length; i++)
@@ -32,12 +38,24 @@ public class MatchFinder
                         pairs[j] = null;
                         _queManager.RemoveUserFromQue(pair.Token);
                         _queManager.RemoveUserFromQue(nestedPair.Token);
+                        MatchSetup setup = new MatchSetup();
+                        string matchSetupInfoMessage = await setup.CreateMatch(pair.Token, nestedPair.Token);
+                        WebSocket p1Socket = _websocketConnectionManager.GetAllUsersConnected()[pair.Token];
+                        WebSocket p2Socket = _websocketConnectionManager.GetAllUsersConnected()[nestedPair.Token];
+                        SendStringAsync(p1Socket, matchSetupInfoMessage);
+                        SendStringAsync(p2Socket, matchSetupInfoMessage);
                         break;
                     }
                 }
             }
         }
         return;
+    }
+
+    private async Task SendStringAsync(WebSocket socket, string message)
+    {
+        var buffer = Encoding.UTF8.GetBytes("STRING MESSAGE: " + message);
+        await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
     }
 
     private TokenRankPair[] FormatQueData()
