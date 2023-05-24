@@ -27,9 +27,7 @@ const GamePanel = (props: props) => {
         findQuickplayMatch(parseInt(userId), profile.userRank)
         .then(response => {
             openQuickplayGame(response)
-
             //Remember to assign new functions to the onclose, onmessage, onopen and onerror methods so that mathcmaking time events dont trigger on game time
-
         })
         .catch(result => console.log("Websocket connection: " + result))
     }

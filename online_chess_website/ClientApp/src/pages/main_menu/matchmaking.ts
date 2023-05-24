@@ -1,6 +1,9 @@
 import { createDefaultWebSocketConnection } from "../../api/websocket"
 
-
+interface websocketServerMessage {
+    protocol: string,
+    data: object
+}
 
 export let defaultWebSocket: WebSocket | null
 
@@ -13,10 +16,12 @@ export async function findQuickplayMatch(userId: number, userRank: number): Prom
                 data: {userId: userId, rank: userRank}
             }))
         }
-        defaultWebSocket.onmessage = (e: Event) => {
-            //resolve promise
+        defaultWebSocket.onmessage = (e: MessageEvent) => {
             console.log(e)
-            console.log()
+            let serverMessage: websocketServerMessage = JSON.parse(e.data)
+            if(serverMessage.protocol = "MATCH_FOUND"){
+                resolve(serverMessage.data)
+            }
         }
         defaultWebSocket.onclose = (e: Event) => {
             reject("closed")
