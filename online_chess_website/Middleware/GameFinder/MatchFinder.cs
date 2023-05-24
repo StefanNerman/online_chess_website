@@ -37,7 +37,7 @@ public class MatchFinder
         mainTimer = new Timer(FindMatches, null, 1000, 2000);
     }
 
-    private async Task FindMatches(Object stateInfo)
+    private async void FindMatches(Object stateInfo)
     {
         TokenRankPair[] pairs = FormatQueData();
         for (int i = 0; i < pairs.Length; i++)
@@ -78,8 +78,7 @@ public class MatchFinder
 
     private async Task SendStringAsync(WebSocket socket, string message)
     {
-        Console.WriteLine(message);
-        var buffer = Encoding.UTF8.GetBytes("STRING MESSAGE: " + message);
+        var buffer = Encoding.UTF8.GetBytes(message);
         await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
     }
 }

@@ -12,7 +12,6 @@ public class MatchSetup
         if(p1Color == 0) { p2Color = 1; }
         int MATCH_ID = await SaveMatch(p1Token, p2Token, p1Color);
         string[] message = { FormatData(p1Color, MATCH_ID), FormatData(p2Color, MATCH_ID) };
-        Console.WriteLine(message);
         return message;
     }
 
@@ -30,7 +29,7 @@ public class MatchSetup
         string sqlInsert = $"INSERT INTO ongoing_matches (player1_token, player2_token, match_status, match_log) VALUES ('{white}', '{black}', '', '')";
         await db.SaveData(sqlInsert, new { }, connectionString);
         string sqlSelect = $"SELECT * FROM ongoing_matches WHERE player1_token = '{p1Token}'";
-        List<IMatchInfo> matchInfo = await db.GetData<IMatchInfo, dynamic>(sqlSelect, new { }, connectionString);
+        List<MatchInfo> matchInfo = await db.GetData<MatchInfo, dynamic>(sqlSelect, new { }, connectionString);
         int matchId = matchInfo.ToArray()[0].match_Id;
         return matchId;
     }
@@ -39,6 +38,7 @@ public class MatchSetup
     {
         string clr = "white";
         if(color == 1) { clr = "black"; }
-        return "{\"protocol\":\"MATCH_FOUND\",\"data\":{\"color\":" + clr + ",\"MATCH_ID\":" + matchId + "}}";
+        MatchSetupMessage message = new MatchSetupMessage("MATCH_FOUND", new MatchSetupMessageData(clr, matchId));
+        return Newtonsoft.Json.JsonConvert.SerializeObject(message); ;
     }
 }

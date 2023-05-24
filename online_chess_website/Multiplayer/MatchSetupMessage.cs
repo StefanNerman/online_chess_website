@@ -2,12 +2,12 @@
 
 public class MatchSetupMessage
 {
-    public string color {get; set;}
-    public int MATCH_ID { get; set;}
+    public string protocol { get; set; }
+    public MatchSetupMessageData data { get; set; }
 
-    public MatchSetupMessage(string color, int MATCH_ID)
+    public MatchSetupMessage(string protocol, MatchSetupMessageData data)
     {
-        this.color = color;
-        this.MATCH_ID = MATCH_ID;
+        this.protocol = protocol;
+        this.data = data;
     }
 }
