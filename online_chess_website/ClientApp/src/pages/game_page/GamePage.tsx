@@ -13,10 +13,11 @@ const GamePage = ({...rest}: props) => {
     const { state: {
         isOnlineGame,
         gameMode,// (quickplay | private | local | bot + [difficulty])
-        color
+        color,
+        matchId
     } = {} } = useLocation();
 
-
+    
 
     return (
         <div className="gamepage" {...rest}>

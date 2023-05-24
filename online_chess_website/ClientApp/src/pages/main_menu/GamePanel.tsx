@@ -16,6 +16,11 @@ interface profile {
     profilePicture: string
 }
 
+interface serverMessageData {
+    color: string
+    MATCH_ID: number
+}
+
 const GamePanel = (props: props) => {
 
     const navigate = useNavigate()
@@ -26,18 +31,18 @@ const GamePanel = (props: props) => {
         let profile = await getProfileByUserId(parseInt(userId))
         findQuickplayMatch(parseInt(userId), profile.userRank)
         .then(response => {
-            openQuickplayGame(response)
-            //Remember to assign new functions to the onclose, onmessage, onopen and onerror methods so that mathcmaking time events dont trigger on game time
+            openQuickplayGame((response as any))
+            //Remember to override functions to the onclose, onmessage, onopen and onerror methods so that mathcmaking time events dont trigger on game time
         })
         .catch(result => console.log("Websocket connection: " + result))
     }
-    function openQuickplayGame(matchInfo: any){
+    function openQuickplayGame(matchInfo: serverMessageData){
         isQueingController(false)
-        return
         navigate('/game-page', { state: { 
             isOnlineGame: true,
             gameMode: 'quickplay',
-            color: 'white'
+            color: matchInfo.color,
+            matchId: matchInfo.MATCH_ID
         }})
     }
 
