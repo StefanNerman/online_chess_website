@@ -1,8 +1,6 @@
 
 export let ImagePieces: Map<string, string> = new Map()
 
-//TODO: add api endpoint on the server for getting these images. Also use that endpoint to get all other types of images like profile pictures
-
 ImagePieces.set('10', 'https://th.bing.com/th/id/R.b26750f8c7585adbe51c4757675300e1?rik=5fgOHHL8kCPmXA&riu=http%3a%2f%2f4vector.com%2fi%2ffree-vector-chess-white-pawn-piece-clip-art_105063_Chess_White_Pawn_Piece_clip_art_small.png&ehk=rDM8YzeCTOhqc9EvYkPol63fl3V%2fu2d5Yx%2fB8die8WA%3d&risl=&pid=ImgRaw&r=0')
 ImagePieces.set('11', 'https://th.bing.com/th/id/R.6e40ecda7282f51b687ed15f469ffbac?rik=mUsPQv1i2VdtpA&riu=http%3a%2f%2fwww.clker.com%2fcliparts%2fd%2fb%2f2%2f4%2f12205466671724840789portablejim_Chess_tile_-_Rook_3.svg.hi.png&ehk=NIJQSmf3w0HGoy2F8yl1mMfV1s4ntDX7FwxQqB0iEtI%3d&risl=&pid=ImgRaw&r=0')
 ImagePieces.set('12', 'https://th.bing.com/th/id/R.94fb5dc0f231afc13f429b8642a2fe0c?rik=pyyee99RFMqinw&riu=http%3a%2f%2fchessworld.net%2fgif%2fmerida35%2fwhite_knight.png&ehk=q5PxuQzOAU0eXRJ%2bJzKfeCe6HXH7uTGbs%2bX7abmUQg4%3d&risl=&pid=ImgRaw&r=0')
