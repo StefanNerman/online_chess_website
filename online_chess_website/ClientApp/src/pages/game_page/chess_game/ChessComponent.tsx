@@ -2,7 +2,6 @@ import React from 'react'
 import './style_chess.css'
 import { useEffect } from 'react'
 import { tileClick, tiles, whoseTurn, autoMove, setWhoseTurn } from './gamelogic'
-import { ImagePieces as imageCodes } from './piecesImages'
 import {coordinateConverter} from '../../../utils/chessgame'
 
 interface TileObj {
@@ -186,9 +185,9 @@ function renderPieces(positions: Array<TileObj>){
             index++
         }
         if(e.piece){
-            let img = document.createElement('img')
-            img.classList.add('piece-image')
-            img.src = imageCodes.get(e.piece.slice(0,2)) || ''
+            let img = document.createElement('div')
+            img.classList.add('piece-image-div')
+            img.classList.add('piece-' + e.piece.slice(0, 2))
             tile?.appendChild(img)
         }
     })
