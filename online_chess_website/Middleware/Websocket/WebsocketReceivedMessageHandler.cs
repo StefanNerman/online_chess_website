@@ -25,6 +25,14 @@ public class WebsocketReceivedMessageHandler
                 quemode.AddUserToQue(token, new UserQuedata(userId, rank));
             }
 
+            if(clientMessage.protocol == "USER_MOVE")
+            {
+                int from = clientMessage.data.from;
+                int to = clientMessage.data.to;
+                int matchId = clientMessage.data.matchId;
+                Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(clientMessage));
+            }
+
             //TO DELETE
             if (clientMessage.protocol == "SEND_INFO")
             {

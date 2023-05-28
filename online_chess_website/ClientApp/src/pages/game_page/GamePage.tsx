@@ -10,12 +10,15 @@ type props = {
     
 } & React.ComponentProps<'div'>
 
+let _matchId = 0
+
 export function userMove(move: string){
     defaultWebSocket?.send(JSON.stringify({
         protocol: "USER_MOVE",
         data: {
             from: parseInt(move.slice(7, 9)),
-            to: parseInt(move.slice(10, 12))
+            to: parseInt(move.slice(9, 11)),
+            matchId: _matchId
         }
     }))
 }
@@ -28,6 +31,8 @@ const GamePage = ({...rest}: props) => {
         color,
         matchId
     } = {} } = useLocation();
+
+    _matchId = matchId
 
     if(isOnlineGame){
         assignWebSocketMethods()
