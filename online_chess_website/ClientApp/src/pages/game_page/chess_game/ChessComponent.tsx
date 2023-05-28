@@ -3,6 +3,7 @@ import './style_chess.css'
 import { useEffect } from 'react'
 import { tileClick, tiles, whoseTurn, autoMove, setWhoseTurn } from './gamelogic'
 import {coordinateConverter} from '../../../utils/chessgame'
+import { userMove } from '../GamePage'
 
 interface TileObj {
     position: number,
@@ -25,6 +26,8 @@ export function setIsLocalGame(bool: boolean) {isLocalGame = bool}
 
 export let playerColor = 'white'
 export function setPlayerColor(color: string) {playerColor = color}
+
+let isMultiplayer = false
 
 export function artificialMove(from: number, to: number){
     let clickResult: actionInfoObj = autoMove(from, to)
@@ -51,6 +54,9 @@ async function handleMove(move: string){
         if(!moveStatus){/*make an alert and return*/}
     }
     if(moveNotYetMade) onMachStart()
+
+    if(isMultiplayer) userMove(move)
+
     let coordinatesString = move.slice(move.length -4, move.length)
     let from = coordinateConverter(parseInt(coordinatesString.slice(0, 2)))
     let to = coordinateConverter(parseInt(coordinatesString.slice(2, 4)))
@@ -126,6 +132,7 @@ interface props {
 const Chess: React.FC<any> = ({gamemode, color}: props) => {
 
     useEffect(() => {
+        if(gamemode === 'quickplay') isMultiplayer = true
         setIsLocalGame(gamemode === 'local'? true : false)
         playerColor = color
         createBoard()
