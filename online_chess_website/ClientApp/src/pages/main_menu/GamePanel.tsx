@@ -32,12 +32,12 @@ const GamePanel = (props: props) => {
         findQuickplayMatch(parseInt(userId), profile.userRank)
         .then(response => {
             openQuickplayGame((response as any))
-            //Remember to override functions to the onclose, onmessage, onopen and onerror methods so that mathcmaking time events dont trigger on game time
         })
         .catch(result => console.log("Websocket connection: " + result))
     }
     function openQuickplayGame(matchInfo: serverMessageData){
         isQueingController(false)
+        sessionStorage.setItem('matchId', matchInfo.MATCH_ID.toString())
         navigate('/game-page', { state: { 
             isOnlineGame: true,
             gameMode: 'quickplay',

@@ -2,10 +2,11 @@ import React, { useEffect } from 'react'
 import './style.css'
 import GamePanel from './GamePanel'
 import PlayerInfoPanel from './PlayerInfoPanel'
-import { useLocation } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import { defaultWebSocket } from '../main_menu/matchmaking'
 import { artificialMove, playerColor } from './chess_game/ChessComponent'
 import { whoseTurn } from './chess_game/gamelogic'
+import {useNavigate} from 'react-router-dom'
 
 type props = {
     
@@ -34,18 +35,23 @@ export function userMove(move: string){
 
 const GamePage = ({...rest}: props) => {
 
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(defaultWebSocket && isOnlineGame){
+            assignWebSocketMethods()
+        }
+        if(!defaultWebSocket) navigate('/main-menu')
+    })
+
     const { state: {
         isOnlineGame,
-        gameMode,// (quickplay | private | local | bot + [difficulty])
+        gameMode,// (quickplay | private | local | bot + difficulty)
         color,
         matchId
     } = {} } = useLocation();
 
     _matchId = matchId
-
-    if(isOnlineGame){
-        assignWebSocketMethods()
-    }
 
     return (
         <div className="gamepage" {...rest}>
