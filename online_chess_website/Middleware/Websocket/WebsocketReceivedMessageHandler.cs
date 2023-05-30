@@ -4,6 +4,7 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Linq;
 using online_chess_website.Middleware.GameFinder;
+using online_chess_website.Multiplayer;
 
 namespace online_chess_website.Middleware.Websocket;
 
@@ -29,27 +30,20 @@ public class WebsocketReceivedMessageHandler
             {
                 int from = clientMessage.data.from;
                 int to = clientMessage.data.to;
+                string playerColor = clientMessage.data.color;
                 int matchId = clientMessage.data.matchId;
-                Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(clientMessage));
+                MatchDataManager matchData = new MatchDataManager();
+                string opponentToken = await matchData.GetOpponentToken(matchId, playerColor);
+                WebSocket opponentSocket = manager.GetAllUsersConnected()[opponentToken];
+                MoveMessage serverMessage = new MoveMessage("OPPONENT_MOVED", new { from = from, to = to });
+                await SendStringAsync(opponentSocket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
             }
-
-            //TO DELETE
-            if (clientMessage.protocol == "SEND_INFO")
-            {
-                var ws = manager.GetAllUsersConnected().FirstOrDefault(s => s.Key == clientMessage.data.message.ToString());
-                await SendStringAsync(ws.Value, clientMessage.data.id.ToString());
-            }
-            
-
-            //figures out which procedure should be done according to the message
-            //calls the right methods and sends the needed info to the opponent using the 
-            //enemy using his token that it gets from the database "matches" table
         }
     }
 
     private async Task SendStringAsync(WebSocket socket, string message)
     {
-        var buffer = Encoding.UTF8.GetBytes("STRING MESSAGE: " + message);
+        var buffer = Encoding.UTF8.GetBytes(message);
         await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
     }
 }

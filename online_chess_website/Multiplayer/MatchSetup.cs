@@ -1,5 +1,6 @@
 ﻿using GenericClassesLibrary.DataAccess;
 using online_chess_website.Data;
+using GenericClassesLibrary.Generic.ChessWebsite.DatabaseTypes;
 
 namespace online_chess_website.Multiplayer;
 
@@ -29,7 +30,7 @@ public class MatchSetup
         string sqlInsert = $"INSERT INTO ongoing_matches (player1_token, player2_token, match_status, match_log) VALUES ('{white}', '{black}', '', '')";
         await db.SaveData(sqlInsert, new { }, connectionString);
         string sqlSelect = $"SELECT * FROM ongoing_matches WHERE player1_token = '{p1Token}'";
-        List<MatchInfo> matchInfo = await db.GetData<MatchInfo, dynamic>(sqlSelect, new { }, connectionString);
+        List<OngoingMatchInfo> matchInfo = await db.GetData<OngoingMatchInfo, dynamic>(sqlSelect, new { }, connectionString);
         int matchId = matchInfo.ToArray()[0].match_Id;
         return matchId;
     }

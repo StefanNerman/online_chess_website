@@ -71,8 +71,9 @@ class Tiles {
                 this.positions[i].piece = false
             }
         })
-        if(movePiece.slice(1, 2) === '5' && movePiece.slice(0, 1) === '0') this.hasBlackKingMoved = true
-        if(movePiece.slice(1, 2) === '5' && movePiece.slice(0, 1) === '1') this.hasWhiteKingMoved = true
+        console.log(movePiece)
+        if(movePiece?.slice(1, 2) === '5' && movePiece.slice(0, 1) === '0') this.hasBlackKingMoved = true
+        if(movePiece?.slice(1, 2) === '5' && movePiece.slice(0, 1) === '1') this.hasWhiteKingMoved = true
         this.positions.forEach((e, i) => {
             if(e.position === to){
                 this.positions[i].piece = movePiece
@@ -259,7 +260,8 @@ function isCheckMate(defenseColor: string): boolean {
 
 
 function moveIsToCastle(from: number, to: number, movePiece: object | undefined): boolean{
-    if((movePiece as any).piece.slice(1, 2) !== '5') return false
+    if((movePiece as any).piece === false) return false
+    if((movePiece as any).piece && (movePiece as any).piece?.slice(1, 2) !== '5') return false
     if(from !== 14 && (movePiece as any).piece.slice(0, 1) !== '0') return false
     if(from !== 84 && (movePiece as any).piece.slice(0, 1) !== '1') return false
     if((movePiece as any).piece.slice(0, 1) === '1' && (to === 11 || to === 18)) return true

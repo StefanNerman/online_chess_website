@@ -4,7 +4,8 @@ import GamePanel from './GamePanel'
 import PlayerInfoPanel from './PlayerInfoPanel'
 import { useLocation } from 'react-router-dom'
 import { defaultWebSocket } from '../main_menu/matchmaking'
-import { artificialMove } from './chess_game/ChessComponent'
+import { artificialMove, playerColor } from './chess_game/ChessComponent'
+import { whoseTurn } from './chess_game/gamelogic'
 
 type props = {
     
@@ -13,12 +14,20 @@ type props = {
 let _matchId = 0
 
 export function userMove(move: string){
+    if(whoseTurn === playerColor) return//to prevent form sending when your opponent moves
+    let from = move.slice(7, 9)
+    let to = move.slice(9, 11)
+    if(move.length >= 12){
+        from = move.slice(8, 10)
+        to = move.slice(10, 12)
+    }
     defaultWebSocket?.send(JSON.stringify({
         protocol: "USER_MOVE",
         data: {
-            from: parseInt(move.slice(7, 9)),
-            to: parseInt(move.slice(9, 11)),
-            matchId: _matchId
+            from: parseInt(from),
+            to: parseInt(to),
+            matchId: _matchId,
+            color: playerColor
         }
     }))
 }
@@ -56,8 +65,10 @@ const GamePage = ({...rest}: props) => {
 function assignWebSocketMethods(){
     defaultWebSocket!.onopen = ()=>{}
     defaultWebSocket!.onmessage = (e: MessageEvent) => {
+        console.log(e)
         let serverMessage = JSON.parse(e.data)
         if(serverMessage.protocol === 'OPPONENT_MOVED'){
+            console.log(serverMessage.data)
             artificialMove(serverMessage.data.from, serverMessage.data.to)
         }
         if(serverMessage.protocol === 'CHAT_MESSAGE'){

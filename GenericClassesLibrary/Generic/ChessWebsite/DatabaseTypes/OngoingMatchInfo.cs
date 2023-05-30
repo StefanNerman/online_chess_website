@@ -1,6 +1,6 @@
-﻿namespace online_chess_website.Multiplayer;
-//move this to genericclasseslibrary into some folder for database table types
-public class MatchInfo
+﻿namespace GenericClassesLibrary.Generic.ChessWebsite.DatabaseTypes;
+
+public class OngoingMatchInfo
 {
     public int match_Id { get; set; }
     public string player1_token { get; set; }
