@@ -6,14 +6,14 @@ namespace online_chess_website.Multiplayer;
 
 public class MatchSetup
 {
-    public async Task<string[]> CreateMatch(string p1Token, string p2Token)
+    public async Task<MatchSetupReturnInfo> CreateMatch(string p1Token, string p2Token)
     {
         int p1Color = Random.Shared.Next(0, 1);
         int p2Color = 0;
         if(p1Color == 0) { p2Color = 1; }
         int MATCH_ID = await SaveMatch(p1Token, p2Token, p1Color);
         string[] message = { FormatData(p1Color, MATCH_ID), FormatData(p2Color, MATCH_ID) };
-        return message;
+        return new MatchSetupReturnInfo(message, MATCH_ID);
     }
 
     private async Task<int> SaveMatch(string p1Token, string p2Token, int p1Color)

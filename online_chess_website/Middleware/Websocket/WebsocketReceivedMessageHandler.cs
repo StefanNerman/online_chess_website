@@ -38,6 +38,11 @@ public class WebsocketReceivedMessageHandler
                 MoveMessage serverMessage = new MoveMessage("OPPONENT_MOVED", new { from = from, to = to });
                 await SendStringAsync(opponentSocket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
             }
+
+            if(clientMessage.protocol == "MATCH_WON")
+            {
+                //the user that made the checkmate will send this message
+            }
         }
     }
 

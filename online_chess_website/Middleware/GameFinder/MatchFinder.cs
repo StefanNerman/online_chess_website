@@ -71,9 +71,11 @@ public class MatchFinder
     private async Task Pairing(string token, string nestedToken)
     {
         MatchSetup setup = new MatchSetup();
-        string[] matchSetupInfoMessage = await setup.CreateMatch(token, nestedToken);
+        MatchSetupReturnInfo matchSetupInfo = await setup.CreateMatch(token, nestedToken);
+        string[] matchSetupInfoMessage = matchSetupInfo.strings;
         WebSocket p1Socket = _websocketConnectionManager.GetAllUsersConnected()[token].websocket;
         WebSocket p2Socket = _websocketConnectionManager.GetAllUsersConnected()[nestedToken].websocket;
+        _ongoingMatches.AddOngoingMatch(matchSetupInfo.matchId, token, nestedToken);
         await SendStringAsync(p1Socket, matchSetupInfoMessage[0]);
         await SendStringAsync(p2Socket, matchSetupInfoMessage[1]);
     }
