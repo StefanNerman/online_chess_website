@@ -10,7 +10,7 @@ namespace online_chess_website.Middleware.Websocket;
 
 public class WebsocketReceivedMessageHandler
 {
-    public async Task HandleMessage(string token, string message, WebsocketConnectionManager manager, QuemodeActions quemode)
+    public async Task HandleMessage(string token, string message, WebsocketConnectionManager manager, QuemodeActions quemode, OngoingMatches ongoingMatches)
     {
 
         if (message != null || message != "")
@@ -39,9 +39,19 @@ public class WebsocketReceivedMessageHandler
                 await SendStringAsync(opponentSocket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
             }
 
-            if(clientMessage.protocol == "MATCH_WON")
+            if(clientMessage.protocol == "CHECKMATE")
             {
-                //the user that made the checkmate will send this message
+                int matchId = clientMessage.data.matchId;
+                string userColor = clientMessage.data.color;
+                UserOngoingMatchInfo matchInfo = ongoingMatches.GetAllOngoingMatches()[matchId];
+
+                // save the match result to database
+
+                WebSocket p1Socket = manager.GetAllUsersConnected()[matchInfo.player1Token].websocket;
+                WebSocket p2Socket = manager.GetAllUsersConnected()[matchInfo.player2Token].websocket;
+                MatchIsOverMessage serverMessage = new MatchIsOverMessage(new MatchIsOverMessageData(userColor));
+                await SendStringAsync(p1Socket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
+                await SendStringAsync(p2Socket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
             }
         }
     }

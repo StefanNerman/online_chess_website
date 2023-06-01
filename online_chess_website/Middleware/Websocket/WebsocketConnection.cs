@@ -44,7 +44,7 @@ public class WebsocketConnection
                     {
                         string clientMessage = Encoding.UTF8.GetString(buffer, 0, result.Count);
                         WebsocketReceivedMessageHandler messageHandler = new WebsocketReceivedMessageHandler();
-                        await messageHandler.HandleMessage(token, clientMessage, _manager, _quemodeActions);
+                        await messageHandler.HandleMessage(token, clientMessage, _manager, _quemodeActions, _ongoingMatches);
                         return;
                     }
                     if (result.MessageType == WebSocketMessageType.Close)
@@ -52,6 +52,10 @@ public class WebsocketConnection
                         int userMatchId = _manager.GetAllUsersConnected()[token].ongoingMatchId;
                         if(userMatchId != 0)
                         {
+                            // save match as a loss in the database
+
+                            // get opponent token/id and save match as win
+                            // or receive new message from opponent after he gets "opponent left" message and then add as a win
                             UserOngoingMatchInfo ongoingMatchInfo = _ongoingMatches.GetAllOngoingMatches()[userMatchId];
                             if(token == ongoingMatchInfo.player1Token)
                             {

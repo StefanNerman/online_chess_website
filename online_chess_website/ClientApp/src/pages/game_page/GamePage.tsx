@@ -34,7 +34,14 @@ export function userMove(move: string){
 }
 
 export function userCheckmate(move: string){
-    
+    if(whoseTurn === playerColor) return
+    defaultWebSocket?.send(JSON.stringify({
+        protocol: "CHECKMATE",
+        data: {
+            matchId: _matchId,
+            color: playerColor
+        }
+    }))
 }
 
 const GamePage = ({...rest}: props) => {
@@ -81,8 +88,9 @@ function assignWebSocketMethods(){
             console.log(serverMessage.data)
             artificialMove(serverMessage.data.from, serverMessage.data.to)
         }
-        if(serverMessage.protocol === 'CHAT_MESSAGE'){
-
+        if(serverMessage.protocol === 'MATCH_ENDED'){
+            console.log(serverMessage.data)
+            console.log('match ended')
         }
     }
     defaultWebSocket!.onclose = (e: Event) => {
