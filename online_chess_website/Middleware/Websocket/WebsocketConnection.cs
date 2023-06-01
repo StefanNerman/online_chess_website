@@ -49,10 +49,20 @@ public class WebsocketConnection
                     }
                     if (result.MessageType == WebSocketMessageType.Close)
                     {
-                        /*
-                        add instance for ongoing matches 
-                        check if user token has any ongiong matches and if so get opponents token and send him a message alerting that his opponent left
-                        */
+                        int userMatchId = _manager.GetAllUsersConnected()[token].ongoingMatchId;
+                        if(userMatchId != 0)
+                        {
+                            UserOngoingMatchInfo ongoingMatchInfo = _ongoingMatches.GetAllOngoingMatches()[userMatchId];
+                            if(token == ongoingMatchInfo.player1Token)
+                            {
+                                // await send message to player 2 token
+                            }
+                            else
+                            {
+                                // await send message to player 1 token
+                            }
+                            _ongoingMatches.RemoveOngoingMatch(userMatchId);
+                        }
                         _quemodeActions.RemoveUserFromQue(token);
                         _manager.RemoveConnection(token);
                         return;

@@ -33,6 +33,10 @@ export function userMove(move: string){
     }))
 }
 
+export function userCheckmate(move: string){
+    
+}
+
 const GamePage = ({...rest}: props) => {
 
     const navigate = useNavigate()

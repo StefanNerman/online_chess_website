@@ -3,7 +3,7 @@ import './style_chess.css'
 import { useEffect } from 'react'
 import { tileClick, tiles, whoseTurn, autoMove, setWhoseTurn } from './gamelogic'
 import {coordinateConverter} from '../../../utils/chessgame'
-import { userMove } from '../GamePage'
+import { userMove, userCheckmate } from '../GamePage'
 
 interface TileObj {
     position: number,
@@ -92,6 +92,7 @@ function handleKingAttack(move: string){
 function handleCheckmate(move: string){
     console.log('CHECKMATE:', move)
     window.clearInterval(timeInterval)
+    if(isMultiplayer) userCheckmate(move)
 }
 //Called every time a piece is eaten, receives an outcome string as a param
 function handleAttack(move: string){    
