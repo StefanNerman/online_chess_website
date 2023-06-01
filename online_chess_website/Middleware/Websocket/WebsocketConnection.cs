@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GenericClassesLibrary.Generic.ChessWebsite.utils;
 using Microsoft.AspNetCore.Http;
 using online_chess_website.Middleware.GameFinder;
+using online_chess_website.Multiplayer;
 
 namespace online_chess_website.Middleware.Websocket;
 
@@ -17,11 +18,14 @@ public class WebsocketConnection
 
     private readonly QuemodeActions _quemodeActions;
 
-    public WebsocketConnection(RequestDelegate next, WebsocketConnectionManager manager, QuemodeActions quemodeActions)
+    private readonly OngoingMatches _ongoingMatches;
+
+    public WebsocketConnection(RequestDelegate next, WebsocketConnectionManager manager, QuemodeActions quemodeActions, OngoingMatches ongoingMatches)
     {
         _next = next;
         _manager = manager;
         _quemodeActions = quemodeActions;
+        _ongoingMatches = ongoingMatches;
     }
     
     public async Task InvokeAsync(HttpContext context)
@@ -45,6 +49,10 @@ public class WebsocketConnection
                     }
                     if (result.MessageType == WebSocketMessageType.Close)
                     {
+                        /*
+                        add instance for ongoing matches 
+                        check if user token has any ongiong matches and if so get opponents token and send him a message alerting that his opponent left
+                        */
                         _quemodeActions.RemoveUserFromQue(token);
                         _manager.RemoveConnection(token);
                         return;

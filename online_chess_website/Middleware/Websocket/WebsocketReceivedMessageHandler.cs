@@ -34,7 +34,7 @@ public class WebsocketReceivedMessageHandler
                 int matchId = clientMessage.data.matchId;
                 MatchDataManager matchData = new MatchDataManager();
                 string opponentToken = await matchData.GetOpponentToken(matchId, playerColor);
-                WebSocket opponentSocket = manager.GetAllUsersConnected()[opponentToken];
+                WebSocket opponentSocket = manager.GetAllUsersConnected()[opponentToken].websocket;
                 MoveMessage serverMessage = new MoveMessage("OPPONENT_MOVED", new { from = from, to = to });
                 await SendStringAsync(opponentSocket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
             }

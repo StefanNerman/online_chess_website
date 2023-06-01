@@ -11,11 +11,13 @@ public class MatchFinder
 {
     private QuemodeManager _queManager;
     private WebsocketConnectionManager _websocketConnectionManager;
+    private OngoingMatches _ongoingMatches;
 
-    public MatchFinder(QuemodeManager queManager, WebsocketConnectionManager websocketConnectionManager)
+    public MatchFinder(QuemodeManager queManager, WebsocketConnectionManager websocketConnectionManager, OngoingMatches ongoingMatches)
     {
         _queManager = queManager;
         _websocketConnectionManager = websocketConnectionManager;
+        _ongoingMatches = ongoingMatches;
     }
 
     private TokenRankPair[] FormatQueData()
@@ -70,8 +72,8 @@ public class MatchFinder
     {
         MatchSetup setup = new MatchSetup();
         string[] matchSetupInfoMessage = await setup.CreateMatch(token, nestedToken);
-        WebSocket p1Socket = _websocketConnectionManager.GetAllUsersConnected()[token];
-        WebSocket p2Socket = _websocketConnectionManager.GetAllUsersConnected()[nestedToken];
+        WebSocket p1Socket = _websocketConnectionManager.GetAllUsersConnected()[token].websocket;
+        WebSocket p2Socket = _websocketConnectionManager.GetAllUsersConnected()[nestedToken].websocket;
         await SendStringAsync(p1Socket, matchSetupInfoMessage[0]);
         await SendStringAsync(p2Socket, matchSetupInfoMessage[1]);
     }

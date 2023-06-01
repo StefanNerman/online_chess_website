@@ -1,5 +1,6 @@
 using online_chess_website.Middleware.GameFinder;
 using online_chess_website.Middleware.Websocket;
+using online_chess_website.Multiplayer;
 using System.Net.WebSockets;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,7 @@ builder.Services.AddTransient<QuemodeActions>((context) =>
     QuemodeManager manager = context.GetService<QuemodeManager>();
     return new QuemodeActions(manager);
 });
+builder.Services.AddSingleton<OngoingMatches>();
 builder.Services.AddWebsocketManager();
 
 var app = builder.Build();
@@ -34,7 +36,9 @@ app.UseWebSockets(webSocketOptions);
 
 app.UseWebsocketServer();
 
-MatchFinder matchFinder = new MatchFinder(app.Services.GetService<QuemodeManager>(), app.Services.GetService<WebsocketConnectionManager>());
+MatchFinder matchFinder = new MatchFinder(app.Services.GetService<QuemodeManager>(),
+                                          app.Services.GetService<WebsocketConnectionManager>(),
+                                          app.Services.GetService<OngoingMatches>());
 matchFinder.LaunchProcess();
 
 app.MapControllerRoute(
