@@ -59,11 +59,13 @@ public class WebsocketConnection
                             UserOngoingMatchInfo ongoingMatchInfo = _ongoingMatches.GetAllOngoingMatches()[userMatchId];
                             if(token == ongoingMatchInfo.player1Token)
                             {
-                                // await send message to player 2 token
+                                await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player2Token].websocket, 
+                                    Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
                             }
                             else
                             {
-                                // await send message to player 1 token
+                                await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player1Token].websocket,
+                                    Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
                             }
                             _ongoingMatches.RemoveOngoingMatch(userMatchId);
                         }
@@ -92,5 +94,11 @@ public class WebsocketConnection
             var result = await webSocket.ReceiveAsync(buffer: new ArraySegment<byte>(buffer), cancellationToken: CancellationToken.None);
             handleMessage(result, buffer);
         }
+    }
+
+    private async Task SendStringAsync(WebSocket socket, string message)
+    {
+        var buffer = Encoding.UTF8.GetBytes(message);
+        await socket.SendAsync(buffer, WebSocketMessageType.Text, true, CancellationToken.None);
     }
 }

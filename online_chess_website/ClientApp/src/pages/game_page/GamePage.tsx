@@ -91,6 +91,7 @@ function assignWebSocketMethods(){
         if(serverMessage.protocol === 'MATCH_ENDED'){
             console.log(serverMessage.data)
             console.log('match ended')
+            //if(serverMessage.data.winner === "you") alert("your opponent has left the match")
         }
     }
     defaultWebSocket!.onclose = (e: Event) => {
