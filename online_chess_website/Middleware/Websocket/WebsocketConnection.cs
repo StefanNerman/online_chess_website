@@ -50,6 +50,8 @@ public class WebsocketConnection
                     if (result.MessageType == WebSocketMessageType.Close)
                     {
                         int userMatchId = _manager.GetAllUsersConnected()[token].ongoingMatchId;
+                        Console.WriteLine(userMatchId);
+                        Console.WriteLine("aölksdjflöakjsdf");
                         if(userMatchId != 0)
                         {
                             // save match as a loss in the database
@@ -57,6 +59,7 @@ public class WebsocketConnection
                             // get opponent token/id and save match as win
                             // or receive new message from opponent after he gets "opponent left" message and then add as a win
                             UserOngoingMatchInfo ongoingMatchInfo = _ongoingMatches.GetAllOngoingMatches()[userMatchId];
+                            Console.WriteLine(ongoingMatchInfo.ToString());
                             if(token == ongoingMatchInfo.player1Token)
                             {
                                 await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player2Token].websocket, 
