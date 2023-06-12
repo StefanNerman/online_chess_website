@@ -30,7 +30,6 @@ export async function createSession(userId: number){
     return new Promise((resolve, reject) => {
         api.axiosGet(`api/sessions/${userId}`)
         .then(result => {
-            console.log('session token created -> ', result)
             sessionStorage.setItem("sessionToken", result.data.token)
             document.cookie = `ST=${result.data.token};expires=Fri, 18 September 2099 11:00:00 UTC; path=/`
             resolve(result)
