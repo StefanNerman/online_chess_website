@@ -57,30 +57,25 @@ public class WebsocketConnection
                         {
                             Session userSession = await Sessions.GetSessionByToken(token, ConnectionStrings.defaultConnectionString);
                             int userId = userSession.userId;
-                            /*
-                            save loss data
-                            */
+                            int opponentId;
                             UserOngoingMatchInfo ongoingMatchInfo = _ongoingMatches.GetAllOngoingMatches()[userMatchId];
                             if(token == ongoingMatchInfo.player1Token)
                             {
                                 Session opponentSession = await Sessions.GetSessionByToken(ongoingMatchInfo.player2Token, ConnectionStrings.defaultConnectionString);
-                                int opponentId = opponentSession.userId;
-                                /*
-                                save loss data 
-                                */
+                                opponentId = opponentSession.userId;
                                 await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player2Token].websocket, 
                                     Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
                             }
                             else
                             {
                                 Session opponentSession = await Sessions.GetSessionByToken(ongoingMatchInfo.player1Token, ConnectionStrings.defaultConnectionString);
-                                int opponentId = opponentSession.userId;
-                                /*
-                                save loss data 
-                                */
+                                opponentId = opponentSession.userId;
                                 await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player1Token].websocket,
                                     Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
                             }
+                            /*
+                            save loss data
+                            */
                             _ongoingMatches.RemoveOngoingMatch(userMatchId);
                         }
                         _quemodeActions.RemoveUserFromQue(token);
