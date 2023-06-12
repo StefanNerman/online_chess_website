@@ -48,16 +48,14 @@ public class WebsocketReceivedMessageHandler
                 int matchId = clientMessage.data.matchId;
                 string userColor = clientMessage.data.color;
                 UserOngoingMatchInfo matchInfo = ongoingMatches.GetAllOngoingMatches()[matchId];
-                //get user id first
-                // save the match result to database
-
                 string opponentToken = matchInfo.player1Token;
                 if(token == opponentToken) { opponentToken = matchInfo.player2Token; }
                 Session userSession = await Sessions.GetSessionByToken(token, ConnectionStrings.defaultConnectionString);
                 Session opponentSession = await Sessions.GetSessionByToken(opponentToken, ConnectionStrings.defaultConnectionString);
                 int userId = userSession.userId;
                 int opponentId = opponentSession.userId;
-
+                PlayerMatchInfoUpdateManager updateGameInfo = new PlayerMatchInfoUpdateManager();
+                await updateGameInfo.UpdateGameInfo(userId, opponentId, userId);
                 WebSocket p1Socket = manager.GetAllUsersConnected()[matchInfo.player1Token].websocket;
                 WebSocket p2Socket = manager.GetAllUsersConnected()[matchInfo.player2Token].websocket;
                 MatchIsOverMessage serverMessage = new MatchIsOverMessage(new MatchIsOverMessageData(userColor));

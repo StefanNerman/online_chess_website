@@ -73,9 +73,8 @@ public class WebsocketConnection
                                 await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player1Token].websocket,
                                     Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
                             }
-                            /*
-                            save loss data
-                            */
+                            PlayerMatchInfoUpdateManager updateGameInfo = new PlayerMatchInfoUpdateManager();
+                            await updateGameInfo.UpdateGameInfo(userId, opponentId, opponentId);
                             _ongoingMatches.RemoveOngoingMatch(userMatchId);
                         }
                         _quemodeActions.RemoveUserFromQue(token);
