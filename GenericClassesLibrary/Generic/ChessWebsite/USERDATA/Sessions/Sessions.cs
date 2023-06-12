@@ -34,6 +34,7 @@ public static class Sessions
         MySQL db = new MySQL();
         string sqlSelect = $"SELECT * FROM sessions WHERE session_token = '{sessionToken}'";
         List<Session> rows = await db.GetData<Session, dynamic>(sqlSelect, new { }, connectionString);
+        if (rows == null || rows.Count == 0) return null;
         return rows.ToArray()[0];
     }
 }
