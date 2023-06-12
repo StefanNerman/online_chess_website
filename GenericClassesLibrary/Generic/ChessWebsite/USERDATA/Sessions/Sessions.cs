@@ -1,4 +1,5 @@
 ﻿using GenericClassesLibrary.DataAccess;
+using GenericClassesLibrary.Generic.ChessWebsite.DatabaseTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Sessions;
 
 public static class Sessions
 {
-    public static async Task<long> CreateSession(int id, string connectionString)
+    public static async Task<string> CreateSession(int id, string connectionString)
     {
         Random random = new Random();
         long sessionNumber = random.NextInt64();
@@ -18,7 +19,7 @@ public static class Sessions
         string time = dt.ToString("mmHHddMMyy");
         string sql = $"INSERT INTO sessions (userId, session_token, session_start) VALUES ({id.ToString()}, {sessionNumber.ToString()}, {time})";
         await db.SaveData(sql, new { }, connectionString);
-        return sessionNumber;
+        return sessionNumber.ToString();
     }
 
     public static void DeleteSession(int userId, string connectionString)
@@ -26,5 +27,13 @@ public static class Sessions
         MySQL db = new MySQL();
         string sql = $"DELETE FROM sessions WHERE userId = {userId}";
         db.DeleteData(sql, new { }, connectionString);
+    }
+
+    public static async Task<Session> GetSessionByToken(string sessionToken, string connectionString)
+    {
+        MySQL db = new MySQL();
+        string sqlSelect = $"SELECT * FROM sessions WHERE session_token = '{sessionToken}'";
+        List<Session> rows = await db.GetData<Session, dynamic>(sqlSelect, new { }, connectionString);
+        return rows.ToArray()[0];
     }
 }

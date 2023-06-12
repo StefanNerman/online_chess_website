@@ -28,11 +28,20 @@ public class SessionsController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<long> Get(int id)
+    public async Task<string> Get(int id)
     {
         string connectionString = ConnectionStrings.GetString("defaultString");
-        long output = await Sessions.CreateSession(id, connectionString);
-        return output;
+        string output = await Sessions.CreateSession(id, connectionString);
+        //there was a bug where it wouldn't send the entire string and putting it in an object fixed it
+        return Newtonsoft.Json.JsonConvert.SerializeObject(new token1(output));
     }
 
+}
+public class token1
+{
+    public string token;
+    public token1(string var1)
+    {
+        token = var1;
+    }
 }

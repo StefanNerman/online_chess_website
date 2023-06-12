@@ -3,8 +3,11 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using GenericClassesLibrary.Generic.ChessWebsite.DatabaseTypes;
+using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Sessions;
 using GenericClassesLibrary.Generic.ChessWebsite.utils;
 using Microsoft.AspNetCore.Http;
+using online_chess_website.Data;
 using online_chess_website.Middleware.GameFinder;
 using online_chess_website.Multiplayer;
 
@@ -50,23 +53,31 @@ public class WebsocketConnection
                     if (result.MessageType == WebSocketMessageType.Close)
                     {
                         int userMatchId = _manager.GetAllUsersConnected()[token].ongoingMatchId;
-                        Console.WriteLine(userMatchId);
-                        Console.WriteLine("aölksdjflöakjsdf");
                         if(userMatchId != 0)
                         {
-                            // save match as a loss in the database
-
-                            // get opponent token/id and save match as win
-                            // or receive new message from opponent after he gets "opponent left" message and then add as a win
+                            Session userSession = await Sessions.GetSessionByToken(token, ConnectionStrings.defaultConnectionString);
+                            int userId = userSession.userId;
+                            /*
+                            save loss data
+                            */
                             UserOngoingMatchInfo ongoingMatchInfo = _ongoingMatches.GetAllOngoingMatches()[userMatchId];
-                            Console.WriteLine(ongoingMatchInfo.ToString());
                             if(token == ongoingMatchInfo.player1Token)
                             {
+                                Session opponentSession = await Sessions.GetSessionByToken(ongoingMatchInfo.player2Token, ConnectionStrings.defaultConnectionString);
+                                int opponentId = opponentSession.userId;
+                                /*
+                                save loss data 
+                                */
                                 await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player2Token].websocket, 
                                     Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
                             }
                             else
                             {
+                                Session opponentSession = await Sessions.GetSessionByToken(ongoingMatchInfo.player1Token, ConnectionStrings.defaultConnectionString);
+                                int opponentId = opponentSession.userId;
+                                /*
+                                save loss data 
+                                */
                                 await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player1Token].websocket,
                                     Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
                             }
