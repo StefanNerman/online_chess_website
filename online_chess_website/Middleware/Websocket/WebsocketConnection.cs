@@ -74,6 +74,7 @@ public class WebsocketConnection
                                 {
                                     Session opponentSession = await Sessions.GetSessionByToken(ongoingMatchInfo.player2Token, ConnectionStrings.defaultConnectionString);
                                     opponentId = opponentSession.userId;
+                                    _manager.GetAllUsersConnected()[ongoingMatchInfo.player2Token].ongoingMatchId = 0;
                                     await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player2Token].websocket,
                                         Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
                                 }
@@ -81,6 +82,7 @@ public class WebsocketConnection
                                 {
                                     Session opponentSession = await Sessions.GetSessionByToken(ongoingMatchInfo.player1Token, ConnectionStrings.defaultConnectionString);
                                     opponentId = opponentSession.userId;
+                                    _manager.GetAllUsersConnected()[ongoingMatchInfo.player1Token].ongoingMatchId = 0;
                                     await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player1Token].websocket,
                                         Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
                                 }
