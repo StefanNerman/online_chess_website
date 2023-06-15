@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import GameSelectionComponent from './GameSelectionComponent'
 import {useNavigate} from 'react-router-dom'
-import {findQuickplayMatch} from './matchmaking'
+import {findQuickplayMatch, defaultWebSocket} from './matchmaking'
 import * as api from '../../api/http_calls'
 import {getProfileByUserId} from '../../utils/user_profile_info'
 import {isQueingController} from '../../App'
+import { timeInterval } from '../game_page/chess_game/ChessComponent'
 
 interface props {
     offline: boolean
@@ -24,6 +25,11 @@ interface serverMessageData {
 const GamePanel = (props: props) => {
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if(defaultWebSocket) defaultWebSocket.close()
+        if(timeInterval) window.clearInterval(timeInterval)
+    }, [])
     
     async function quickPlay(){
         isQueingController(true)
