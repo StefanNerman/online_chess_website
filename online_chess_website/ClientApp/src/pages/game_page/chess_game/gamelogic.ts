@@ -36,7 +36,7 @@ ARRAY WITH HARDCODED START POSITIONS:
 =====================================================================*/
 
 const startPositions: Array<TileObj> = [
-    {position:11, piece:'110', color:'black'},{position:12, piece:'120', color:'white'},{position:13, piece:'130', color:'black'},{position:14, piece:'150', color:'white'},{position:15, piece:'140', color:'black'},{position:16, piece:'131', color:'white'},{position:17, piece:'121', color:'black'},{position:18, piece:'111', color:'white'},
+    {position:11, piece:'110', color:'black'},{position:12, piece:'120', color:'white'},{position:13, piece:'130', color:'black'},{position:14, piece:'140', color:'white'},{position:15, piece:'150', color:'black'},{position:16, piece:'131', color:'white'},{position:17, piece:'121', color:'black'},{position:18, piece:'111', color:'white'},
     {position:21, piece:'100', color:'white'},{position:22, piece:'101', color:'black'},{position:23, piece:'102', color:'white'},{position:24, piece:'103', color:'black'},{position:25, piece:'104', color:'white'},{position:26, piece:'105', color:'black'},{position:27, piece:'106', color:'black'},{position:28, piece:'107', color:'black'},
             
     {position:31, piece:false, color:'black'},{position:32, piece:false, color:'white'},{position:33, piece:false, color:'black'},{position:34, piece:false, color:'white'},{position:35, piece:false, color:'black'},{position:36, piece:false, color:'white'},{position:37, piece:false, color:'black'},{position:38, piece:false, color:'white'},
@@ -45,7 +45,7 @@ const startPositions: Array<TileObj> = [
     {position:61, piece:false, color:'white'},{position:62, piece:false, color:'black'},{position:63, piece:false, color:'white'},{position:64, piece:false, color:'black'},{position:65, piece:false, color:'white'},{position:66, piece:false, color:'black'},{position:67, piece:false, color:'white'},{position:68, piece:false, color:'black'},
             
     {position:71, piece:'000', color:'black'},{position:72, piece:'001', color:'white'},{position:73, piece:'002', color:'black'},{position:74, piece:'003', color:'white'},{position:75, piece:'004', color:'black'},{position:76, piece:'005', color:'white'},{position:77, piece:'006', color:'black'},{position:78, piece:'007', color:'white'},
-    {position:81, piece:'010', color:'white'},{position:82, piece:'020', color:'black'},{position:83, piece:'030', color:'white'},{position:84, piece:'050', color:'black'},{position:85, piece:'040', color:'white'},{position:86, piece:'031', color:'black'},{position:87, piece:'021', color:'white'},{position:88, piece:'011', color:'black'},
+    {position:81, piece:'010', color:'white'},{position:82, piece:'020', color:'black'},{position:83, piece:'030', color:'white'},{position:84, piece:'040', color:'black'},{position:85, piece:'050', color:'white'},{position:86, piece:'031', color:'black'},{position:87, piece:'021', color:'white'},{position:88, piece:'011', color:'black'},
 ]
 
 interface TileObj {

@@ -41,7 +41,7 @@ export let matchTime = 0
 function startTimerInterval(){
     return window.setInterval(updateTimer, 1000)
 }
-let timeInterval: any
+export let timeInterval: any
 
 //OUTCOME STRING: [move piece] + [move '>', eat '<', castle: ':'] + [eaten piece (move piece if no piece was there)] + [result ('' for nothing, '*' for check, 'x' for checkmate)] + [move positions (from, to)]
 //Ex. eat: '021<1053455', check: '021>021*4263', check after eating a piece: '030<103*8347', normal move: '021>0211736', castling: '050:0118481', checkmate '010>010x3353'

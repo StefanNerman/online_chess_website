@@ -58,7 +58,8 @@ const GamePanel = (props: props) => {
         navigate('/game-page', { state: { 
             isOnlineGame: false,
             gameMode: 'local',
-            color: 'white'
+            color: 'white',
+            matchId: 0
         }})
     }
 

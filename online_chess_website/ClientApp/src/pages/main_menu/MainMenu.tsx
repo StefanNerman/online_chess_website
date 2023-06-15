@@ -41,6 +41,7 @@ const MainMenu = () => {
     }, [])
 
     async function populateStatisticsPanel(){
+        if(sessionStorage.getItem('loginOperation') === 'offline') return
         const userId = sessionStorage.getItem('userId')
         let profile: profileInfo = await api.axiosGet(`api/profiles/${userId}`)
         let gameStats: gameStats = await api.axiosGet(`api/user_game_data/${userId}`)

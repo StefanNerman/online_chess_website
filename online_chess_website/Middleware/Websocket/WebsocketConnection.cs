@@ -45,41 +45,56 @@ public class WebsocketConnection
                 {
                     if (result.MessageType == WebSocketMessageType.Text)
                     {
+
+
+
                         string clientMessage = Encoding.UTF8.GetString(buffer, 0, result.Count);
                         WebsocketReceivedMessageHandler messageHandler = new WebsocketReceivedMessageHandler();
                         await messageHandler.HandleMessage(token, clientMessage, _manager, _quemodeActions, _ongoingMatches);
                         return;
+
+
+
                     }
                     if (result.MessageType == WebSocketMessageType.Close)
                     {
+
+
+
                         int userMatchId = _manager.GetAllUsersConnected()[token].ongoingMatchId;
                         if(userMatchId != 0)
                         {
                             Session userSession = await Sessions.GetSessionByToken(token, ConnectionStrings.defaultConnectionString);
-                            int userId = userSession.userId;
-                            int opponentId;
-                            UserOngoingMatchInfo ongoingMatchInfo = _ongoingMatches.GetAllOngoingMatches()[userMatchId];
-                            if(token == ongoingMatchInfo.player1Token)
+                            if (userSession != null) 
                             {
-                                Session opponentSession = await Sessions.GetSessionByToken(ongoingMatchInfo.player2Token, ConnectionStrings.defaultConnectionString);
-                                opponentId = opponentSession.userId;
-                                await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player2Token].websocket, 
-                                    Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
+                                int userId = userSession.userId;
+                                int opponentId;
+                                UserOngoingMatchInfo ongoingMatchInfo = _ongoingMatches.GetAllOngoingMatches()[userMatchId];
+                                if (token == ongoingMatchInfo.player1Token)
+                                {
+                                    Session opponentSession = await Sessions.GetSessionByToken(ongoingMatchInfo.player2Token, ConnectionStrings.defaultConnectionString);
+                                    opponentId = opponentSession.userId;
+                                    await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player2Token].websocket,
+                                        Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
+                                }
+                                else
+                                {
+                                    Session opponentSession = await Sessions.GetSessionByToken(ongoingMatchInfo.player1Token, ConnectionStrings.defaultConnectionString);
+                                    opponentId = opponentSession.userId;
+                                    await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player1Token].websocket,
+                                        Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
+                                }
+                                PlayerMatchInfoUpdateManager updateGameInfo = new PlayerMatchInfoUpdateManager();
+                                await updateGameInfo.UpdateGameInfo(userId, opponentId, opponentId);
+                                _ongoingMatches.RemoveOngoingMatch(userMatchId);
                             }
-                            else
-                            {
-                                Session opponentSession = await Sessions.GetSessionByToken(ongoingMatchInfo.player1Token, ConnectionStrings.defaultConnectionString);
-                                opponentId = opponentSession.userId;
-                                await SendStringAsync(_manager.GetAllUsersConnected()[ongoingMatchInfo.player1Token].websocket,
-                                    Newtonsoft.Json.JsonConvert.SerializeObject(new MatchIsOverMessage(new MatchIsOverMessageData("you"))));
-                            }
-                            PlayerMatchInfoUpdateManager updateGameInfo = new PlayerMatchInfoUpdateManager();
-                            await updateGameInfo.UpdateGameInfo(userId, opponentId, opponentId);
-                            _ongoingMatches.RemoveOngoingMatch(userMatchId);
                         }
                         _quemodeActions.RemoveUserFromQue(token);
                         _manager.RemoveConnection(token);
                         return;
+
+
+
                     }
                 });
             }

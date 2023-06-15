@@ -4,7 +4,7 @@ import GamePanel from './GamePanel'
 import PlayerInfoPanel from './PlayerInfoPanel'
 import { useLocation } from 'react-router-dom'
 import { defaultWebSocket } from '../main_menu/matchmaking'
-import { artificialMove, playerColor } from './chess_game/ChessComponent'
+import { artificialMove, playerColor, timeInterval } from './chess_game/ChessComponent'
 import { whoseTurn } from './chess_game/gamelogic'
 import {useNavigate} from 'react-router-dom'
 
@@ -49,10 +49,10 @@ const GamePage = ({...rest}: props) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(defaultWebSocket && isOnlineGame){
+        if(isOnlineGame && defaultWebSocket){
             assignWebSocketMethods()
         }
-        if(!defaultWebSocket) navigate('/main-menu')
+        if(isOnlineGame && !defaultWebSocket) navigate('/main-menu')
     })
 
     const { state: {
@@ -91,6 +91,7 @@ function assignWebSocketMethods(){
         if(serverMessage.protocol === 'MATCH_ENDED'){
             console.log(serverMessage.data)
             console.log('match ended')
+            window.clearInterval(timeInterval)
             //if(serverMessage.data.winner === "you") alert("your opponent has left the match")
         }
     }
