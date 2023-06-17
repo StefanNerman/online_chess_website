@@ -9,6 +9,7 @@ using GenericClassesLibrary.Generic.ChessWebsite.DatabaseTypes;
 using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Sessions;
 using online_chess_website.Data;
 using Org.BouncyCastle.Bcpg;
+using System.Threading.Tasks.Dataflow;
 
 namespace online_chess_website.Middleware.Websocket;
 
@@ -64,6 +65,9 @@ public class WebsocketReceivedMessageHandler
             MatchIsOverMessage serverMessage = new MatchIsOverMessage(new MatchIsOverMessageData(userColor));
             await SendStringAsync(p1Socket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
             await SendStringAsync(p2Socket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
+            manager.GetAllUsersConnected()[token].ongoingMatchId = 0;
+            manager.GetAllUsersConnected()[opponentToken].ongoingMatchId = 0;
+            ongoingMatches.RemoveOngoingMatch(matchId);
         }
 
 

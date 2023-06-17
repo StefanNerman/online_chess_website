@@ -89,10 +89,20 @@ function assignWebSocketMethods(){
             artificialMove(serverMessage.data.from, serverMessage.data.to)
         }
         if(serverMessage.protocol === 'MATCH_ENDED'){
+            defaultWebSocket?.close()
+            if(serverMessage.data.winner === "you" || serverMessage.data.winner === playerColor){
+
+                //on victory events trigger
+
+            }
+            else {
+
+                //on loss events trigger
+
+            }
             console.log(serverMessage.data)
             console.log('match ended')
             window.clearInterval(timeInterval)
-            //if(serverMessage.data.winner === "you") alert("your opponent has left the match")
         }
     }
     defaultWebSocket!.onclose = (e: Event) => {
