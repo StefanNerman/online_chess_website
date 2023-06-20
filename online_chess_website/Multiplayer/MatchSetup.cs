@@ -22,9 +22,9 @@ public class MatchSetup
         ProfileManager pm = new ProfileManager();
         IProfileInfo p1OptProfile = await pm.GetProfile(p1Opt.userId, connectionString);
         IProfileInfo p2OptProfile = await pm.GetProfile(p2Opt.userId, connectionString);
-        List<IUserCredidentalInfo> p1OptCredidentals = await db.GetData<IUserCredidentalInfo, dynamic>(
+        List<UserLoginInfo> p1OptCredidentals = await db.GetData<UserLoginInfo, dynamic>(
                         $"SELECT * FROM user_credidentals WHERE userId = {p1Opt.userId}", new { }, connectionString);
-        List<IUserCredidentalInfo> p2OptCredidentals = await db.GetData<IUserCredidentalInfo, dynamic>(
+        List<UserLoginInfo> p2OptCredidentals = await db.GetData<UserLoginInfo, dynamic>(
                         $"SELECT * FROM user_credidentals WHERE userId = {p2Opt.userId}", new { }, connectionString);
 
         int MATCH_ID = await SaveMatch(p1Token, p2Token, p1Color, db, connectionString);

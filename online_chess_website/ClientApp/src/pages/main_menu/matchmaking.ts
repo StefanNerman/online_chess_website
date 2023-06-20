@@ -20,6 +20,7 @@ export async function findQuickplayMatch(userId: number, userRank: number): Prom
             console.log(e)
             let serverMessage: websocketServerMessage = JSON.parse(e.data)
             if(serverMessage.protocol = "MATCH_FOUND"){
+                console.log('MATCH FOUND DATA ===>', serverMessage)
                 resolve(serverMessage.data)
             }
         }

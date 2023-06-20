@@ -50,7 +50,7 @@ const GamePanel = (props: props) => {
         sessionStorage.setItem('matchId', matchInfo.MATCH_ID.toString())
         let userId = sessionStorage.getItem('userId')
         let profile: profileInfo = await api.axiosGet(`api/profiles/${userId}`)
-        sessionStorage.setItem('userRank', profile.data.userRank)
+        sessionStorage.setItem('userRank', profile.data.userRank.toString())
         navigate('/game-page', { state: { 
             isOnlineGame: true,
             gameMode: 'quickplay',

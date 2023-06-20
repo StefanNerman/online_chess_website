@@ -1,4 +1,5 @@
 ﻿using GenericClassesLibrary.DataAccess;
+using GenericClassesLibrary.Generic.ChessWebsite.DatabaseTypes;
 using GenericClassesLibrary.Interface;
 using System;
 using System.Collections.Generic;
