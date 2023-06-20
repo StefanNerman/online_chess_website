@@ -22,6 +22,10 @@ interface serverMessageData {
     MATCH_ID: number
 }
 
+interface profileInfo {
+    data: profile
+}
+
 const GamePanel = (props: props) => {
 
     const navigate = useNavigate()
@@ -41,9 +45,12 @@ const GamePanel = (props: props) => {
         })
         .catch(result => console.log("Websocket connection: " + result))
     }
-    function openQuickplayGame(matchInfo: serverMessageData){
+    async function openQuickplayGame(matchInfo: serverMessageData){
         isQueingController(false)
         sessionStorage.setItem('matchId', matchInfo.MATCH_ID.toString())
+        let userId = sessionStorage.getItem('userId')
+        let profile: profileInfo = await api.axiosGet(`api/profiles/${userId}`)
+        sessionStorage.setItem('userRank', profile.data.userRank)
         navigate('/game-page', { state: { 
             isOnlineGame: true,
             gameMode: 'quickplay',
