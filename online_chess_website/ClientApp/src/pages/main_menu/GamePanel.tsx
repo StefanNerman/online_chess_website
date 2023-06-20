@@ -20,6 +20,8 @@ interface profile {
 interface serverMessageData {
     color: string
     MATCH_ID: number
+    opponentName: string
+    opponentRank: number
 }
 
 interface profileInfo {
@@ -55,7 +57,9 @@ const GamePanel = (props: props) => {
             isOnlineGame: true,
             gameMode: 'quickplay',
             color: matchInfo.color,
-            matchId: matchInfo.MATCH_ID
+            matchId: matchInfo.MATCH_ID,
+            opponentName: matchInfo.opponentName,
+            opponentRank: matchInfo.opponentRank
         }})
     }
 
@@ -72,7 +76,9 @@ const GamePanel = (props: props) => {
             isOnlineGame: false,
             gameMode: 'local',
             color: 'white',
-            matchId: 0
+            matchId: 0,
+            opponentName: "",
+            opponentRank: 0
         }})
     }
 

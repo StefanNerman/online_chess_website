@@ -59,7 +59,9 @@ const GamePage = ({...rest}: props) => {
         isOnlineGame,
         gameMode,// (quickplay | private | local | bot + difficulty)
         color,
-        matchId
+        matchId,
+        opponentName,
+        opponentRank
     } = {} } = useLocation();
 
     _matchId = matchId
@@ -68,8 +70,8 @@ const GamePage = ({...rest}: props) => {
         <div className="gamepage" {...rest}>
             <div className='gamepage-content'>
                 <div className='playerinfo-container'>
-                    {isOnlineGame && <PlayerInfoPanel username={'anonwithlongddd'} rank={123} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>}
-                    {isOnlineGame && <PlayerInfoPanel username={'anong'} rank={123} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>}
+                    {isOnlineGame && <PlayerInfoPanel username={sessionStorage.getItem('username')!} rank={parseInt(sessionStorage.getItem('userRank')!)} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>}
+                    {isOnlineGame && <PlayerInfoPanel username={opponentName} rank={opponentRank} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>}
                 </div>
                 <div className='gamepage-gamepanel'>
                     <GamePanel gamemode={gameMode} color={color}/>
