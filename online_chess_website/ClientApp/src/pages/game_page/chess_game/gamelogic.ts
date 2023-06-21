@@ -90,18 +90,18 @@ class Tiles {
         let clr = row === 1 ? '1' : '0'
         if(side === 'right'){
             this.positions.forEach((e, i) => {
-                if(e.position === parseInt(`${row}4`)) this.positions[i].piece = false
+                if(e.position === parseInt(`${row}5`)) this.positions[i].piece = false
                 if(e.position === parseInt(`${row}1`)) this.positions[i].piece = false
-                if(e.position === parseInt(`${row}2`)) this.positions[i].piece = `${clr}50`
-                if(e.position === parseInt(`${row}3`)) this.positions[i].piece = `${clr}11`
+                if(e.position === parseInt(`${row}3`)) this.positions[i].piece = `${clr}50`
+                if(e.position === parseInt(`${row}4`)) this.positions[i].piece = `${clr}11`
             }) 
         }
         if(side === 'left'){
             this.positions.forEach((e, i) => {
-                if(e.position === parseInt(`${row}4`)) this.positions[i].piece = false
+                if(e.position === parseInt(`${row}5`)) this.positions[i].piece = false
                 if(e.position === parseInt(`${row}8`)) this.positions[i].piece = false
-                if(e.position === parseInt(`${row}6`)) this.positions[i].piece = `${clr}50`
-                if(e.position === parseInt(`${row}5`)) this.positions[i].piece = `${clr}11`
+                if(e.position === parseInt(`${row}7`)) this.positions[i].piece = `${clr}50`
+                if(e.position === parseInt(`${row}6`)) this.positions[i].piece = `${clr}11`
             }) 
         }
         if(isLocalGame){
@@ -262,8 +262,8 @@ function isCheckMate(defenseColor: string): boolean {
 function moveIsToCastle(from: number, to: number, movePiece: object | undefined): boolean{
     if((movePiece as any).piece === false) return false
     if((movePiece as any).piece && (movePiece as any).piece?.slice(1, 2) !== '5') return false
-    if(from !== 14 && (movePiece as any).piece.slice(0, 1) !== '0') return false
-    if(from !== 84 && (movePiece as any).piece.slice(0, 1) !== '1') return false
+    if(from !== 15 && (movePiece as any).piece.slice(0, 1) !== '0') return false
+    if(from !== 85 && (movePiece as any).piece.slice(0, 1) !== '1') return false
     if((movePiece as any).piece.slice(0, 1) === '1' && (to === 11 || to === 18)) return true
     if((movePiece as any).piece.slice(0, 1) === '0' && (to === 81 || to === 88)) return true
     return false
@@ -280,7 +280,7 @@ function castleRightSide(row: number): actionMoveInfoObj{
     let outStr = `${clr}50:${clr}11`
     return {
         moveAction: 'move',
-        move: outStr + `${row === 1 ? 14 : 84}${row === 1 ? 11 : 81}`
+        move: outStr + `${row === 1 ? 15 : 85}${row === 1 ? 11 : 81}`
     }
 }
 function castleLeftSide(row: number): actionMoveInfoObj{
@@ -289,7 +289,7 @@ function castleLeftSide(row: number): actionMoveInfoObj{
     let outStr = `${clr}50:${clr}10`
     return {
         moveAction: 'move',
-        move: outStr + `${row === 1 ? 14 : 84}${row === 1 ? 18 : 88}`
+        move: outStr + `${row === 1 ? 15 : 85}${row === 1 ? 18 : 88}`
     }
 }
 
