@@ -22,7 +22,6 @@ export function userMove(move: string){
         from = move.slice(8, 10)
         to = move.slice(10, 12)
     }
-    console.log("checkpoint-------")
     defaultWebSocket?.send(JSON.stringify({
         protocol: "USER_MOVE",
         data: {
@@ -36,7 +35,6 @@ export function userMove(move: string){
 
 export function userCheckmate(move: string){
     if(whoseTurn === playerColor) return
-    console.log("====>checkmate checkpoint")
     defaultWebSocket?.send(JSON.stringify({
         protocol: "CHECKMATE",
         data: {
