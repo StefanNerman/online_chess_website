@@ -63,6 +63,12 @@ async function handleMove(move: string){
     let moveString = from + ' -> ' + to
     const moveDisplayTab = whoseTurn === 'black' ? document.getElementById('gamepanel-movetab-left')! : document.getElementById('gamepanel-movetab-right')!
     moveDisplayTab.innerText = moveString
+
+    if(move.includes('*')) handleKingAttack(move)
+    if(move.includes('x')) handleCheckmate(move)
+    if(move.includes('<')) handleAttack(move)
+    if(move.includes(':')) handleCastling(move)
+    renderPieces(tiles.getPositions())
 }
 async function handleMoveApi(move: string): Promise<boolean>{
     return new Promise((resolve, reject) => {
@@ -237,11 +243,6 @@ function handlePlayerMove(move: string | actionMoveInfoObj | null | object){
         else setWhoseTurn('white') 
     }
     handleMove((move as any).move)
-    if((move as any).move.includes('*')) handleKingAttack((move as any).move)
-    if((move as any).move.includes('x')) handleCheckmate((move as any).move)
-    if((move as any).move.includes('<')) handleAttack((move as any).move)
-    if((move as any).move.includes(':')) handleCastling((move as any).move)
-    renderPieces(tiles.getPositions())
 }
 
 function handlePlayerSelect(selected: string | object | null | actionMoveInfoObj){
