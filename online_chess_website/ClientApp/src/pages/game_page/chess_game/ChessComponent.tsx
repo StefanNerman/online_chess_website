@@ -236,11 +236,11 @@ function handlePlayerMove(move: string | actionMoveInfoObj | null | object){
         if(whoseTurn === 'white') setWhoseTurn('black')
         else setWhoseTurn('white') 
     }
+    handleMove((move as any).move)
     if((move as any).move.includes('*')) handleKingAttack((move as any).move)
     if((move as any).move.includes('x')) handleCheckmate((move as any).move)
     if((move as any).move.includes('<')) handleAttack((move as any).move)
     if((move as any).move.includes(':')) handleCastling((move as any).move)
-    handleMove((move as any).move)
     renderPieces(tiles.getPositions())
 }
 
