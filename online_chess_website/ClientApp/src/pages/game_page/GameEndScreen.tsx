@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { setGameEnd } from './GamePage'
 
 interface props {
@@ -10,15 +11,16 @@ interface props {
 
 const GameEndScreen = ({duration, oldRank, newRank, isVictory}: props) => {
 
-    console.log('GAMEENDSCREEN ON')
+    const navigate = useNavigate()
 
-    function click(){
+    function close(){
         setGameEnd(false)
+        navigate('/main-menu')
     }
 
     return (  
         <div className="screenquemode-frame">
-            <button onClick={click}>close</button>
+            <button onClick={close}>close</button>
         </div>
     )
 }
