@@ -136,6 +136,7 @@ export let tiles = new Tiles()
 
 export function resetBoard(){
     console.log('BOARD_RESET')
+    whoseTurn = 'white'
     tiles = new Tiles()
 }
 

@@ -6,6 +6,7 @@ import * as api from '../../api/http_calls'
 import {getProfileByUserId} from '../../utils/user_profile_info'
 import {isQueingController} from '../../App'
 import { timeInterval } from '../game_page/chess_game/ChessComponent'
+import { resetBoard } from '../game_page/chess_game/gamelogic'
 
 interface props {
     offline: boolean
@@ -53,6 +54,7 @@ const GamePanel = (props: props) => {
         let userId = sessionStorage.getItem('userId')
         let profile: profileInfo = await api.axiosGet(`api/profiles/${userId}`)
         sessionStorage.setItem('userRank', profile.data.userRank.toString())
+        resetBoard()
         navigate('/game-page', { state: { 
             isOnlineGame: true,
             gameMode: 'quickplay',
@@ -72,6 +74,7 @@ const GamePanel = (props: props) => {
     }
 
     function localGame(){
+        resetBoard()
         navigate('/game-page', { state: { 
             isOnlineGame: false,
             gameMode: 'local',
