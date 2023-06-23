@@ -8,6 +8,7 @@ import { artificialMove, playerColor, timeInterval } from './chess_game/ChessCom
 import { whoseTurn } from './chess_game/gamelogic'
 import {useNavigate} from 'react-router-dom'
 import GameEndScreen from './GameEndScreen'
+import * as api from '../../api/http_calls'
 
 type props = {
     
@@ -53,7 +54,11 @@ let gameEndScreenData = {
     isVictory: true
 }
 
-export function showGameEndScreen(/*game duration, old rank new rank, win/loss*/){
+export function showGameEndScreen(duration: string, oldRank: number, newRank: number, isVictory: boolean){
+    gameEndScreenData.duration = duration
+    gameEndScreenData.oldRank = oldRank
+    gameEndScreenData.newRank = newRank
+    gameEndScreenData.isVictory = isVictory
     setGameEnd(true)
 }
 
@@ -111,14 +116,12 @@ function assignWebSocketMethods(){
             defaultWebSocket?.close()
             if(serverMessage.data.winner === "you" || serverMessage.data.winner === playerColor){
 
-                //on victory events trigger
-                showGameEndScreen()
+                onGameEnd(true)
 
             }
             else {
 
-                //on loss events trigger
-                showGameEndScreen()
+                onGameEnd(false)
 
             }
             console.log(serverMessage.data)
@@ -132,6 +135,12 @@ function assignWebSocketMethods(){
     defaultWebSocket!.onerror = (e: Event) => {
         console.log(e)
     }
+}
+
+async function onGameEnd(isVictory: boolean){
+    const timer = document.getElementById('gamepanel-timetab')!
+    let newRank = await api.axiosGet(`api/profiles/${sessionStorage.getItem('userId')}`)
+    showGameEndScreen(timer.innerText, parseInt(sessionStorage.getItem('userRank')!), newRank.data.userRank, isVictory)
 }
  
 export default GamePage;
