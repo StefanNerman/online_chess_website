@@ -73,6 +73,21 @@
   margin: 0;
 }
 
+.gameendscreen-content {
+  border-top: 7px solid rgb(112, 62, 62);
+  border-bottom: 7px solid rgb(112, 62, 62);
+  background-color: rgb(160, 123, 123);
+  padding: 1rem;
+}
+
+.gameendscreen-bottom {
+  display: flex;
+  justify-content: center;
+}
+.gameendscreen-bottom button {
+  margin: 0.25rem;
+}
+
 @media screen and (max-width: 650px) {
   .playerinfobox-frame {
     margin: 0 0.25rem;

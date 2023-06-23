@@ -78,6 +78,23 @@
     }
 }
 
+.gameendscreen-frame {
+    
+}
+
+.gameendscreen-content {
+    @include topBottomBorderThick;
+    background-color: $light-brown;
+    padding: 1rem;
+}
+
+.gameendscreen-bottom {
+    @include flexify;
+    button {
+        margin: 0.25rem;
+    }
+}
+
 @media screen and (max-width: 650px){
     .playerinfobox-frame{
         margin: 0 0.25rem;
