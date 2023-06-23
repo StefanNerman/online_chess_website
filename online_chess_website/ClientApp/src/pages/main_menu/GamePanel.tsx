@@ -83,7 +83,6 @@ const GamePanel = (props: props) => {
     }
 
     function botGame(){
-            api.axiosPost('api/rating/update', {userId: 28, rank: 2854, opponentRank: 2777, gameResult: 0})
             
     }
 

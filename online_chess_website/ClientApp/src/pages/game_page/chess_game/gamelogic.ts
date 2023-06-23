@@ -134,6 +134,11 @@ selectedFrame.classList.add('greentileframe')
 
 export let tiles = new Tiles()
 
+export function resetBoard(){
+    console.log('BOARD_RESET')
+    tiles = new Tiles()
+}
+
 export let whoseTurn = 'white'  
 export function setWhoseTurn(str: string){whoseTurn = str}
 
