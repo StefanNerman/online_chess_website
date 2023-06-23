@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css'
 import GamePanel from './GamePanel'
 import PlayerInfoPanel from './PlayerInfoPanel'
@@ -7,6 +7,7 @@ import { defaultWebSocket } from '../main_menu/matchmaking'
 import { artificialMove, playerColor, timeInterval } from './chess_game/ChessComponent'
 import { whoseTurn } from './chess_game/gamelogic'
 import {useNavigate} from 'react-router-dom'
+import GameEndScreen from './GameEndScreen'
 
 type props = {
     
@@ -44,9 +45,24 @@ export function userCheckmate(move: string){
     }))
 }
 
+export let setGameEnd: any
+let gameEndScreenData = {
+    duration: '00:00:00',
+    oldRank: 1000,
+    newRank: 1100,
+    isVictory: true
+}
+
+export function showGameEndScreen(/*game duration, old rank new rank, win/loss*/){
+    setGameEnd(true)
+}
+
 const GamePage = ({...rest}: props) => {
 
     const navigate = useNavigate()
+
+    const [gameEndScreen, setGameEndScreen] = useState(false)
+    setGameEnd = setGameEndScreen
 
     useEffect(() => {
         if(isOnlineGame && defaultWebSocket){
@@ -68,6 +84,7 @@ const GamePage = ({...rest}: props) => {
 
     return (
         <div className="gamepage" {...rest}>
+            {gameEndScreen && <GameEndScreen duration={gameEndScreenData.duration} oldRank={gameEndScreenData.oldRank} newRank={gameEndScreenData.newRank} isVictory={gameEndScreenData.isVictory}/>}
             <div className='gamepage-content'>
                 <div className='playerinfo-container'>
                     {isOnlineGame && <PlayerInfoPanel username={sessionStorage.getItem('username')!} rank={parseInt(sessionStorage.getItem('userRank')!)} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>}
@@ -95,11 +112,13 @@ function assignWebSocketMethods(){
             if(serverMessage.data.winner === "you" || serverMessage.data.winner === playerColor){
 
                 //on victory events trigger
+                showGameEndScreen()
 
             }
             else {
 
                 //on loss events trigger
+                showGameEndScreen()
 
             }
             console.log(serverMessage.data)
