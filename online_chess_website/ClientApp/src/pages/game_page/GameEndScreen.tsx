@@ -27,7 +27,10 @@ const GameEndScreen = ({duration, oldRank, newRank, isVictory}: props) => {
         <div className="screenquemode-frame gameendscreen-frame">
             <div className='gameendscreen-content'>
                 <div className='gameendscreen-top'>
-
+                    <h1>{isVictory ? 'You won!' : 'You lost!'}</h1>
+                    <p>{'Match lasted:        ' + duration}</p>
+                    <p>{'Your old rank:       ' + oldRank}</p>
+                    <p>{'Your new rank:       ' + newRank}</p>
                 </div>
                 <div className='gameendscreen-bottom'>
                     <ButtonSmall text={'Main menu'} onClick={() => exit()}/>

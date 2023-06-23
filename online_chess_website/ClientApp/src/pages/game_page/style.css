@@ -77,12 +77,28 @@
   border-top: 7px solid rgb(112, 62, 62);
   border-bottom: 7px solid rgb(112, 62, 62);
   background-color: rgb(160, 123, 123);
-  padding: 1rem;
+  padding: 1.5rem 2.5rem;
+}
+
+.gameendscreen-top {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.gameendscreen-top h1 {
+  margin-bottom: 1.5rem;
+}
+.gameendscreen-top p {
+  margin: 0;
+  margin-bottom: 0.25rem;
+  width: 200px;
+  border-bottom: 1px solid rgb(100, 50, 50);
 }
 
 .gameendscreen-bottom {
   display: flex;
   justify-content: center;
+  margin-top: 1.5rem;
 }
 .gameendscreen-bottom button {
   margin: 0.25rem;
