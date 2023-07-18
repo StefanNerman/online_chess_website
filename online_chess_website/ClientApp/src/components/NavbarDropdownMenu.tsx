@@ -15,9 +15,15 @@ const NavbarDropdownMenu = () => {
         <div className='dropdownmenu-frame fully-removed' id='dropdown' data-testid='dropdown'>
             <div className='dropdownmenu-screen fully-removed' id='dropdown-movepiece' data-testid='dropdown-movepiece'>
                 <ul>
-                    <li onClick={() => {navigate('/profile')}}>My profile</li>
+                    <li onClick={() => {
+                                    if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be signed in to view your profile!')
+                                    navigate('/profile')
+                                }}>My profile</li>
                     <li onClick={() => {navigate('/news')}}>News</li>
-                    <li onClick={() => {navigate('/social')}}>Social</li>
+                    <li onClick={() => {
+                                    if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be singed in to view your socials!')
+                                    navigate('/social')
+                                }}>Social</li>
                     <li onClick={() => {navigate('/settings')}}>Settings</li>
                     <li onClick={() => {handleSignout()}}>Sign out</li>
                 </ul>
