@@ -7,7 +7,6 @@ import GamePage from './pages/game_page/GamePage'
 import * as api from './api/http_calls'
 import ProfilePage from './pages/profile_page/ProfilePage'
 import NewsPage from './pages/news_page/NewsPage'
-import SettingsPage from './pages/settings_page/SettingsPage'
 import SocialPage from './pages/social_page/SocialPage'
 import ScreenQueMode from './ScreenQueMode'
 
@@ -49,7 +48,6 @@ const App = () => {
                 <Route path="/game-page" element={<GamePage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/news" element={<NewsPage />} />
-                <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/social" element={<SocialPage />} />
             </Routes>
         </div>
