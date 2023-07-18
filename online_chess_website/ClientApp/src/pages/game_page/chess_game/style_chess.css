@@ -16,10 +16,10 @@
     flex-wrap: wrap;
     border: 2px solid rgb(77, 21, 21);
     align-items:flex-end;
-    rotate: 180deg;
+    transform: rotate(180deg);
 }
 .board-tile {
-    rotate: 180deg;
+    transform: rotate(180deg);
     width: var(--tile-size);
     height: var(--tile-size); 
     position: relative;
