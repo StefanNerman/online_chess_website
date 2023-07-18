@@ -5,6 +5,7 @@ import NavbarButton from '../../components/navbar_button'
 import SignoutButton from '../../components/signout_button'
 import {useNavigate} from 'react-router-dom'
 import {getProfileByUserId} from '../../utils/user_profile_info'
+import {settingsToggle, settingsToggleStatus} from './MainMenu'
 
 interface props {
     offline: boolean
@@ -54,7 +55,12 @@ const FloatingNavbar = (params: props) => {
                                                                     if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be singed in to view your socials!')
                                                                     navigate('/social')
                                                                     }}/>
-                        <NavbarButton text={'Settings'} onClick={() => {navigate('/settings')}}/>
+                        <NavbarButton text={'Settings'} onClick={() => {
+                                                                    if(settingsToggleStatus){
+                                                                        return settingsToggle(false)
+                                                                    }
+                                                                    settingsToggle(true)
+                                                                }}/>
                     </div>
                 </div>
                 <div className='floating-navbar-signout-box'>

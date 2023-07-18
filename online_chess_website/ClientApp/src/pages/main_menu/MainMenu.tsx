@@ -6,6 +6,7 @@ import ExtraPanelRight from './ExtraPanelRight'
 import ExtraPanelLeft from './ExtraPanelLeft'
 import NavbarDefault from '../../components/NavbarDefault';
 import * as api from '../../api/http_calls'
+import SettingsComponent from './SettingsComponent'
 
 interface profileInfo {
     data: {
@@ -25,9 +26,14 @@ interface gameStats {
     }
 }
 
+export let settingsToggle: any
+export let settingsToggleStatus: any
+
 const MainMenu = () => {
 
     const [isScreenWide, setIsScreenWide] = useState(window.innerWidth > 800 ? true : false)
+
+    const [settingsOpen, setSettingsOpen] = useState(false)
 
     const [ statsRank, setStatsRank ] = useState(0)
     const [ statsTotal, setStatsTotal ] = useState(0)
@@ -37,8 +43,10 @@ const MainMenu = () => {
 
     useEffect(() => {
         populateStatisticsPanel()
+        settingsToggle = setSettingsOpen
+        settingsToggleStatus = settingsOpen
         if(sessionStorage.getItem('profileExists') !== 'true') return createNewProfile()
-    }, [])
+    }, [settingsOpen])
 
     async function populateStatisticsPanel(){
         if(sessionStorage.getItem('loginOperation') === 'offline') return
@@ -78,9 +86,20 @@ const MainMenu = () => {
             <div className='mainmenu-container'>
                 <Navbar offline={loginOperation === 'offline' ? true : false}/>
                 <main>
+                    {
+                    settingsOpen ||
+                    <>
                     {isScreenWide && <ExtraPanelLeft rank={statsRank} total={statsTotal} wins={statsWins} losses={statsLosses} draws={statsDraws}/>}
                     <GamePanel offline={loginOperation === 'offline' ? true : false}/>
                     <ExtraPanelRight />
+                    </>
+                    }
+                    {
+                    settingsOpen &&
+                    <>
+                    <SettingsComponent />
+                    </>
+                    }
                 </main> 
             </div>
         </div>
