@@ -45,9 +45,15 @@ const FloatingNavbar = (params: props) => {
                 {/*SETTINGS NEWS SOCIAL MY_PROFILE*/}
                 <div className='floating-navbar-buttons-frame'>
                     <div className='floating-navbar-buttons-container'>
-                        <NavbarButton text={'My profile'} onClick={() => {navigate('/profile')}}/>
+                        <NavbarButton text={'My profile'} onClick={() => {
+                                                                    if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be signed in to view your profile!')
+                                                                    navigate('/profile')
+                                                                    }}/>
                         <NavbarButton text={'News'} onClick={() => {navigate('/news')}}/>
-                        <NavbarButton text={'Social'} onClick={() => {navigate('/social')}}/>
+                        <NavbarButton text={'Social'} onClick={() => {
+                                                                    if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be singed in to view your socials!')
+                                                                    navigate('/social')
+                                                                    }}/>
                         <NavbarButton text={'Settings'} onClick={() => {navigate('/settings')}}/>
                     </div>
                 </div>
