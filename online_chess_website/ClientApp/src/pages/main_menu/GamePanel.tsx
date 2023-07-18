@@ -39,6 +39,7 @@ const GamePanel = (props: props) => {
     }, [])
     
     async function quickPlay(){
+        if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You have to be signed in to use quickplay!')
         isQueingController(true)
         let userId = sessionStorage.getItem('userId')!
         let profile = await getProfileByUserId(parseInt(userId))
@@ -66,11 +67,13 @@ const GamePanel = (props: props) => {
     }
 
     function privateGame(){
-
+        if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You have to be signed in to create private games!')
+        alert('This feature is not yet functional.')
     }
 
     function joinPrivateGame(){
-        
+        if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You have to be signed in to join private games!')
+        alert('This feature is not yet functional.')
     }
 
     function localGame(){
@@ -86,7 +89,7 @@ const GamePanel = (props: props) => {
     }
 
     function botGame(){
-            
+        alert('This feature is not yet functional.')
     }
 
     return (  

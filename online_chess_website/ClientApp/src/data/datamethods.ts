@@ -1,7 +1,7 @@
 import * as api from '../api/http_calls'
 
 export async function signout(){
-    sessionStorage.getItem('loginOperation') === 'offline' || await api.axiosPost('api/sessions/delete', 
+    sessionStorage.getItem('loginOperation') === 'offline' || api.axiosPost('api/sessions/delete', 
     {
         userId: parseInt(sessionStorage.getItem('userId')!)
     })
@@ -11,4 +11,6 @@ export async function signout(){
     sessionStorage.setItem('username', '')
     sessionStorage.setItem('sessionToken', '')
     sessionStorage.setItem('profileExists', '')
+    sessionStorage.setItem('matchId', '')
+    sessionStorage.setItem('userRank', '')
 }
