@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import LogoSmall from './logo_small'
-import NavbarDropdownMenu from './NavbarDropdownMenu'
+import NavbarDropdownMenu, {settingsToggle} from './NavbarDropdownMenu'
 import * as visual from '../utils/visual_changes'
 
 interface params {
@@ -36,6 +36,7 @@ const NavbarDefault = (params: params) => {
             visual.hide(menu)
             visual.hide(movepiece)
         })
+        settingsToggle(false)
     }
 
     function expandAnimation(){
