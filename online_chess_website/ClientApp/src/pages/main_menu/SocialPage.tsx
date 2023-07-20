@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 const SocialPage = () => {
 
     return (  
-        <div>
-        </div>
+        <>
+            <p>SOCIAL</p>
+        </>
     );
 }
  

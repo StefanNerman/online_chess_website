@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './style.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import * as api from './api/http_calls'
 import LandingPage from './pages/landing_page/LandingPage'
 import MainMenu from './pages/main_menu/MainMenu'
 import GamePage from './pages/game_page/GamePage'
-import * as api from './api/http_calls'
-import ProfilePage from './pages/profile_page/ProfilePage'
-import NewsPage from './pages/news_page/NewsPage'
-import SocialPage from './pages/social_page/SocialPage'
+import MenuComponent from './pages/main_menu/MenuComponent'
 import ScreenQueMode from './ScreenQueMode'
+import ProfilePage from './pages/main_menu/ProfilePage'
+import NewsPage from './pages/main_menu/NewsPage'
+import SocialPage from './pages/main_menu/SocialPage'
+import SettingsPage from './pages/main_menu/SettingsComponent'
 
 
 window.addEventListener('beforeunload', async () => {
@@ -44,11 +46,14 @@ const App = () => {
             {isQueing && <ScreenQueMode />}
             <Routes>
                 <Route path="/" element={<LandingPage />} />
-                <Route path="/main-menu" element={<MainMenu />} />
+                <Route path="/main-menu" element={<MainMenu />}>
+                    <Route path="menu" element={<MenuComponent />}/>
+                    <Route path="profile" element={<ProfilePage />}/>
+                    <Route path="news" element={<NewsPage />} />
+                    <Route path="social" element={<SocialPage />} />
+                    <Route path="settings" element={<SettingsPage />}/>
+                </Route>
                 <Route path="/game-page" element={<GamePage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/news" element={<NewsPage />} />
-                <Route path="/social" element={<SocialPage />} />
             </Routes>
         </div>
     )

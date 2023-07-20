@@ -5,7 +5,6 @@ import NavbarButton from '../../components/navbar_button'
 import SignoutButton from '../../components/signout_button'
 import {useNavigate} from 'react-router-dom'
 import {getProfileByUserId} from '../../utils/user_profile_info'
-import {settingsToggle, settingsToggleStatus} from './MainMenu'
 
 interface props {
     offline: boolean
@@ -46,22 +45,17 @@ const FloatingNavbar = (params: props) => {
                 {/*SETTINGS NEWS SOCIAL MY_PROFILE*/}
                 <div className='floating-navbar-buttons-frame'>
                     <div className='floating-navbar-buttons-container'>
-                        <NavbarButton text={'Main menu'} onClick={() => {}}/>
+                        <NavbarButton text={'Main menu'} onClick={() => {navigate('menu')}}/>
                         <NavbarButton text={'My profile'} onClick={() => {
                                                                     if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be signed in to view your profile!')
-                                                                    navigate('/profile')
+                                                                    navigate('profile')
                                                                     }}/>
-                        <NavbarButton text={'News'} onClick={() => {navigate('/news')}}/>
+                        <NavbarButton text={'News'} onClick={() => {navigate('news')}}/>
                         <NavbarButton text={'Social'} onClick={() => {
                                                                     if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be singed in to view your socials!')
-                                                                    navigate('/social')
+                                                                    navigate('social')
                                                                     }}/>
-                        <NavbarButton text={'Settings'} onClick={() => {
-                                                                    if(settingsToggleStatus){
-                                                                        return settingsToggle(false)
-                                                                    }
-                                                                    settingsToggle(true)
-                                                                }}/>
+                        <NavbarButton text={'Settings'} onClick={() => {navigate('settings')}}/>
                     </div>
                 </div>
                 <div className='floating-navbar-signout-box'>
