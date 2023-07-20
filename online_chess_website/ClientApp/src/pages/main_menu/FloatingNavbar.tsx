@@ -46,6 +46,7 @@ const FloatingNavbar = (params: props) => {
                 {/*SETTINGS NEWS SOCIAL MY_PROFILE*/}
                 <div className='floating-navbar-buttons-frame'>
                     <div className='floating-navbar-buttons-container'>
+                        <NavbarButton text={'Main menu'} onClick={() => {}}/>
                         <NavbarButton text={'My profile'} onClick={() => {
                                                                     if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be signed in to view your profile!')
                                                                     navigate('/profile')

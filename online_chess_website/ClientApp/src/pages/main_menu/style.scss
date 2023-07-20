@@ -128,7 +128,7 @@
 .floating-navbar-buttons-container {
     height: 100%;
     @include flexify;
-    gap: clamp(1rem, 20%, 3rem);
+    gap: clamp(0.75rem, 20%, 2.75rem);
 }
 
 .floating-navbar-signout-box {
@@ -137,6 +137,24 @@
     left: calc(100% - 150px);
     @include flexify;
     align-items: center;
+}
+
+//Settings
+#settings-frame {
+    @include topBottomBorderThick;
+    height: 340px;
+    width: 100%;
+    margin: 0 3px;
+    background-color: $light-brown;
+}
+
+@media screen and (max-width: 1050px){
+    .floating-navbar-buttons-container {
+        gap: clamp(0.75rem, 20%, 1.25rem);
+    }
+    .navbar-button p {
+        font-size: 100%;
+    }
 }
 
 @media screen and (max-width: 800px) {

@@ -150,7 +150,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  gap: clamp(1rem, 20%, 3rem);
+  gap: clamp(0.75rem, 20%, 2.75rem);
 }
 
 .floating-navbar-signout-box {
@@ -164,6 +164,23 @@
   align-items: center;
 }
 
+#settings-frame {
+  border-top: 7px solid rgb(112, 62, 62);
+  border-bottom: 7px solid rgb(112, 62, 62);
+  height: 340px;
+  width: 100%;
+  margin: 0 3px;
+  background-color: rgb(160, 123, 123);
+}
+
+@media screen and (max-width: 1050px) {
+  .floating-navbar-buttons-container {
+    gap: clamp(0.75rem, 20%, 1.25rem);
+  }
+  .navbar-button p {
+    font-size: 100%;
+  }
+}
 @media screen and (max-width: 800px) {
   .mainmenu main {
     flex-direction: column;
