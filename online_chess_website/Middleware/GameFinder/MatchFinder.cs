@@ -53,7 +53,7 @@ public class MatchFinder
                 {
                     int dif = pair.Rank - nestedPair.Rank;
                     if(dif < 0) { dif = dif * -1; }
-                    if (dif < 200) {
+                    if (dif < 400) {
                         Console.WriteLine($"Players paired: {pair.Token} {pair.Rank} and {nestedPair.Token} {nestedPair.Rank}");
                         pairs[i] = null;
                         pairs[j] = null;
