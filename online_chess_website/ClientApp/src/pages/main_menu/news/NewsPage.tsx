@@ -4,9 +4,9 @@ import React from 'react'
 
 const NewsPage = () => {
     return (  
-        <>
-            <p>NEWS</p>
-        </>
+        <div id='news-frame'>
+            NEWS   
+        </div>
     );
 }
  

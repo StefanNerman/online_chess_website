@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 const SocialPage = () => {
 
     return (  
-        <>
-            <p>SOCIAL</p>
-        </>
+        <div id='social-frame'>
+            SOCIAL
+        </div>
     );
 }
  

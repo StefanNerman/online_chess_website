@@ -32,7 +32,7 @@ const NavbarDropdownMenu = () => {
                     <li onClick={() => {
                                     if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be singed in to view your socials!')
                                     hideMenu()
-                                    navigate('/social')
+                                    navigate('social')
                                 }}>Social</li>
                     <li onClick={() => {
                                     hideMenu()

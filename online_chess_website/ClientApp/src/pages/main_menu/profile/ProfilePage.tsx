@@ -4,9 +4,9 @@ import React from 'react'
 
 const ProfilePage = () => {
     return (  
-        <>
-            <p>PROFILE</p>
-        </>
+        <div id='profile-frame'>
+            PROFILE
+        </div>
     );
 }
  
