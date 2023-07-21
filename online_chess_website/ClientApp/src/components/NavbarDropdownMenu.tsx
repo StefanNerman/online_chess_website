@@ -17,12 +17,21 @@ const NavbarDropdownMenu = () => {
             <div className='dropdownmenu-screen fully-removed' id='dropdown-movepiece' data-testid='dropdown-movepiece'>
                 <ul>
                     <li onClick={() => {
+                                    hideMenu()
+                                    navigate('menu')
+                                }}>Main menu</li>
+                    <li onClick={() => {
                                     if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be signed in to view your profile!')
-                                    navigate('/profile')
+                                    hideMenu()
+                                    navigate('profile')
                                 }}>My profile</li>
-                    <li onClick={() => {navigate('/news')}}>News</li>
+                    <li onClick={() => {
+                                    hideMenu()
+                                    navigate('news')
+                                }}>News</li>
                     <li onClick={() => {
                                     if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be singed in to view your socials!')
+                                    hideMenu()
                                     navigate('/social')
                                 }}>Social</li>
                     <li onClick={() => {
