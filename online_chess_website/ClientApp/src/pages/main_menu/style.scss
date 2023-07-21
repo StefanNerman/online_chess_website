@@ -142,7 +142,34 @@
 //Settings
 #settings-frame {
     @include topBottomBorderThick;
-    height: 340px;
+    height: 400px;
+    width: 100%;
+    margin: 0 3px;
+    background-color: $light-brown;
+}
+
+//profile
+#profile-frame {
+    @include topBottomBorderThick;
+    height: 400px;
+    width: 100%;
+    margin: 0 3px;
+    background-color: $light-brown;
+}
+
+//news
+#news-frame {
+    @include topBottomBorderThick;
+    height: 400px;
+    width: 100%;
+    margin: 0 3px;
+    background-color: $light-brown;
+}
+
+//social
+#social-frame {
+    @include topBottomBorderThick;
+    height: 400px;
     width: 100%;
     margin: 0 3px;
     background-color: $light-brown;
