@@ -69,7 +69,7 @@ const Signup = (props: propsObj) => {
         sessionStorage.setItem('userId', userId.toString())
         sessionStorage.setItem('profileExists', 'false')
         await createSession(userId)
-        navigate('/main-menu')
+        navigate('/main-menu/menu')
     }
 
     function isAllInfoProvided(): boolean {

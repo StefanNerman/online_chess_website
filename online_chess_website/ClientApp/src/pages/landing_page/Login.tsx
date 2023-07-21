@@ -52,7 +52,7 @@ const Login = (props: propsObj) => {
         sessionStorage.setItem('userId', userId.toString())
         sessionStorage.setItem('profileExists', 'true')
         createSession(userId)
-        navigate('/main-menu')
+        navigate('/main-menu/menu')
     }
 
     return (  

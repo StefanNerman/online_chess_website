@@ -7,7 +7,7 @@ const Offline = () => {
 
     useEffect(() =>{ 
         sessionStorage.setItem('profileExists', 'true')
-        navigate('/main-menu')
+        navigate('/main-menu/menu')
     }, [])
 
     return (  
