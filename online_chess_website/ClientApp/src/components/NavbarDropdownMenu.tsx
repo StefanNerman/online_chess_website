@@ -1,21 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { signout } from '../data/datamethods'
-import NarrowSettingsComponent from './NarrowModeSettingsComponent'
-
-export let settingsToggle: any
-export let settingsToggleStatus: any
+import { hideMenu } from './NavbarDefault'
 
 const NavbarDropdownMenu = () => {
 
     const navigate = useNavigate()
-
-    const [settingsOpen, setSettingsOpen] = useState(false)
-
-    useEffect(() => {
-        settingsToggle = setSettingsOpen
-        settingsToggleStatus = settingsOpen
-    }, [settingsOpen])
 
     function handleSignout() {
         signout()
@@ -25,8 +15,6 @@ const NavbarDropdownMenu = () => {
     return (  
         <div className='dropdownmenu-frame fully-removed' id='dropdown' data-testid='dropdown'>
             <div className='dropdownmenu-screen fully-removed' id='dropdown-movepiece' data-testid='dropdown-movepiece'>
-                {
-                settingsOpen ||
                 <ul>
                     <li onClick={() => {
                                     if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You must be signed in to view your profile!')
@@ -38,16 +26,11 @@ const NavbarDropdownMenu = () => {
                                     navigate('/social')
                                 }}>Social</li>
                     <li onClick={() => {
-                                    if(settingsOpen) return setSettingsOpen(false)
-                                    setSettingsOpen(true)
+                                    hideMenu()
+                                    navigate('settings')
                                 }}>Settings</li>
                     <li onClick={() => {handleSignout()}}>Sign out</li>
                 </ul>
-                }
-                {
-                settingsOpen &&
-                <NarrowSettingsComponent />
-                }
             </div>
         </div>
     );
