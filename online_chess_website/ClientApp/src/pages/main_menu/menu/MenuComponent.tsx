@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import GamePanel from './GamePanel'
 import ExtraPanelRight from './ExtraPanelRight'
 import ExtraPanelLeft from './ExtraPanelLeft'
-import * as api from '../../api/http_calls'
+import * as api from '../../../api/http_calls'
 
 interface profileInfo {
     data: {

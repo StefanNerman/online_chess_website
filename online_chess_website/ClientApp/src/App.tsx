@@ -5,12 +5,12 @@ import * as api from './api/http_calls'
 import LandingPage from './pages/landing_page/LandingPage'
 import MainMenu from './pages/main_menu/MainMenu'
 import GamePage from './pages/game_page/GamePage'
-import MenuComponent from './pages/main_menu/MenuComponent'
+import MenuComponent from './pages/main_menu/menu/MenuComponent'
 import ScreenQueMode from './ScreenQueMode'
-import ProfilePage from './pages/main_menu/ProfilePage'
-import NewsPage from './pages/main_menu/NewsPage'
-import SocialPage from './pages/main_menu/SocialPage'
-import SettingsPage from './pages/main_menu/SettingsComponent'
+import ProfilePage from './pages/main_menu/profile/ProfilePage'
+import NewsPage from './pages/main_menu/news/NewsPage'
+import SocialPage from './pages/main_menu/social/SocialPage'
+import SettingsPage from './pages/main_menu/settings/SettingsComponent'
 
 
 window.addEventListener('beforeunload', async () => {

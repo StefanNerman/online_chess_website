@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import GameSelectionComponent from './GameSelectionComponent'
 import {useNavigate} from 'react-router-dom'
-import {findQuickplayMatch, defaultWebSocket} from './matchmaking'
-import * as api from '../../api/http_calls'
-import {getProfileByUserId} from '../../utils/user_profile_info'
-import {isQueingController} from '../../App'
-import { timeInterval } from '../game_page/chess_game/ChessComponent'
-import { resetBoard } from '../game_page/chess_game/gamelogic'
+import {findQuickplayMatch, defaultWebSocket} from '../matchmaking'
+import * as api from '../../../api/http_calls'
+import {getProfileByUserId} from '../../../utils/user_profile_info'
+import {isQueingController} from '../../../App'
+import { timeInterval } from '../../game_page/chess_game/ChessComponent'
+import { resetBoard } from '../../game_page/chess_game/gamelogic'
 
 interface props {
     offline: boolean
