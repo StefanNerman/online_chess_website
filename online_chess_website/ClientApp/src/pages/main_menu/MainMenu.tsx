@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import './style.css'
 import Navbar from './FloatingNavbar'
 import NavbarDefault from '../../components/NavbarDefault';
@@ -8,8 +8,12 @@ const MainMenu = () => {
 
     const [isScreenWide, setIsScreenWide] = useState(window.innerWidth > 800 ? true : false)
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         if(sessionStorage.getItem('profileExists') !== 'true') return createNewProfile()
+        console.log(window.location)
+        if(window.location.href === 'http://localhost:44417/main-menu') navigate('/main-menu/menu')
     }, [])
 
     window.addEventListener('resize', () => {

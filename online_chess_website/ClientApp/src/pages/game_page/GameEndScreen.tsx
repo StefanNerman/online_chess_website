@@ -16,7 +16,7 @@ const GameEndScreen = ({duration, oldRank, newRank, isVictory}: props) => {
 
     function exit(){
         setGameEnd(false)
-        navigate('/main-menu')
+        navigate('/main-menu/menu')
     }
 
     function hide(){
