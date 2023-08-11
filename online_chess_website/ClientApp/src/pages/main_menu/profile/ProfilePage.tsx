@@ -16,8 +16,8 @@ const ProfilePage = () => {
                 
 
                 <div id='page-exit-options-container'>
-                    <RoundEdgeButton text='Save' />
-                    <RoundEdgeButton text='Cancel' />
+                    <RoundEdgeButton text='Save' onClick={() => {}}/>
+                    <RoundEdgeButton text='Cancel' onClick={() => {}}/>
                 </div>
             </div>
         </div>
