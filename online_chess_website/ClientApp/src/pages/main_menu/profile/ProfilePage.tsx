@@ -1,5 +1,6 @@
 import React from 'react'
 import ProfilePicture from './ProfilePicture'
+import RoundEdgeButton from '../../../components/round_edge_button'
 
 
 const ProfilePage = () => {
@@ -15,7 +16,8 @@ const ProfilePage = () => {
                 
 
                 <div id='page-exit-options-container'>
-                    {/*make new component for both buttons*/}
+                    <RoundEdgeButton text='Save' />
+                    <RoundEdgeButton text='Cancel' />
                 </div>
             </div>
         </div>

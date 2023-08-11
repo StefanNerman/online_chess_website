@@ -210,8 +210,17 @@
 }
 
 .profile-bottom-frame {
+  height: 300px;
   position: relative;
   width: 100%;
+}
+
+#page-exit-options-container {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.25rem;
 }
 
 #news-frame {

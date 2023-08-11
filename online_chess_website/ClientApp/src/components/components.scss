@@ -70,6 +70,19 @@
     padding: 7px 13px;
 }
 
+//OTHER BUTTONS
+
+.round-edge-button {
+    border-radius: 4px;
+    background-color: $mild-brown;
+    color: $brownish-white;
+    font-weight: 500;
+    padding: 0.25em 0.5em;
+    &:hover {
+        color: $white-brown;
+    }
+}
+
 
 //checkbox
 .checkbox-1 {
