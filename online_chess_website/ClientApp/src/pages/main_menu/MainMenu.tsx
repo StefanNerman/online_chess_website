@@ -12,7 +12,6 @@ const MainMenu = () => {
 
     useEffect(() => {
         if(sessionStorage.getItem('profileExists') !== 'true') return createNewProfile()
-        console.log(window.location)
         if(window.location.href === 'http://localhost:44417/main-menu') navigate('/main-menu/menu')
     }, [])
 

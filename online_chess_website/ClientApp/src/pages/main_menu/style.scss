@@ -1,5 +1,7 @@
 @import '../../variables.scss';
 
+
+
 .mainmenu {
     min-height: 100svh;
     position: relative;
@@ -151,10 +153,45 @@
 //profile
 #profile-frame {
     @include topBottomBorderThick;
-    height: 400px;
     width: 100%;
     margin: 0 3px;
     background-color: $light-brown;
+    @include flexify;
+
+}
+
+.profile-top-frame {
+    @include flexDirectionAlign;
+    padding: 0.5rem;
+
+}
+
+.profile-top-image-container {
+    position: relative;
+    padding: 0.5rem;
+    width: 160px;
+    height: 160px;
+}
+
+.proflie-image-big {
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    margin: 0;
+    background-color: black;
+}
+
+.edit-label-small {
+    
+}
+
+.profile-top-name-container {
+    width: 100%;
+}
+
+.profile-bottom-frame {
+    position: relative;
+    width: 100%;
 }
 
 //news
@@ -210,5 +247,9 @@
     }
     .mainmenu {
         justify-content:start;
+    }
+    #profile-frame {
+        margin: 0;
+        flex-direction: column;
     }
 }

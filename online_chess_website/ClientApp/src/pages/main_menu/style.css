@@ -176,10 +176,42 @@
 #profile-frame {
   border-top: 7px solid rgb(112, 62, 62);
   border-bottom: 7px solid rgb(112, 62, 62);
-  height: 400px;
   width: 100%;
   margin: 0 3px;
   background-color: rgb(160, 123, 123);
+  display: flex;
+  justify-content: center;
+}
+
+.profile-top-frame {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.profile-top-image-container {
+  position: relative;
+  padding: 0.5rem;
+  width: 160px;
+  height: 160px;
+}
+
+.proflie-image-big {
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  margin: 0;
+  background-color: black;
+}
+
+.profile-top-name-container {
+  width: 100%;
+}
+
+.profile-bottom-frame {
+  position: relative;
+  width: 100%;
 }
 
 #news-frame {
@@ -234,5 +266,9 @@
   }
   .mainmenu {
     justify-content: start;
+  }
+  #profile-frame {
+    margin: 0;
+    flex-direction: column;
   }
 }/*# sourceMappingURL=style.css.map */
