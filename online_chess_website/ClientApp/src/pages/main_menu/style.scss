@@ -161,16 +161,14 @@
 }
 
 .profile-top-frame {
+    margin-left: 1rem;
     @include flexDirectionAlign;
     padding: 0.5rem;
-
 }
 
 .profile-top-image-container {
     position: relative;
-    padding: 0.5rem;
-    width: 160px;
-    height: 160px;
+    padding: 0 0.5rem;
 }
 
 .proflie-image-big {
@@ -187,6 +185,7 @@
 
 .profile-top-name-container {
     width: 100%;
+    @include flexify;
 }
 
 .profile-bottom-frame {
@@ -260,5 +259,22 @@
     #profile-frame {
         margin: 0;
         flex-direction: column;
+        justify-content: flex-start;
+    }
+    .profile-top-frame {
+        margin-left: 0;
+        flex-direction: row;
+        justify-content: start;
+        align-items: flex-start;
+    }
+    .profile-top-name-container {
+        width: max-content;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .profile-top-frame {
+        flex-direction: column;
+        justify-content: center;
     }
 }

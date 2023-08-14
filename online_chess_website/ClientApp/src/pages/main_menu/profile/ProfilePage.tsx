@@ -7,9 +7,9 @@ const ProfilePage = () => {
     return (  
         <div id='profile-frame'>
             <div className='profile-top-frame'>
-                <ProfilePicture />
+                <ProfilePicture image='image1' id='profile-page-pfp'/>
                 <div className='profile-top-name-container'>
-
+                    loong name 12
                 </div>
             </div>
             <div className='profile-bottom-frame'>
