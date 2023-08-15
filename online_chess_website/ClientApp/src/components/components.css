@@ -54,14 +54,14 @@
 .signout-button-frame {
   background: none;
   border-radius: 5px;
-  border: 3px solid rgb(175, 105, 105);
+  border: 2px solid rgb(175, 105, 105);
   color: rgb(218, 183, 183);
   font-weight: 501;
-  font-size: 110%;
-  padding: 7px 13px;
+  font-size: 104%;
+  padding: 4px 7px;
 }
 .signout-button-frame:hover {
-  border: 3px solid rgb(218, 183, 183);
+  border: 2px solid rgb(218, 183, 183);
   color: rgb(218, 183, 183);
 }
 

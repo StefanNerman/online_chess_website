@@ -59,15 +59,15 @@
 .signout-button-frame {
     background: none;
     border-radius: 5px;
-    border: 3px solid $white-brown;
+    border: 2px solid $white-brown;
     &:hover {
-        border: 3px solid $brownish-white;
+        border: 2px solid $brownish-white;
         color: $brownish-white;
     }
     color: $brownish-white;
     font-weight: 501;
-    font-size: 110%;
-    padding: 7px 13px;
+    font-size: 104%;
+    padding: 4px 7px;
 }
 
 //OTHER BUTTONS
