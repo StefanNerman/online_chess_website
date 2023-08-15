@@ -187,6 +187,11 @@
 .profile-top-name-container {
     width: 100%;
     @include flexify;
+    margin-top: 0.5rem;
+
+    background-color: $mild-brown;
+    padding: 2px;
+    border-radius: 3px;
 }
 
 .profile-bottom-frame {
@@ -266,20 +271,24 @@
         margin-left: 0;
         flex-direction: row;
         justify-content: start;
-        align-items: flex-start;
+        align-items: end;
         border-right:none;
         border-bottom:1px dotted $mild-brown;
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
     }
     .profile-top-name-container {
+        margin:0;
         width: max-content;
+        margin-bottom: 1.5rem;
+        margin-left: 1rem;
     }
 }
 
 @media screen and (max-width: 500px) {
     .profile-top-frame {
         padding-top: 1rem;
+        padding-left: 0.25rem;
     }
 }
 @media screen and (max-width: 320px) {
@@ -288,5 +297,9 @@
         justify-content: center;
         align-items: center;
         padding-bottom: 1rem;
+    }
+    .profile-top-name-container {
+        margin: 0;
+        margin-top: 0.5rem;
     }
 }

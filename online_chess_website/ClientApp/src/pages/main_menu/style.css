@@ -209,6 +209,10 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 0.5rem;
+  background-color: rgb(112, 62, 62);
+  padding: 2px;
+  border-radius: 3px;
 }
 
 .profile-bottom-frame {
@@ -287,21 +291,25 @@
     margin-left: 0;
     flex-direction: row;
     justify-content: start;
-    align-items: flex-start;
+    align-items: end;
     border-right: none;
     border-bottom: 1px dotted rgb(112, 62, 62);
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }
   .profile-top-name-container {
+    margin: 0;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+    margin-bottom: 1.5rem;
+    margin-left: 1rem;
   }
 }
 @media screen and (max-width: 500px) {
   .profile-top-frame {
     padding-top: 1rem;
+    padding-left: 0.25rem;
   }
 }
 @media screen and (max-width: 320px) {
@@ -310,5 +318,9 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 1rem;
+  }
+  .profile-top-name-container {
+    margin: 0;
+    margin-top: 0.5rem;
   }
 }/*# sourceMappingURL=style.css.map */
