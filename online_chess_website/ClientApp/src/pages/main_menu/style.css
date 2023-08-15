@@ -184,11 +184,12 @@
 }
 
 .profile-top-frame {
-  margin-left: 1rem;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 0.5rem 2rem;
+  padding-top: 2.5rem;
+  border-right: 1px dotted rgb(112, 62, 62);
 }
 
 .profile-top-image-container {
@@ -287,6 +288,10 @@
     flex-direction: row;
     justify-content: start;
     align-items: flex-start;
+    border-right: none;
+    border-bottom: 1px dotted rgb(112, 62, 62);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
   .profile-top-name-container {
     width: -webkit-max-content;
@@ -296,7 +301,14 @@
 }
 @media screen and (max-width: 500px) {
   .profile-top-frame {
+    padding-top: 1rem;
+  }
+}
+@media screen and (max-width: 320px) {
+  .profile-top-frame {
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
   }
 }/*# sourceMappingURL=style.css.map */

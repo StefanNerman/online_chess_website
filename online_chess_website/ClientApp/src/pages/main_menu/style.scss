@@ -161,9 +161,10 @@
 }
 
 .profile-top-frame {
-    margin-left: 1rem;
     @include flexDirectionAlign;
-    padding: 0.5rem;
+    padding: 0.5rem 2rem;
+    padding-top: 2.5rem;
+    border-right:1px dotted $mild-brown;
 }
 
 .profile-top-image-container {
@@ -266,6 +267,10 @@
         flex-direction: row;
         justify-content: start;
         align-items: flex-start;
+        border-right:none;
+        border-bottom:1px dotted $mild-brown;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
     }
     .profile-top-name-container {
         width: max-content;
@@ -274,7 +279,14 @@
 
 @media screen and (max-width: 500px) {
     .profile-top-frame {
+        padding-top: 1rem;
+    }
+}
+@media screen and (max-width: 320px) {
+    .profile-top-frame {
         flex-direction: column;
         justify-content: center;
+        align-items: center;
+        padding-bottom: 1rem;
     }
 }
