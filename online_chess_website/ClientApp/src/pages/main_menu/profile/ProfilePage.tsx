@@ -13,8 +13,36 @@ const ProfilePage = () => {
                 </div>
             </div>
             <div className='profile-bottom-frame'>
-                
+                {/*
+                possible settings:
+                change name 
+                change pfp
+                delete profile
 
+                other: 
+                statistics
+                rank
+                */}
+
+                <div className='profile-bottom-stats'>
+                    <div className='proflie-stats-top stats-panel-frame'>
+                        <div>
+                            <div className='image-small-div'></div>
+                            <h3>1243</h3>
+                        </div>
+                    </div>
+                    <div className='proflie-stats-bottom stats-panel-frame'>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+                <div className='dotted-line'>
+                    
+                </div>
+                <div className='profile-bottom-settings'>
+
+                </div>
 
                 {/*make it so these buttons only show if you make a change to your profile*/}
                 <div id='page-exit-options-container'>

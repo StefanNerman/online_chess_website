@@ -195,9 +195,85 @@
 }
 
 .profile-bottom-frame {
-    height: 300px;
     position: relative;
     width: 100%;
+    display: flex;
+}
+.dotted-line {
+    height: 100%;
+    border-right: 1px dotted $mild-brown;
+}
+
+
+.profile-bottom-stats {
+    margin: 0.5rem;
+}
+
+.stats-panel-frame {
+    background-color: $mild-brown;
+    border-radius: 5px;
+    padding: 0.25rem;
+    padding-top: 1.75rem;
+}
+
+.proflie-stats-top {
+    position: relative;
+    div {
+        display: flex;
+        align-items: center;
+        //delete extra horizontal padding if box already stretched byt statistics box
+        padding: 0.125rem 4rem;
+        background-color: $light-brown;
+        border-radius: 5px;
+        .image-small-div {
+            background-color: black;
+            margin-right: 0.5rem;
+            margin-top: 2.5px;
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            border-radius: 0;
+        }
+        h3 {
+            margin: 0;
+            color: rgb(215, 180, 0);
+        }
+    }
+    &::before {
+        content:'Your rank:';
+        position: absolute;
+        top: 2px;
+        left: 8px;
+        font-size: 88%;
+        color: $brownish-white;
+    }
+}
+
+.proflie-stats-bottom {
+    margin-top: 0.5rem;
+    position: relative;
+
+    div {
+        padding: 0.125rem 4rem;
+        background-color: $light-brown;
+        border-radius: 5px;
+
+        height: 200px;
+    }
+    &::before {
+        content:'Your game statistics: ';
+        position: absolute;
+        top: 2px;
+        left: 8px;
+        font-size: 88%;
+        color: $brownish-white;
+    }
+}
+
+
+
+.profile-bottom-settings {
+
 }
 
 #page-exit-options-container {
@@ -291,7 +367,7 @@
         padding-left: 0.25rem;
     }
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 380px) {
     .profile-top-frame {
         flex-direction: column;
         justify-content: center;
