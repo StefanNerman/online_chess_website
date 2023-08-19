@@ -300,6 +300,40 @@
 }
 
 
+.profile-settings-button {
+    font-weight: 500;
+    padding: 0.5rem 4rem;
+    border-radius: 3px;
+}
+
+.profile-change-pfp-box {
+    margin-top: 1rem;
+    label {
+        margin-bottom: 0.25rem;
+    }
+    button {
+        background-color: $mild-brown;
+        color: $brownish-white;
+        &:hover {
+            background-color: $mild-mild-brown;
+        }
+    }
+}
+
+.profile-delete-box {
+    margin-top: 1rem;
+    label {
+        margin-bottom: 0.25rem;
+    }
+    button {
+        background-color: $bleak-red;
+        color: whitesmoke;
+        &:hover {
+            background-color: $mild-red;
+        }
+    }
+}
+
 #page-exit-options-container {
     position: absolute;
     bottom: 1rem;
@@ -386,6 +420,7 @@
     .profile-bottom-stats {
         margin: 0;
         margin-top: 0.5rem;
+        padding: 0 0.5rem;
     } 
     .proflie-stats-bottom {
         min-width: 0;
@@ -401,6 +436,23 @@
         border-bottom: 1px dotted $mild-brown;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
+    }
+
+
+    .profile-bottom-settings {
+        padding: 0 0.5rem;
+
+        //delete
+        margin-bottom: 70px;
+    }
+
+    .profile-change-name-box {
+        input {
+            max-width: none;
+        }
+        label {
+            display: block;
+        }
     }
 }
 

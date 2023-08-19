@@ -48,12 +48,20 @@ const ProfilePage = () => {
                         <label>Change name</label>
                         <input type='text' placeholder='loong_name_12'></input>
                     </div>
+                    <div className='profile-change-pfp-box'>
+                        <label>Change profile picture</label>
+                        <button className='profile-settings-button'>Select</button>
+                    </div>
+                    <div className='profile-delete-box'>
+                        <label>Delete profile</label>
+                        <button className='profile-settings-button'>Delete</button>
+                    </div>
                 </div>
 
                 {/*make it so these buttons only show if you make a change to your profile*/}
 
                 {
-                false &&
+                true &&
                 <div id='page-exit-options-container'>
                     <RoundEdgeButton text='Save' onClick={() => {/*save the changes to database*/}}/>
                     <RoundEdgeButton text='Cancel' onClick={() => {/*navigate to menu or reload profile page*/}}/>
