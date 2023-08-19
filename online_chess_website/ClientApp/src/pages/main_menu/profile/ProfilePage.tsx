@@ -61,7 +61,7 @@ const ProfilePage = () => {
                 {/*make it so these buttons only show if you make a change to your profile*/}
 
                 {
-                true &&
+                false &&
                 <div id='page-exit-options-container'>
                     <RoundEdgeButton text='Save' onClick={() => {/*save the changes to database*/}}/>
                     <RoundEdgeButton text='Cancel' onClick={() => {/*navigate to menu or reload profile page*/}}/>
