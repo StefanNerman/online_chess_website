@@ -288,7 +288,8 @@
     input {
         padding: 0.75rem 0.5rem;
         border-radius: 2px;
-        width: calc(100% - 5rem);
+        width: 100%;
+        max-width: 520px;
         outline: none;
         background-color: $mild-mild-brown;
         color: $brownish-white;
@@ -383,10 +384,23 @@
         margin-left: 1rem;
     }
     .profile-bottom-stats {
-        width: 100%;
+        margin: 0;
+        margin-top: 0.5rem;
     } 
     .proflie-stats-bottom {
         min-width: 0;
+    }
+    .profile-bottom-frame {
+        flex-direction: column;
+    }
+    .profile-bottom-settings {
+        margin: 0;
+    }
+    .dotted-line {
+        border: none;
+        border-bottom: 1px dotted $mild-brown;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
     }
 }
 
