@@ -36,6 +36,7 @@
     padding-bottom: 1rem;
     position: relative;
     @include flexDirectionAlign;
+    border-radius: 2px;
 }
 .gamesearchpanel-content {
     width: 100%;
@@ -58,6 +59,7 @@
     width: 98%;
     position: relative;
     text-align: center;
+    border-radius: 2px;
 }
 
 .statistics-panel {
@@ -103,6 +105,7 @@
     width: 99.5%;
     height: 65px;
     border-top: 7px solid $dark-brown;
+    border-radius: 2px;
 }
 .logo-embed {
     position: absolute;
@@ -157,7 +160,7 @@
     margin: 0 3px;
     background-color: $light-brown;
     @include flexify;
-
+    border-radius: 2px;
 }
 
 .profile-top-frame {
@@ -385,6 +388,9 @@
     }
     .extrapanel-frame {
         margin-top: 0.5rem;
+    }
+    #social-panel {
+        margin-bottom: 3rem;
     }
     .floating-navbar-frame {
         visibility: collapse;
