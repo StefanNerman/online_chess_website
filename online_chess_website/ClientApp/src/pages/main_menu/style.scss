@@ -181,6 +181,7 @@
     border-radius: 50%;
     margin: 0;
     background-color: black;
+    background-image: url(../../assets/logo_whiteknight.png);
 }
 
 .edit-label-small {
@@ -190,9 +191,9 @@
 .profile-top-name-container {
     width: 100%;
     @include flexify;
-    margin-top: 0.5rem;
-
-    background-color: $mild-brown;
+    margin-top: 0.75rem;
+    font-size: 112%;
+    background-color: $mild-mild-brown;
     padding: 2px;
     border-radius: 2px;
 }
@@ -390,7 +391,10 @@
         margin-top: 0.5rem;
     }
     #social-panel {
-        margin-bottom: 3rem;
+        margin-bottom: 6rem;
+    }
+    #social-panel-screen {
+        height: 240px;
     }
     .floating-navbar-frame {
         visibility: collapse;
@@ -424,6 +428,7 @@
         width: max-content;
         margin-bottom: 1.5rem;
         margin-top: 0.5rem;
+        padding: 2px 10px;
     }
     .profile-bottom-stats {
         margin: 0;
