@@ -191,7 +191,7 @@
 
     background-color: $mild-brown;
     padding: 2px;
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 .profile-bottom-frame {
@@ -211,7 +211,7 @@
 
 .stats-panel-frame {
     background-color: $mild-brown;
-    border-radius: 3px;
+    border-radius: 2px;
     padding: 0.25rem;
     padding-top: 1.75rem;
 }
@@ -225,7 +225,7 @@
         //delete extra horizontal padding if box already stretched byt statistics box
         padding: 0.125rem 4rem;
         background-color: $light-light-brown;
-        border-radius: 3px;
+        border-radius: 2px;
         .image-small-div {
             background-color: black;
             margin-right: 0.5rem;
@@ -259,7 +259,7 @@
     div {
         padding: 0.125rem 4rem;
         background-color: $light-light-brown;
-        border-radius: 3px;
+        border-radius: 2px;
 
         height: 200px;
     }
@@ -303,7 +303,7 @@
 .profile-settings-button {
     font-weight: 500;
     padding: 0.5rem 4rem;
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 .profile-change-pfp-box {
