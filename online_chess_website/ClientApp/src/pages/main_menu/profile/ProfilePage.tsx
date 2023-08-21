@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ProfilePicture from './ProfilePicture'
 import RoundEdgeButton from '../../../components/round_edge_button'
+import { checkString } from '../../landing_page/LandingPage'
 
 
 const ProfilePage = () => {
@@ -11,6 +12,11 @@ const ProfilePage = () => {
         //check if username taken (or check when user clicks save)
         let input: string = e.target.value
         if(input === '') {
+            return setChangeMade(false)
+        }
+        let stringCheck = checkString(input, false)
+        if(stringCheck){
+            alert(stringCheck)
             return setChangeMade(false)
         }
         setChangeMade(true)
