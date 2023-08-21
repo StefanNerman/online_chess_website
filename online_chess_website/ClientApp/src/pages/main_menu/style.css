@@ -331,6 +331,7 @@
 }
 .profile-change-pfp-box label {
   margin-bottom: 0.25rem;
+  display: block;
 }
 .profile-change-pfp-box button {
   background-color: rgb(112, 62, 62);
@@ -345,6 +346,7 @@
 }
 .profile-delete-box label {
   margin-bottom: 0.25rem;
+  display: block;
 }
 .profile-delete-box button {
   background-color: rgb(180, 50, 50);
@@ -422,9 +424,8 @@
   }
   .profile-top-frame {
     margin-left: 0;
-    flex-direction: row;
-    justify-content: start;
-    align-items: end;
+    justify-content: center;
+    align-items: center;
     border-right: none;
     border-bottom: 1px dotted rgb(112, 62, 62);
     padding-top: 1.5rem;
@@ -436,7 +437,7 @@
     width: -moz-max-content;
     width: max-content;
     margin-bottom: 1.5rem;
-    margin-left: 1rem;
+    margin-top: 0.5rem;
   }
   .profile-bottom-stats {
     margin: 0;

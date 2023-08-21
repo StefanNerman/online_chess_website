@@ -310,6 +310,7 @@
     margin-top: 1rem;
     label {
         margin-bottom: 0.25rem;
+        display: block;
     }
     button {
         background-color: $mild-brown;
@@ -324,6 +325,7 @@
     margin-top: 1rem;
     label {
         margin-bottom: 0.25rem;
+        display: block;
     }
     button {
         background-color: $bleak-red;
@@ -403,9 +405,9 @@
     }
     .profile-top-frame {
         margin-left: 0;
-        flex-direction: row;
-        justify-content: start;
-        align-items: end;
+
+        justify-content: center;
+        align-items: center;
         border-right:none;
         border-bottom:1px dotted $mild-brown;
         padding-top: 1.5rem;
@@ -415,7 +417,7 @@
         margin:0;
         width: max-content;
         margin-bottom: 1.5rem;
-        margin-left: 1rem;
+        margin-top: 0.5rem;
     }
     .profile-bottom-stats {
         margin: 0;
