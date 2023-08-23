@@ -285,7 +285,35 @@
 }
 
 .profile-change-name-box {
+    position: relative;
     margin-top: 0.5rem;
+    max-width: 520px;
+    div {
+        position: absolute;
+        right: 0.5rem;
+        bottom: 0.5rem;
+        z-index: 5;
+        width: 32px;
+        height: 32px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url(../../assets/warning_sign_white.png);
+        &:hover {
+            &::before {
+                content: 'Invalid name';
+                position: absolute;
+                width: max-content;
+                height: 15px;
+                right: 32px;
+                padding: 2px 3px;
+                font-size: 88%;
+                bottom: calc(0.5rem + 1px);
+                background-color: white;
+                line-height: 11px;
+            }
+        }
+    }
     label {
         margin-top: 0;
     }
@@ -293,7 +321,6 @@
         padding: 0.75rem 0.5rem;
         border-radius: 2px;
         width: 100%;
-        max-width: 520px;
         outline: none;
         background-color: $mild-mild-brown;
         color: $brownish-white;
@@ -455,14 +482,12 @@
     .profile-bottom-settings {
         padding: 0 0.5rem;
 
-        //delete
+        //delete (or not)
         margin-bottom: 70px;
     }
 
     .profile-change-name-box {
-        input {
-            max-width: none;
-        }
+        max-width: none;
         label {
             display: block;
         }

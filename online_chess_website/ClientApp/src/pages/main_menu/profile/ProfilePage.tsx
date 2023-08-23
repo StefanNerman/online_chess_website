@@ -7,18 +7,21 @@ import { checkString } from '../../landing_page/LandingPage'
 const ProfilePage = () => {
 
     const [changeMade, setChangeMade] = useState(false)
+    const [invalidName, setInvalidName] = useState(false)
 
     function nameInputAction(e: any){
         //check if username taken (or check when user clicks save)
         let input: string = e.target.value
         if(input === '') {
+            setInvalidName(false)
             return setChangeMade(false)
         }
         let stringCheck = checkString(input, false)
         if(stringCheck){
-            alert(stringCheck)
+            setInvalidName(true)
             return setChangeMade(false)
         }
+        setInvalidName(false)
         setChangeMade(true)
     }
 
@@ -52,6 +55,7 @@ const ProfilePage = () => {
                 <div className='profile-bottom-settings'>
                     <h4>Profile settings</h4>
                     <div className='profile-change-name-box'>
+                        {invalidName && <div></div>}
                         <label>Change name</label>
                         <input type='text' placeholder='DoomDoober54' onChange={(e) => {nameInputAction(e)}}></input>
                     </div>
