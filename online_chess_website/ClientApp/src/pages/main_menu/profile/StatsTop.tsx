@@ -2,9 +2,14 @@ import React from 'react'
 
 
 
-const StatsTop = () => {
+
+type params = {
+    rank: number
+} & React.ComponentProps<'div'>
+
+const StatsTop = ({rank, ...rest}: params) => {
     return (  
-        <div className='proflie-stats-top stats-panel-frame'>
+        <div className='proflie-stats-top stats-panel-frame' {...rest}>
             <div>
                 <div className='image-small-div'></div>
                 <h3>1243</h3>
