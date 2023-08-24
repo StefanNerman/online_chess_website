@@ -230,15 +230,35 @@
         padding: 0.125rem 4rem;
         background-color: $light-light-brown;
         border-radius: 2px;
+
         .image-small-div {
-            background-color: black;
+            position: relative;
             margin-right: 0.5rem;
             margin-top: 2.5px;
             width: 24px;
             height: 24px;
             padding: 0;
             border-radius: 0;
+            &::before, &::after { 
+                content: '';
+                position: absolute;
+                background-image: url(../../assets/backbrownarrow.png);
+                background-size: contain;
+                background-position: center;
+                width: 50%;
+                height: 50%;
+                rotate: 135deg;
+            }
+            &::before {
+                top:23%;
+                left:55%;
+            }
+            &::after {
+                top:45%;
+                left:55%;
+            }
         }
+
         h3 {
             margin: 0;
             color: rgb(215, 180, 0);
@@ -260,8 +280,8 @@
 
     min-width: 320px;
 
-    div {
-        padding: 0.125rem 4rem;
+    ul {
+        padding: 0 0.5rem;
         background-color: $light-light-brown;
         border-radius: 2px;
 

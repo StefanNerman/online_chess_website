@@ -255,13 +255,31 @@
   border-radius: 2px;
 }
 .proflie-stats-top div .image-small-div {
-  background-color: black;
+  position: relative;
   margin-right: 0.5rem;
   margin-top: 2.5px;
   width: 24px;
   height: 24px;
   padding: 0;
   border-radius: 0;
+}
+.proflie-stats-top div .image-small-div::before, .proflie-stats-top div .image-small-div::after {
+  content: "";
+  position: absolute;
+  background-image: url(../../assets/backbrownarrow.png);
+  background-size: contain;
+  background-position: center;
+  width: 50%;
+  height: 50%;
+  rotate: 135deg;
+}
+.proflie-stats-top div .image-small-div::before {
+  top: 23%;
+  left: 55%;
+}
+.proflie-stats-top div .image-small-div::after {
+  top: 45%;
+  left: 55%;
 }
 .proflie-stats-top div h3 {
   margin: 0;
@@ -281,8 +299,8 @@
   position: relative;
   min-width: 320px;
 }
-.proflie-stats-bottom div {
-  padding: 0.125rem 4rem;
+.proflie-stats-bottom ul {
+  padding: 0 0.5rem;
   background-color: rgb(178, 136, 136);
   border-radius: 2px;
   height: 200px;

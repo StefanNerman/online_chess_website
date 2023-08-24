@@ -44,9 +44,9 @@ const ProfilePage = () => {
                         </div>
                     </div>
                     <div className='proflie-stats-bottom stats-panel-frame'>
-                        <div>
+                        <ul>
 
-                        </div>
+                        </ul>
                     </div>
                 </div>
                 <div className='dotted-line'>
