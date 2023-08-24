@@ -300,10 +300,26 @@
   min-width: 320px;
 }
 .proflie-stats-bottom ul {
-  padding: 0 0.5rem;
+  padding: 0;
   background-color: rgb(178, 136, 136);
   border-radius: 2px;
-  height: 200px;
+}
+.proflie-stats-bottom ul div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  padding: 1.25rem 0;
+}
+.proflie-stats-bottom ul div p {
+  margin: 0;
+  position: absolute;
+}
+.proflie-stats-bottom ul div .stats-row-back {
+  right: 1rem;
+}
+.proflie-stats-bottom ul div .stats-row-front {
+  left: 1rem;
 }
 .proflie-stats-bottom::before {
   content: "Your game statistics: ";
@@ -312,6 +328,10 @@
   left: 8px;
   font-size: 88%;
   color: rgb(218, 183, 183);
+}
+
+.lightbrown-bg {
+  background-color: rgb(160, 123, 123);
 }
 
 .profile-bottom-settings {

@@ -281,11 +281,28 @@
     min-width: 320px;
 
     ul {
-        padding: 0 0.5rem;
+        padding: 0;
         background-color: $light-light-brown;
         border-radius: 2px;
+        div {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 24px;
+            padding: 1.25rem 0;
+            p {
+                margin: 0;
+                position: absolute
+            }
 
-        height: 200px;
+            .stats-row-back {
+                right: 1rem;
+            }
+
+            .stats-row-front {
+                left: 1rem;
+            }
+        }
     }
     &::before {
         content:'Your game statistics: ';
@@ -297,7 +314,9 @@
     }
 }
 
-
+.lightbrown-bg {
+    background-color: $light-brown;
+}
 
 .profile-bottom-settings {
     margin: 0.5rem;

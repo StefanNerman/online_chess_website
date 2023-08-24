@@ -37,12 +37,15 @@ const ProfilePage = () => {
                 </div>
             </div>
             <div className='profile-bottom-frame'>
+                
                 <div className='profile-bottom-stats'>
                     <h4>Player statistics</h4>
                     <StatsTop rank={1432}/>
                     <StatsBottom games={85} wins={46} losses={39} draws={0}/>
                 </div>
+
                 <div className='dotted-line'></div>
+
                 <div className='profile-bottom-settings'>
                     <h4>Profile settings</h4>
                     <div className='profile-change-name-box'>
