@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import ProfilePicture from './ProfilePicture'
 import RoundEdgeButton from '../../../components/round_edge_button'
 import { checkString } from '../../landing_page/LandingPage'
+import StatsTop from './StatsTop'
+import StatsBottom from './StatsBottom'
 
 
 const ProfilePage = () => {
@@ -37,17 +39,8 @@ const ProfilePage = () => {
             <div className='profile-bottom-frame'>
                 <div className='profile-bottom-stats'>
                     <h4>Player statistics</h4>
-                    <div className='proflie-stats-top stats-panel-frame'>
-                        <div>
-                            <div className='image-small-div'></div>
-                            <h3>1243</h3>
-                        </div>
-                    </div>
-                    <div className='proflie-stats-bottom stats-panel-frame'>
-                        <ul>
-
-                        </ul>
-                    </div>
+                    <StatsTop />
+                    <StatsBottom />
                 </div>
                 <div className='dotted-line'>
                     
