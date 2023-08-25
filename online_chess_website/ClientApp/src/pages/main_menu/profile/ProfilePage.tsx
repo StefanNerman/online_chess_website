@@ -72,7 +72,7 @@ const ProfilePage = () => {
 
     async function saveChanges(){
         //check if user only changed once parameter to avoid unnecessary api calls
-        
+
         await api.axiosGet(`api/signup/${inputValue ? inputValue : ''}`)
         .then(response => {
             if(!response.data){         
@@ -89,6 +89,8 @@ const ProfilePage = () => {
         await api.axiosGet(`api/login/${sessionStorage.getItem('userId') + ':' + name}`)
         .then(response => {
             console.log(response)
+            sessionStorage.setItem('username', name)
+            setChangeMade(false)
         })
     }
 
@@ -117,6 +119,10 @@ const ProfilePage = () => {
                         {invalidName && <div></div>}
                         <label>Change name</label>
                         <input type='text' placeholder={sessionStorage.getItem('username')!} onChange={(e) => {nameInputAction(e)}}></input>
+                    </div>
+                    <div className='profile-change-password-box'>
+                        <label>Change password</label>
+                        <button className='profile-settings-button'>Change</button>
                     </div>
                     <div className='profile-change-pfp-box'>
                         <label>Change profile picture</label>

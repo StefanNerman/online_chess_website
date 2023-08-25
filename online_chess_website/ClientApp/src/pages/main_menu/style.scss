@@ -374,6 +374,22 @@
     font-weight: 500;
     padding: 0.5rem 4rem;
     border-radius: 2px;
+    max-width: 170px;
+}
+
+.profile-change-password-box {
+    margin-top: 1rem;
+    label {
+        margin-bottom: 0.25rem;
+        display: block;
+    }
+    button {
+        background-color: $mild-brown;
+        color: $brownish-white;
+        &:hover {
+            background-color: $mild-mild-brown;
+        }
+    }
 }
 
 .profile-change-pfp-box {
