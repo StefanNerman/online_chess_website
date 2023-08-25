@@ -12,7 +12,7 @@ const StatsTop = ({rank, ...rest}: params) => {
         <div className='proflie-stats-top stats-panel-frame' {...rest}>
             <div>
                 <div className='image-small-div'></div>
-                <h3>1243</h3>
+                <h3>{rank}</h3>
             </div>
         </div>
     )

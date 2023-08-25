@@ -1,15 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProfilePicture from './ProfilePicture'
 import RoundEdgeButton from '../../../components/round_edge_button'
 import { checkString } from '../../landing_page/LandingPage'
 import StatsTop from './StatsTop'
 import StatsBottom from './StatsBottom'
+import * as api from '../../../api/http_calls'
 
+
+interface profileInfo {
+    data: {
+        username: string
+        userRank: number
+        picture: string
+    }
+}
+
+interface gameStats {
+    data: {
+        id: number
+        games_total: number
+        games_won: number
+        games_lost: number
+        draws: number
+    }
+}
 
 const ProfilePage = () => {
 
     const [changeMade, setChangeMade] = useState(false)
     const [invalidName, setInvalidName] = useState(false)
+
+    const [ statsRank, setStatsRank ] = useState(0)
+    const [ statsTotal, setStatsTotal ] = useState(0)
+    const [ statsWins, setStatsWins ] = useState(0)
+    const [ statsLosses, setStatsLosses ] = useState(0)
+    const [ statsDraws, setStatsDraws ] = useState(0)
+
+    useEffect(() => {
+        populateStatisticsPanel()
+    }, [])
 
     function nameInputAction(e: any){
         //check if username taken (or check when user clicks save)
@@ -27,6 +56,19 @@ const ProfilePage = () => {
         setChangeMade(true)
     }
 
+    async function populateStatisticsPanel(){
+        if(sessionStorage.getItem('loginOperation') === 'offline') return
+        const userId = sessionStorage.getItem('userId')
+        let profile: profileInfo = await api.axiosGet(`api/profiles/${userId}`)
+        let gameStats: gameStats = await api.axiosGet(`api/user_game_data/${userId}`)
+        console.log(profile, gameStats)
+        setStatsRank(profile.data.userRank)
+        setStatsTotal(gameStats.data.games_total)
+        setStatsWins(gameStats.data.games_won)
+        setStatsLosses(gameStats.data.games_lost)
+        setStatsDraws(gameStats.data.draws)
+    }
+
 
     return (  
         <div id='profile-frame'>
@@ -40,8 +82,8 @@ const ProfilePage = () => {
                 
                 <div className='profile-bottom-stats'>
                     <h4>Player statistics</h4>
-                    <StatsTop rank={1432}/>
-                    <StatsBottom games={85} wins={46} losses={39} draws={0}/>
+                    <StatsTop rank={statsRank}/>
+                    <StatsBottom games={statsTotal} wins={statsWins} losses={statsLosses} draws={statsDraws}/>
                 </div>
 
                 <div className='dotted-line'></div>
