@@ -36,14 +36,15 @@ const ProfilePage = () => {
     const [ statsLosses, setStatsLosses ] = useState(0)
     const [ statsDraws, setStatsDraws ] = useState(0)
 
+    let inputValue: string
+
     useEffect(() => {
         populateStatisticsPanel()
     }, [])
 
     function nameInputAction(e: any){
-        //check if username taken (or check when user clicks save)
         let input: string = e.target.value
-        if(input === '') {
+        if(input === '' || input === sessionStorage.getItem('username')) {
             setInvalidName(false)
             return setChangeMade(false)
         }
@@ -54,6 +55,7 @@ const ProfilePage = () => {
         }
         setInvalidName(false)
         setChangeMade(true)
+        inputValue = input
     }
 
     async function populateStatisticsPanel(){
@@ -66,6 +68,25 @@ const ProfilePage = () => {
         setStatsWins(gameStats.data.games_won)
         setStatsLosses(gameStats.data.games_lost)
         setStatsDraws(gameStats.data.draws)
+    }
+
+    async function saveChanges(){
+        //check if user only changed once parameter to avoid unnecessary api calls
+
+        await api.axiosGet(`api/signup/${inputValue ? inputValue : ''}`)
+        .then(response => {
+            if(!response.data){         
+                return alert('Username taken!')
+            }
+            changeName(inputValue)
+        })
+        .catch(response => {console.log('ERROR: ', response)})
+
+        //check the pfp here
+    }
+
+    async function changeName(name: string){
+        
     }
 
 
@@ -107,7 +128,7 @@ const ProfilePage = () => {
                 {
                 changeMade &&
                 <div id='page-exit-options-container'>
-                    <RoundEdgeButton text='Save' onClick={() => {/*save the changes to database*/}}/>
+                    <RoundEdgeButton text='Save' onClick={() => {saveChanges()}}/>
                     <RoundEdgeButton text='Cancel' onClick={() => {/*navigate to menu or reload profile page*/}}/>
                 </div>
                 }
