@@ -17,6 +17,7 @@ export function checkString(str: string, isPassword: boolean): string{
     if(str.includes(`'`)) return `', " and ${'`'} signs are not allowed!`
     if(str.includes(`"`)) return `', " and ${'`'} signs are not allowed!`
     if(str.includes('`')) return `', " and ${'`'} signs are not allowed!`
+    if(str.includes(':')) return `: sign is not allowed!`
     if(str.includes(' ')) return `Please do not use spaces!`
     return ''
 }

@@ -33,4 +33,17 @@ public class LoginController : ControllerBase
         }
         return 0;
     }
+
+    [HttpGet("{id_and_name}")]
+
+    public async Task<bool> ChangeUsername(string id_and_name)
+    {
+        Console.WriteLine("=======> " + id_and_name);
+        string[] words = id_and_name.Split(":");
+
+        int userId = int.Parse(words[0]);
+        string newName = words[1];
+
+        return await AutentificationLogin.ChangeUserName(userId, newName, ConnectionStrings.GetString("defaultString"));
+    }
 }

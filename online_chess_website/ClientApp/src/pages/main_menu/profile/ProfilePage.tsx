@@ -72,7 +72,7 @@ const ProfilePage = () => {
 
     async function saveChanges(){
         //check if user only changed once parameter to avoid unnecessary api calls
-
+        
         await api.axiosGet(`api/signup/${inputValue ? inputValue : ''}`)
         .then(response => {
             if(!response.data){         
@@ -86,7 +86,10 @@ const ProfilePage = () => {
     }
 
     async function changeName(name: string){
-        
+        await api.axiosGet(`api/login/${sessionStorage.getItem('userId') + ':' + name}`)
+        .then(response => {
+            console.log(response)
+        })
     }
 
 

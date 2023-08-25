@@ -18,4 +18,12 @@ public class AutentificationLogin
         if (matches.Count < 1) return 0;
         return matches[0].userId;
     }
+
+    public static async Task<bool> ChangeUserName(int userId, string newUsername, string connectionString)
+    {
+        MySQL db = new MySQL();
+        string sql = $"UPDATE user_credidentals SET userName = '{newUsername}' WHERE userId = {userId}";
+        await db.SaveData(sql, new { }, connectionString);
+        return true;
+    }
 }
