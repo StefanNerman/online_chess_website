@@ -113,6 +113,7 @@ const ProfilePage = () => {
 
                 <div className='dotted-line'></div>
 
+
                 <div className='profile-bottom-settings'>
                     <h4>Profile settings</h4>
                     <div className='profile-change-name-box'>
