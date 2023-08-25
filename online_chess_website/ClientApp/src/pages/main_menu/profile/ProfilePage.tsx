@@ -61,7 +61,6 @@ const ProfilePage = () => {
         const userId = sessionStorage.getItem('userId')
         let profile: profileInfo = await api.axiosGet(`api/profiles/${userId}`)
         let gameStats: gameStats = await api.axiosGet(`api/user_game_data/${userId}`)
-        console.log(profile, gameStats)
         setStatsRank(profile.data.userRank)
         setStatsTotal(gameStats.data.games_total)
         setStatsWins(gameStats.data.games_won)
@@ -75,7 +74,7 @@ const ProfilePage = () => {
             <div className='profile-top-frame'>
                 <ProfilePicture image='image1' id='profile-page-pfp'/>
                 <div className='profile-top-name-container'>
-                    DoomDoober54
+                    {sessionStorage.getItem('username')}
                 </div>
             </div>
             <div className='profile-bottom-frame'>
@@ -93,7 +92,7 @@ const ProfilePage = () => {
                     <div className='profile-change-name-box'>
                         {invalidName && <div></div>}
                         <label>Change name</label>
-                        <input type='text' placeholder='DoomDoober54' onChange={(e) => {nameInputAction(e)}}></input>
+                        <input type='text' placeholder={sessionStorage.getItem('username')!} onChange={(e) => {nameInputAction(e)}}></input>
                     </div>
                     <div className='profile-change-pfp-box'>
                         <label>Change profile picture</label>
