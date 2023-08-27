@@ -38,7 +38,6 @@ public class LoginController : ControllerBase
 
     public async Task<bool> ChangeUsername(string id_and_name)
     {
-        Console.WriteLine("=======> " + id_and_name);
         string[] words = id_and_name.Split(":");
 
         int userId = int.Parse(words[0]);

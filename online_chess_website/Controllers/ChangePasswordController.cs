@@ -14,7 +14,6 @@ public class ChangePasswordController : ControllerBase
     [HttpGet("{id_and_password}")]
     public async Task<int> Get(string id_and_password)
     {
-        Console.WriteLine("=======> " + id_and_password);
         string[] words = id_and_password.Split(":");
 
         int userId = int.Parse(words[0]);

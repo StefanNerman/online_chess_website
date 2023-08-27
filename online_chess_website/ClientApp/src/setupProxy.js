@@ -12,7 +12,8 @@ const context =  [
   "/api/profiles",
   "/api/user_game_data",
   "/api/rating",
-  "/api/websocket"
+  "/api/websocket",
+  "/api/change_password"
 ];
 
 module.exports = function(app) {
