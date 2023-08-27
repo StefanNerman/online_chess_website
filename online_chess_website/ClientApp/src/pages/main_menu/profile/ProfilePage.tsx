@@ -124,7 +124,10 @@ const ProfilePage = () => {
     }
 
     function changePassword(password: string){
-
+        api.axiosGet(`api/change_password/${sessionStorage.getItem('userId') + ':' + password}`)
+        .then((response) => {
+            console.log(response)
+        })
     }
 
 
