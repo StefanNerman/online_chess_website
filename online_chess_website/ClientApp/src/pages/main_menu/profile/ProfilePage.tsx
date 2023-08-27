@@ -39,6 +39,9 @@ const ProfilePage = () => {
 
     let inputValue: string
 
+    let newPassword: string 
+    let confirmNewPassword: string
+
     useEffect(() => {
         populateStatisticsPanel()
     }, [])
@@ -102,10 +105,25 @@ const ProfilePage = () => {
     }
 
     function passwordInputAction(e: any, inputIndex: number){
-
+        let input = e.target.value
+        if(inputIndex === 0){
+            return newPassword = input
+        }
+        confirmNewPassword = input
     }
 
-    function confirmPasswordChange(e: any){
+    function confirmPasswordChange(){
+        if(newPassword !== confirmNewPassword){
+            return alert('Provided passwords do not match!')
+        }
+        let stringCheck = checkString(newPassword, true)
+        if(stringCheck){
+            return alert(stringCheck)
+        }
+        changePassword(newPassword)
+    }
+
+    function changePassword(password: string){
 
     }
 
@@ -154,7 +172,7 @@ const ProfilePage = () => {
                         <label>Confirm new password</label>
                         <input type='password' onChange={(e) => {passwordInputAction(e, 1)}}></input>
                         <div>
-                            <button className='profile-settings-button profile-settings-button-brown' onClick={(e) => {confirmPasswordChange(e)}}>Confirm</button>
+                            <button className='profile-settings-button profile-settings-button-brown' onClick={() => {confirmPasswordChange()}}>Confirm</button>
                             <button className='profile-settings-button profile-settings-button-brown' onClick={() => {toggleChangePassword()}}>Cancel</button>
                         </div>
                     </div>
