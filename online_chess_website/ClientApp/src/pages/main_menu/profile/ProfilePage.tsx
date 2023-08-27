@@ -29,6 +29,7 @@ const ProfilePage = () => {
 
     const [changeMade, setChangeMade] = useState(false)
     const [invalidName, setInvalidName] = useState(false)
+    const [changePasswordToggle, setChangePasswordToggle] = useState(false)
 
     const [ statsRank, setStatsRank ] = useState(0)
     const [ statsTotal, setStatsTotal ] = useState(0)
@@ -91,7 +92,21 @@ const ProfilePage = () => {
             console.log(response)
             sessionStorage.setItem('username', name)
             setChangeMade(false)
+            alert('Username changed.')
         })
+    }
+
+    function toggleChangePassword() {
+        if(changePasswordToggle) return setChangePasswordToggle(false)
+        setChangePasswordToggle(true)
+    }
+
+    function passwordInputAction(e: any, inputIndex: number){
+
+    }
+
+    function confirmPasswordChange(e: any){
+
     }
 
 
@@ -116,18 +131,38 @@ const ProfilePage = () => {
 
                 <div className='profile-bottom-settings'>
                     <h4>Profile settings</h4>
-                    <div className='profile-change-name-box'>
+                    <div className='profile-change-name-box profile-setting-textbox'>
                         {invalidName && <div></div>}
                         <label>Change name</label>
                         <input type='text' placeholder={sessionStorage.getItem('username')!} onChange={(e) => {nameInputAction(e)}}></input>
                     </div>
+
+                    {
+                    changePasswordToggle ||
                     <div className='profile-change-password-box'>
                         <label>Change password</label>
-                        <button className='profile-settings-button'>Change</button>
+                        <button className='profile-settings-button profile-settings-button-brown' onClick={() => {toggleChangePassword()}}>Change</button>
                     </div>
+
+                    }
+
+                    {
+                    changePasswordToggle &&
+                    <div id='change-password-box' className='profile-setting-textbox'>
+                        <label>New password</label>
+                        <input type='password' onChange={(e) => {passwordInputAction(e, 0)}}></input>
+                        <label>Confirm new password</label>
+                        <input type='password' onChange={(e) => {passwordInputAction(e, 1)}}></input>
+                        <div>
+                            <button className='profile-settings-button profile-settings-button-brown' onClick={(e) => {confirmPasswordChange(e)}}>Confirm</button>
+                            <button className='profile-settings-button profile-settings-button-brown' onClick={() => {toggleChangePassword()}}>Cancel</button>
+                        </div>
+                    </div>
+                    }
+
                     <div className='profile-change-pfp-box'>
                         <label>Change profile picture</label>
-                        <button className='profile-settings-button'>Select</button>
+                        <button className='profile-settings-button profile-settings-button-brown'>Select</button>
                     </div>
                     <div className='profile-delete-box'>
                         <label>Delete profile</label>

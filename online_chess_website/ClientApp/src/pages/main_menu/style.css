@@ -370,10 +370,11 @@
   background-color: white;
   line-height: 11px;
 }
-.profile-change-name-box label {
+
+.profile-setting-textbox label {
   margin-top: 0;
 }
-.profile-change-name-box input {
+.profile-setting-textbox input {
   padding: 0.75rem 0.5rem;
   border-radius: 2px;
   width: 100%;
@@ -381,13 +382,13 @@
   background-color: rgb(128, 70, 70);
   color: rgb(218, 183, 183);
 }
-.profile-change-name-box input::-moz-placeholder {
+.profile-setting-textbox input::-moz-placeholder {
   color: rgb(218, 183, 183);
 }
-.profile-change-name-box input:-ms-input-placeholder {
+.profile-setting-textbox input:-ms-input-placeholder {
   color: rgb(218, 183, 183);
 }
-.profile-change-name-box input::placeholder {
+.profile-setting-textbox input::placeholder {
   color: rgb(218, 183, 183);
 }
 
@@ -398,6 +399,14 @@
   max-width: 170px;
 }
 
+.profile-settings-button-brown {
+  background-color: rgb(112, 62, 62);
+  color: rgb(218, 183, 183);
+}
+.profile-settings-button-brown:hover {
+  background-color: rgb(128, 70, 70);
+}
+
 .profile-change-password-box {
   margin-top: 1rem;
 }
@@ -405,12 +414,19 @@
   margin-bottom: 0.25rem;
   display: block;
 }
-.profile-change-password-box button {
-  background-color: rgb(112, 62, 62);
-  color: rgb(218, 183, 183);
+
+#change-password-box {
+  max-width: 520px;
+  margin-top: 1.5rem;
 }
-.profile-change-password-box button:hover {
-  background-color: rgb(128, 70, 70);
+#change-password-box div {
+  display: flex;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+#change-password-box div button {
+  padding: 0.5rem 2rem !important;
 }
 
 .profile-change-pfp-box {
@@ -419,13 +435,6 @@
 .profile-change-pfp-box label {
   margin-bottom: 0.25rem;
   display: block;
-}
-.profile-change-pfp-box button {
-  background-color: rgb(112, 62, 62);
-  color: rgb(218, 183, 183);
-}
-.profile-change-pfp-box button:hover {
-  background-color: rgb(128, 70, 70);
 }
 
 .profile-delete-box {
@@ -552,6 +561,9 @@
     border-bottom: 1px dotted rgb(112, 62, 62);
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+  }
+  #change-password-box {
+    max-width: none;
   }
   .profile-bottom-settings {
     padding: 0 0.5rem;

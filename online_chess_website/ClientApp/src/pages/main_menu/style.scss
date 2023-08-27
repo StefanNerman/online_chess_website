@@ -353,6 +353,9 @@
             }
         }
     }
+}
+
+.profile-setting-textbox {
     label {
         margin-top: 0;
     }
@@ -377,17 +380,32 @@
     max-width: 170px;
 }
 
+.profile-settings-button-brown {
+    background-color: $mild-brown;
+    color: $brownish-white;
+    &:hover {
+        background-color: $mild-mild-brown;
+    }
+}
+
 .profile-change-password-box {
     margin-top: 1rem;
     label {
         margin-bottom: 0.25rem;
         display: block;
     }
-    button {
-        background-color: $mild-brown;
-        color: $brownish-white;
-        &:hover {
-            background-color: $mild-mild-brown;
+}
+
+#change-password-box {
+    max-width: 520px;
+    margin-top: 1.5rem;
+    div {
+        display: flex;
+        margin-top: 0.5rem;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        button {
+            padding: 0.5rem 2rem !important;
         }
     }
 }
@@ -397,13 +415,6 @@
     label {
         margin-bottom: 0.25rem;
         display: block;
-    }
-    button {
-        background-color: $mild-brown;
-        color: $brownish-white;
-        &:hover {
-            background-color: $mild-mild-brown;
-        }
     }
 }
 
@@ -531,6 +542,10 @@
         border-bottom: 1px dotted $mild-brown;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
+    }
+
+    #change-password-box {
+        max-width: none;
     }
 
 
