@@ -128,9 +128,10 @@ const ProfilePage = () => {
         api.axiosGet(`api/change_password/${sessionStorage.getItem('userId') + ':' + password}`)
         .then((response) => {
             console.log(response)
-            if(response.data === 0) return alert(`You can't set your current password as your old one!`)
-            if(response.data === 1) return alert(`An error has occured while changing your password. Password not changed.`)
-            if(response.data === 2) return alert(`Password changed succesfully!`)
+            if(response.data === 0) alert(`You can't set your current password as your old one!`)
+            if(response.data === 1) alert(`An error has occured while changing your password. Password not changed.`)
+            if(response.data === 2) alert(`Password changed succesfully!`)
+            setChangePasswordToggle(false)
         })
     }
 
