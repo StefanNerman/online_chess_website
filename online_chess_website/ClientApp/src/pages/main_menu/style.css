@@ -437,6 +437,46 @@
   display: block;
 }
 
+.change-pfp-popup {
+  margin-top: 1rem;
+}
+.change-pfp-popup .top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.change-pfp-popup .top .back-selector {
+  height: 50px;
+  width: 30px;
+  background-color: blue;
+}
+.change-pfp-popup .top .front-selector {
+  height: 50px;
+  width: 30px;
+  background-color: blue;
+}
+.change-pfp-popup .bottom {
+  display: flex;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.change-pfp-popup .bottom button {
+  padding: 0.5rem 2rem !important;
+}
+
+.pfp-selecor-image-box {
+  width: 70px;
+  height: 70px;
+  background-color: black;
+}
+.pfp-selecor-image-box div {
+  background-color: grey;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+
 .profile-delete-box {
   margin-top: 1rem;
 }

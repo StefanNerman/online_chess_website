@@ -410,6 +410,9 @@
     }
 }
 
+
+
+
 .profile-change-pfp-box {
     margin-top: 1rem;
     label {
@@ -417,6 +420,50 @@
         display: block;
     }
 }
+
+.change-pfp-popup {
+    margin-top: 1rem;
+
+    .top {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .back-selector {
+            height: 50px;
+            width: 30px;
+            background-color: blue;
+        }
+
+        .front-selector {
+            height: 50px;
+            width: 30px;
+            background-color: blue;
+        }
+    }
+    .bottom {
+        display: flex;
+        margin-top: 0.5rem;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        button {
+            padding: 0.5rem 2rem !important;
+        }
+    }
+}
+
+.pfp-selecor-image-box {
+    width: 70px;
+    height: 70px;
+    background-color: black;
+    div {
+        background-color: grey;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
 
 .profile-delete-box {
     margin-top: 1rem;
@@ -433,6 +480,7 @@
     }
 }
 
+
 #page-exit-options-container {
     position: absolute;
     bottom: 1rem;
@@ -440,6 +488,11 @@
     display: flex;
     gap: 0.25rem;
 }
+
+
+
+
+
 
 //news
 #news-frame {

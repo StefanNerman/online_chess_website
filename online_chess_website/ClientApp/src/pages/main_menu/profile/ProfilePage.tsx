@@ -5,6 +5,7 @@ import { checkString } from '../../landing_page/LandingPage'
 import StatsTop from './StatsTop'
 import StatsBottom from './StatsBottom'
 import * as api from '../../../api/http_calls'
+import PfpSelectorBox from './PfpSelectorBox'
 
 
 interface profileInfo {
@@ -30,6 +31,8 @@ const ProfilePage = () => {
     const [changeMade, setChangeMade] = useState(false)
     const [invalidName, setInvalidName] = useState(false)
     const [changePasswordToggle, setChangePasswordToggle] = useState(false)
+
+    const [changePfpPopupToggle, setChangePfpPopupToggle] = useState(false)
 
     const [ statsRank, setStatsRank ] = useState(0)
     const [ statsTotal, setStatsTotal ] = useState(0)
@@ -135,6 +138,10 @@ const ProfilePage = () => {
         })
     }
 
+    function changePfp(){
+
+    }
+
 
     return (  
         <div id='profile-frame'>
@@ -186,10 +193,38 @@ const ProfilePage = () => {
                     </div>
                     }
 
+                    {
+
+                    changePfpPopupToggle ||
+
                     <div className='profile-change-pfp-box'>
                         <label>Change profile picture</label>
-                        <button className='profile-settings-button profile-settings-button-brown'>Select</button>
+                        <button className='profile-settings-button profile-settings-button-brown' onClick={() => {setChangePfpPopupToggle(true)}}>Select</button>
                     </div>
+                    }
+
+                    {
+                        
+                    changePfpPopupToggle &&
+
+                    <div className='change-pfp-popup'>
+                        <label>Select new picture</label>
+                        <div className='top'>
+                            <div className='back-selector'></div>
+                            <PfpSelectorBox image={''} onClick={() => {}} id='pfp-selection-image-1' />
+                            <PfpSelectorBox image={''} onClick={() => {}} id='pfp-selection-image-2' />
+                            <PfpSelectorBox image={''} onClick={() => {}} id='pfp-selection-image-3' />
+                            <div className='front-selector'></div>
+                        </div>
+                        <div className='bottom'>
+                            <button className='profile-settings-button profile-settings-button-brown' onClick={() => {}}>Confirm</button>
+                            <button className='profile-settings-button profile-settings-button-brown' onClick={() => {setChangePfpPopupToggle(false)}}>Cancel</button>
+                        </div>
+                    </div>
+                    }
+
+
+
                     <div className='profile-delete-box'>
                         <label>Delete profile</label>
                         <button className='profile-settings-button'>Delete</button>
