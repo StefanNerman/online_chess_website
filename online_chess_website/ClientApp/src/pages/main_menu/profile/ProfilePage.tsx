@@ -176,7 +176,7 @@ const ProfilePage = () => {
                     changePasswordToggle ||
                     <div className='profile-change-password-box'>
                         <label>Change password</label>
-                        <button className='profile-settings-button profile-settings-button-brown' onClick={() => {toggleChangePassword()}}>Change</button>
+                        <button className='profile-settings-button profile-settings-button-brown' onClick={() => {toggleChangePassword();setChangePfpPopupToggle(false)}}>Change</button>
                     </div>
 
                     }
@@ -201,7 +201,7 @@ const ProfilePage = () => {
 
                     <div className='profile-change-pfp-box'>
                         <label>Change profile picture</label>
-                        <button className='profile-settings-button profile-settings-button-brown' onClick={() => {setChangePfpPopupToggle(true)}}>Select</button>
+                        <button className='profile-settings-button profile-settings-button-brown' onClick={() => {setChangePfpPopupToggle(true);setChangePasswordToggle(false)}}>Select</button>
                     </div>
                     }
 
