@@ -429,16 +429,35 @@
         align-items: center;
         gap: 0.5rem;
 
-        .back-selector {
+        .selector {
             height: 50px;
             width: 30px;
-            background-color: blue;
+            transition-duration: 200ms;
+            scale: 0.68;
+            cursor: pointer;
+            &:hover {
+                scale: 0.75;
+            }
+            div {
+                background-image: url(../../assets/backbrownarrow.png);
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 100%;
+            }
+        }
+
+        .back-selector {
+    
+            div {
+                rotate: 45deg;
+            }
         }
 
         .front-selector {
-            height: 50px;
-            width: 30px;
-            background-color: blue;
+            
+            div {
+                rotate: 225deg;
+            }
         }
     }
     .bottom {
@@ -455,7 +474,6 @@
 .pfp-selecor-image-box {
     width: 70px;
     height: 70px;
-    background-color: black;
     div {
         background-color: grey;
         border-radius: 50%;
@@ -465,7 +483,9 @@
 }
 
 .pfp-selector-selected {
-    border: 2px solid red;
+    div {
+        border: 2px solid $mild-brown;
+    }
 }
 
 
@@ -522,6 +542,21 @@
     }
     .navbar-button p {
         font-size: 100%;
+    }
+    .proflie-stats-bottom {
+        min-width: 280px;
+    }
+    .change-pfp-popup {
+        .top {
+            gap: 0.25rem
+        }
+        .bottom {
+            gap: 0.25rem
+        }
+    }
+    .pfp-selecor-image-box {
+        width: 50px;
+        height: 50px;
     }
 }
 

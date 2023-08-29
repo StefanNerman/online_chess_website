@@ -140,6 +140,11 @@ const ProfilePage = () => {
         })
     }
 
+
+    function confirmChangePfp() {
+
+    }
+
     function changePfp(){
 
     }
@@ -212,14 +217,18 @@ const ProfilePage = () => {
                     <div className='change-pfp-popup'>
                         <label>Select new picture</label>
                         <div className='top'>
-                            <div className='back-selector' onClick={() => {pfpSelectorState === 0 || pfpSelectorState === 1 ? setPfpSelectorState(0) : setPfpSelectorState(1)}}></div>
-                            <PfpSelectorBox image={''} onClick={() => {}} selected={pfpSelectorState === 0} id='pfp-selection-image-1'/>
-                            <PfpSelectorBox image={''} onClick={() => {}} selected={pfpSelectorState === 1} id='pfp-selection-image-2' />
-                            <PfpSelectorBox image={''} onClick={() => {}} selected={pfpSelectorState === 2} id='pfp-selection-image-3' />
-                            <div className='front-selector' onClick={() => {pfpSelectorState === 2 || pfpSelectorState === 1 ? setPfpSelectorState(2) : setPfpSelectorState(1)}}></div>
+                            <div className='back-selector selector' onClick={() => {pfpSelectorState === 0 || pfpSelectorState === 1 ? setPfpSelectorState(0) : setPfpSelectorState(1)}}>
+                                <div></div>
+                            </div>
+                            <PfpSelectorBox image={''} selected={pfpSelectorState === 0} id='pfp-selection-image-1'/>
+                            <PfpSelectorBox image={''} selected={pfpSelectorState === 1} id='pfp-selection-image-2' />
+                            <PfpSelectorBox image={''} selected={pfpSelectorState === 2} id='pfp-selection-image-3' />
+                            <div className='front-selector selector' onClick={() => {pfpSelectorState === 2 || pfpSelectorState === 1 ? setPfpSelectorState(2) : setPfpSelectorState(1)}}>
+                                <div></div>
+                            </div>
                         </div>
                         <div className='bottom'>
-                            <button className='profile-settings-button profile-settings-button-brown' onClick={() => {}}>Confirm</button>
+                            <button className='profile-settings-button profile-settings-button-brown' onClick={() => {confirmChangePfp()}}>Confirm</button>
                             <button className='profile-settings-button profile-settings-button-brown' onClick={() => {setChangePfpPopupToggle(false)}}>Cancel</button>
                         </div>
                     </div>

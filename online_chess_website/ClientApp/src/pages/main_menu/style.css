@@ -445,15 +445,27 @@
   align-items: center;
   gap: 0.5rem;
 }
-.change-pfp-popup .top .back-selector {
+.change-pfp-popup .top .selector {
   height: 50px;
   width: 30px;
-  background-color: blue;
+  transition-duration: 200ms;
+  scale: 0.68;
+  cursor: pointer;
 }
-.change-pfp-popup .top .front-selector {
-  height: 50px;
-  width: 30px;
-  background-color: blue;
+.change-pfp-popup .top .selector:hover {
+  scale: 0.75;
+}
+.change-pfp-popup .top .selector div {
+  background-image: url(../../assets/backbrownarrow.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+}
+.change-pfp-popup .top .back-selector div {
+  rotate: 45deg;
+}
+.change-pfp-popup .top .front-selector div {
+  rotate: 225deg;
 }
 .change-pfp-popup .bottom {
   display: flex;
@@ -468,7 +480,6 @@
 .pfp-selecor-image-box {
   width: 70px;
   height: 70px;
-  background-color: black;
 }
 .pfp-selecor-image-box div {
   background-color: grey;
@@ -477,8 +488,8 @@
   height: 100%;
 }
 
-.pfp-selector-selected {
-  border: 2px solid red;
+.pfp-selector-selected div {
+  border: 2px solid rgb(112, 62, 62);
 }
 
 .profile-delete-box {
@@ -528,6 +539,19 @@
   }
   .navbar-button p {
     font-size: 100%;
+  }
+  .proflie-stats-bottom {
+    min-width: 280px;
+  }
+  .change-pfp-popup .top {
+    gap: 0.25rem;
+  }
+  .change-pfp-popup .bottom {
+    gap: 0.25rem;
+  }
+  .pfp-selecor-image-box {
+    width: 50px;
+    height: 50px;
   }
 }
 @media screen and (max-width: 800px) {
