@@ -201,13 +201,11 @@
   padding: 0 0.5rem;
 }
 
-.proflie-image-big {
+.profile-image-big {
   width: 145px;
   height: 145px;
   border-radius: 50%;
   margin: 0;
-  background-color: black;
-  background-image: url(../../assets/logo_whiteknight.png);
 }
 
 .profile-top-name-container {

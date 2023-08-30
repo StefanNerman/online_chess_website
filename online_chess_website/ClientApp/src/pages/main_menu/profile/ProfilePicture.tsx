@@ -9,7 +9,7 @@ type params = {
 const ProfilePicture = ({image, ...rest}: params) => {
     return (  
         <div className='profile-top-image-container' {...rest}>
-            <div className='proflie-image-big'></div>
+            <div className={'profile-image-big ' + image}></div>
             <div className='edit-label-small'></div>
         </div>
     );

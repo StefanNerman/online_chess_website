@@ -13,7 +13,7 @@ const PlayerInfoPanel = (props: props) => {
 
     return (  
         <div className='playerinfobox-frame'>
-            <img className='playerinfobox-image' src={props.picture}></img>
+            <div className={'playerinfobox-image profile-image-40px-' + props.picture}></div>
             <div className='playerinfobox-info'>
                 <h4>{props.username}</h4>
                 <p>{props.rank}</p>

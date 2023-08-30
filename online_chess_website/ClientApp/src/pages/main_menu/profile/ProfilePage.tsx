@@ -153,7 +153,7 @@ const ProfilePage = () => {
     return (  
         <div id='profile-frame'>
             <div className='profile-top-frame'>
-                <ProfilePicture image='image1' id='profile-page-pfp'/>
+                <ProfilePicture image='profile-image-145px-1' id='profile-page-pfp'/>
                 <div className='profile-top-name-container'>
                     {sessionStorage.getItem('username')}
                 </div>

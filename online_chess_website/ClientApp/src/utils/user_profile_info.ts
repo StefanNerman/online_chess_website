@@ -1,9 +1,9 @@
 import * as api from '../api/http_calls'
 
 interface profileInfo {
-    username: string
+    userId: number
     userRank: number
-    picture: string
+    profilePicture: string
 }
 
 export async function getProfileByUserId(userId: number): Promise<profileInfo> {

@@ -251,6 +251,20 @@
   background-size: contain;
 }
 
+.profile-image-40px-1 {
+  background-color: black;
+  background-image: url(./assets/logo_whiteknight.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profile-image-145px-1 {
+  background-color: black;
+  background-image: url(./assets/logo_whiteknight.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .rotate-neg135 {
   rotate: -135px;
 }
