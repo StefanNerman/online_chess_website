@@ -8,10 +8,14 @@ type params = {
 } & React.ComponentProps<'div'>
 
 const PfpSelectorBox = ({image, selected, ...rest}: params) => {
+
+    let classString = selected ? 'pfp-selector-image-box pfp-selector-selected ' : 'pfp-selector-image-box '
+
     return (  
-        <div className={selected ? 'pfp-selecor-image-box pfp-selector-selected' : 'pfp-selecor-image-box'} {...rest}>
-            <div>
-                
+
+        <div className={classString} {...rest}>
+            <div className={'profile-image-60px-' + image}>
+    
             </div>
         </div>
     )

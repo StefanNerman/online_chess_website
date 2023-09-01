@@ -252,24 +252,76 @@
 }
 
 .profile-image-40px-1 {
-  background-color: black;
-  background-image: url(./assets/logo_whiteknight.png);
+  background-color: black !important;
+  background-image: url(./assets/whiteknight-40x40.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .profile-image-60px-1 {
-  background-color: black;
-  background-image: url(./assets/logo_whiteknight.png);
+  background-color: black !important;
+  background-image: url(./assets/whiteknight-60x60.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .profile-image-145px-1 {
-  background-color: black;
-  background-image: url(./assets/logo_whiteknight.png);
+  background-color: black !important;
+  background-image: url(./assets/whiteknight-145x145.png);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.profile-image-40px-2 {
+  background-color: black !important;
+  background-image: url(./assets/whiterook-40x40.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 80%;
+  background-position: center;
+}
+
+.profile-image-60px-2 {
+  background-color: black !important;
+  background-image: url(./assets/whiterook-60x60.png);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+}
+
+.profile-image-145px-2 {
+  background-color: black !important;
+  background-image: url(./assets/whiterook-145x145.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 80%;
+  background-position: center;
+}
+
+.profile-image-40px-3 {
+  background-color: black !important;
+  background-image: url(./assets/bishopwhite-40x40.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 80%;
+  background-position: center;
+}
+
+.profile-image-60px-3 {
+  background-color: black !important;
+  background-image: url(./assets/bishopwhite-60x60.png);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
+}
+
+.profile-image-145px-3 {
+  background-color: black !important;
+  background-image: url(./assets/bishopwhite-145x145.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 80%;
+  background-position: center;
 }
 
 .rotate-neg135 {

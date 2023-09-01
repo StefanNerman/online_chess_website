@@ -475,11 +475,11 @@
   padding: 0.5rem 2rem !important;
 }
 
-.pfp-selecor-image-box {
+.pfp-selector-image-box {
   width: 60px;
   height: 60px;
 }
-.pfp-selecor-image-box div {
+.pfp-selector-image-box div {
   background-color: grey;
   border-radius: 50%;
   width: 100%;

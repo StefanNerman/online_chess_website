@@ -220,9 +220,9 @@ const ProfilePage = () => {
                             <div className='back-selector selector' onClick={() => {pfpSelectorState === 0 || pfpSelectorState === 1 ? setPfpSelectorState(0) : setPfpSelectorState(1)}}>
                                 <div></div>
                             </div>
-                            <PfpSelectorBox image={''} selected={pfpSelectorState === 0} id='pfp-selection-image-1'/>
-                            <PfpSelectorBox image={''} selected={pfpSelectorState === 1} id='pfp-selection-image-2' />
-                            <PfpSelectorBox image={''} selected={pfpSelectorState === 2} id='pfp-selection-image-3' />
+                            <PfpSelectorBox image={'1'} selected={pfpSelectorState === 0} id='pfp-selection-image-1'/>
+                            <PfpSelectorBox image={'2'} selected={pfpSelectorState === 1} id='pfp-selection-image-2' />
+                            <PfpSelectorBox image={'3'} selected={pfpSelectorState === 2} id='pfp-selection-image-3' />
                             <div className='front-selector selector' onClick={() => {pfpSelectorState === 2 || pfpSelectorState === 1 ? setPfpSelectorState(2) : setPfpSelectorState(1)}}>
                                 <div></div>
                             </div>
