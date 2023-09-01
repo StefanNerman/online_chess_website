@@ -166,10 +166,6 @@ const ProfilePage = () => {
         })
     }
 
-    function changePfp(){
-
-    }
-
 
     return (  
         <div id='profile-frame'>
