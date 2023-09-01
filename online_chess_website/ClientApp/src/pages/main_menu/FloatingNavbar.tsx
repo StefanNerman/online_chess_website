@@ -25,6 +25,7 @@ const FloatingNavbar = (params: props) => {
         sessionStorage.getItem('loginOperation') === 'offline' || getProfileByUserId(parseInt(sessionStorage.getItem('userId')!))
         .then((response) => {
             setProfile(response)
+            sessionStorage.setItem('pfp', response.profilePicture)
             console.log(response)
         })
         .catch(() => alert('could not find profile data'))

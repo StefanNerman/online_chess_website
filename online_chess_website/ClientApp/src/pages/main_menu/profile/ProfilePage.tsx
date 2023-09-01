@@ -6,6 +6,7 @@ import StatsTop from './StatsTop'
 import StatsBottom from './StatsBottom'
 import * as api from '../../../api/http_calls'
 import PfpSelectorBox from './PfpSelectorBox'
+import { getProfileByUserId } from '../../../utils/user_profile_info'
 
 
 interface profileInfo {
@@ -36,6 +37,8 @@ const ProfilePage = () => {
 
     const [pfpSelectorState, setPfpSelectorState] = useState(0)
 
+    const [currentPfp, setCurrentPfp] = useState('')
+
     const [ statsRank, setStatsRank ] = useState(0)
     const [ statsTotal, setStatsTotal ] = useState(0)
     const [ statsWins, setStatsWins ] = useState(0)
@@ -49,6 +52,14 @@ const ProfilePage = () => {
 
     useEffect(() => {
         populateStatisticsPanel()
+
+        getProfileByUserId(parseInt(sessionStorage.getItem('userId')!))
+        .then((response) => {
+            setCurrentPfp(response.profilePicture)
+            sessionStorage.setItem('pfp', response.profilePicture)
+            console.log(response)
+        })
+        .catch(() => alert('could not find profile data'))
     }, [])
 
     function nameInputAction(e: any){
@@ -142,7 +153,17 @@ const ProfilePage = () => {
 
 
     function confirmChangePfp() {
-
+        let pfpIndex = pfpSelectorState + 1
+        let sendData = {
+            userId: parseInt(sessionStorage.getItem('userId')!),
+            userRank: 0,
+            profilePicture: pfpIndex.toString()
+        }
+        if(pfpIndex.toString() === sessionStorage.getItem('pfp')) return
+        api.axiosPost('api/profiles/update', sendData)
+        .then(response => {
+            alert('Profile picture changed successfully, refresh page to see.')
+        })
     }
 
     function changePfp(){
@@ -153,7 +174,7 @@ const ProfilePage = () => {
     return (  
         <div id='profile-frame'>
             <div className='profile-top-frame'>
-                <ProfilePicture image='profile-image-145px-1' id='profile-page-pfp'/>
+                <ProfilePicture image={'profile-image-145px-' + currentPfp} id='profile-page-pfp'/>
                 <div className='profile-top-name-container'>
                     {sessionStorage.getItem('username')}
                 </div>
