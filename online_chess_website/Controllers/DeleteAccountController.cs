@@ -16,13 +16,16 @@ public class DeleteAccountController : ControllerBase
 
         MySQL db = new MySQL();
         string sqlGamedata = $"DELETE FROM user_gamedata WHERE id = {id}";
-        db.DeleteData(sqlGamedata, new { }, ConnectionStrings.defaultConnectionString);
+        await db.DeleteData(sqlGamedata, new { }, ConnectionStrings.defaultConnectionString);
 
         string sqlProfile = $"DELETE FROM profiles WHERE userId = {id}";
-        db.DeleteData(sqlProfile, new { }, ConnectionStrings.defaultConnectionString);
+        await db.DeleteData(sqlProfile, new { }, ConnectionStrings.defaultConnectionString);
+
+        string sqlSessions = $"DELETE FROM sessions WHERE userId = {id}";
+        await db.DeleteData(sqlSessions, new { }, ConnectionStrings.defaultConnectionString);
 
         string sql = $"DELETE FROM user_credidentals WHERE userId = {id}";
-        db.DeleteData(sql, new { }, ConnectionStrings.defaultConnectionString);
+        await db.DeleteData(sql, new { }, ConnectionStrings.defaultConnectionString);
 
         return true;
     }

@@ -29,11 +29,11 @@ public class MySQL: IMySQLDataAccess
         }
     }
 
-    public void DeleteData<T>(string sql, T parameters, string connectionString)
+    public Task DeleteData<T>(string sql, T parameters, string connectionString)
     {
         using (MySqlConnection conn =new MySqlConnection(connectionString))
         {
-            conn.ExecuteAsync(sql, parameters);
+            return conn.ExecuteAsync(sql, parameters);
         }
     }
 }

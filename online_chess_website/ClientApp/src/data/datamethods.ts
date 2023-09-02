@@ -13,4 +13,5 @@ export async function signout(){
     sessionStorage.setItem('profileExists', '')
     sessionStorage.setItem('matchId', '')
     sessionStorage.setItem('userRank', '')
+    sessionStorage.setItem('pfp', '')
 }

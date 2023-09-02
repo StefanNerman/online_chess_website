@@ -175,6 +175,7 @@ const ProfilePage = () => {
         .then(async response => {
             console.log(response)
             alert('Account successfully deleted.')
+            sessionStorage.setItem('loginOperation', 'offline')
             await signout()
             navigate('/')
         })
