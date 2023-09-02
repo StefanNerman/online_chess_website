@@ -166,6 +166,10 @@ const ProfilePage = () => {
         })
     }
 
+    function deleteAccount(){
+        
+    }
+
 
     return (  
         <div id='profile-frame'>
@@ -255,7 +259,7 @@ const ProfilePage = () => {
 
                     <div className='profile-delete-box'>
                         <label>Delete profile</label>
-                        <button className='profile-settings-button'>Delete</button>
+                        <button className='profile-settings-button' onClick={() => window.confirm('Are you sure you want to delete your account?') && deleteAccount()}>Delete</button>
                     </div>
                 </div>
 
