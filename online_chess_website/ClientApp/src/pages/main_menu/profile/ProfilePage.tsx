@@ -7,6 +7,8 @@ import StatsBottom from './StatsBottom'
 import * as api from '../../../api/http_calls'
 import PfpSelectorBox from './PfpSelectorBox'
 import { getProfileByUserId } from '../../../utils/user_profile_info'
+import { signout } from '../../../data/datamethods'
+import { useNavigate } from 'react-router-dom'
 
 
 interface profileInfo {
@@ -28,6 +30,8 @@ interface gameStats {
 }
 
 const ProfilePage = () => {
+
+    const navigate = useNavigate()
 
     const [changeMade, setChangeMade] = useState(false)
     const [invalidName, setInvalidName] = useState(false)
@@ -167,7 +171,13 @@ const ProfilePage = () => {
     }
 
     function deleteAccount(){
-        
+        api.axiosGet("api/account_delete/" + sessionStorage.getItem('userId'))
+        .then(async response => {
+            console.log(response)
+            alert('Account successfully deleted.')
+            await signout()
+            navigate('/')
+        })
     }
 
 
