@@ -25,6 +25,7 @@
   padding: 1rem;
   padding-bottom: 2rem;
   background-color: rgb(160, 123, 123);
+  border-radius: 3px;
 }
 .login-screen h1 {
   margin-bottom: 2rem;
@@ -54,6 +55,7 @@
 
 @media screen and (max-width: 580px) {
   .login-screen {
-    margin-top: 0;
+    margin: 0 2px;
+    margin-top: 6rem;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -145,6 +145,7 @@ const Chess: React.FC<any> = ({gamemode, color}: props) => {
         createBoard()
         renderPieces(tiles.getPositions())
         if(color === 'black') rotateBoard()
+        userMove('012345699' + sessionStorage.getItem('pfp'))
     }, [])
 
     function rotateBoard() {

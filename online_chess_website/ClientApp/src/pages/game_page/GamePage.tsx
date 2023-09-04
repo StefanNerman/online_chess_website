@@ -62,12 +62,17 @@ export function showGameEndScreen(duration: string, oldRank: number, newRank: nu
     setGameEnd(true)
 }
 
+let setOpponentPicture: any
+
 const GamePage = ({...rest}: props) => {
 
     const navigate = useNavigate()
 
     const [gameEndScreen, setGameEndScreen] = useState(false)
     setGameEnd = setGameEndScreen
+
+    const [opponentPfp, setOpponentPfp] = useState('3')
+    setOpponentPicture = setOpponentPfp
 
     useEffect(() => {
         if(isOnlineGame && defaultWebSocket){
@@ -92,8 +97,8 @@ const GamePage = ({...rest}: props) => {
             {gameEndScreen && <GameEndScreen duration={gameEndScreenData.duration} oldRank={gameEndScreenData.oldRank} newRank={gameEndScreenData.newRank} isVictory={gameEndScreenData.isVictory}/>}
             <div className='gamepage-content'>
                 <div className='playerinfo-container'>
-                    {isOnlineGame && <PlayerInfoPanel username={sessionStorage.getItem('username')!} rank={parseInt(sessionStorage.getItem('userRank')!)} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>}
-                    {isOnlineGame && <PlayerInfoPanel username={opponentName} rank={opponentRank} picture={'https://i1.sndcdn.com/avatars-000488564466-9llnor-t200x200.jpg'}/>}
+                    {isOnlineGame && <PlayerInfoPanel username={sessionStorage.getItem('username')!} rank={parseInt(sessionStorage.getItem('userRank')!)} picture={sessionStorage.getItem('pfp')!}/>}
+                    {isOnlineGame && <PlayerInfoPanel username={opponentName} rank={opponentRank} picture={opponentPfp}/>}
                 </div>
                 <div className='gamepage-gamepanel'>
                     <GamePanel gamemode={gameMode} color={color}/>
@@ -110,6 +115,9 @@ function assignWebSocketMethods(){
         let serverMessage = JSON.parse(e.data)
         if(serverMessage.protocol === 'OPPONENT_MOVED'){
             console.log(serverMessage.data)
+            if(serverMessage.data.from === 99){
+                setOpponentPicture(serverMessage.data.to.toString())
+            }
             artificialMove(serverMessage.data.from, serverMessage.data.to)
         }
         if(serverMessage.protocol === 'MATCH_ENDED'){

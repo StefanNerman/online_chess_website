@@ -62,7 +62,7 @@ const GamePanel = (props: props) => {
             color: matchInfo.color,
             matchId: matchInfo.MATCH_ID,
             opponentName: matchInfo.opponentName,
-            opponentRank: matchInfo.opponentRank
+            opponentRank: matchInfo.opponentRank,
         }})
     }
 
