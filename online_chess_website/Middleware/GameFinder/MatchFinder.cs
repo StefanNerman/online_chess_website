@@ -78,6 +78,9 @@ public class MatchFinder
         WebSocket p2Socket = _websocketConnectionManager.GetAllUsersConnected()[nestedToken].websocket;
         _websocketConnectionManager.GetAllUsersConnected()[nestedToken].ongoingMatchId = matchSetupInfo.matchId;
         _ongoingMatches.AddOngoingMatch(matchSetupInfo.matchId, token, nestedToken);
+
+        Console.WriteLine(matchSetupInfoMessage[0]);
+        Console.WriteLine(matchSetupInfoMessage[1]);
         await SendStringAsync(p1Socket, matchSetupInfoMessage[0]);
         await SendStringAsync(p2Socket, matchSetupInfoMessage[1]);
     }

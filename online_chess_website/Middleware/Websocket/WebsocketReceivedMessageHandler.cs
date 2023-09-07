@@ -50,7 +50,14 @@ public class WebsocketReceivedMessageHandler
         if(clientMessage.protocol == "PROFILE_PIC")
             {
                 Console.WriteLine(clientMessage.data.ToString());
-
+                int pictureIndex = clientMessage.data.pic;
+                string playerColor = clientMessage.data.color;
+                int matchId = clientMessage.data.matchId;
+                MatchDataManager matchData = new MatchDataManager();
+                string opponentToken = await matchData.GetOpponentToken(matchId, playerColor);
+                WebSocket opponentSocket = manager.GetAllUsersConnected()[opponentToken].websocket;
+                MoveMessage serverMessage = new MoveMessage("PROFILE_PIC", new { pic = pictureIndex });
+                await SendStringAsync(opponentSocket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
             }
 
         if(clientMessage.protocol == "CHECKMATE")

@@ -12,8 +12,12 @@ public class MatchSetup
     public async Task<MatchSetupReturnInfo> CreateMatch(string p1Token, string p2Token)
     {
         int p1Color = Random.Shared.Next(0, 1);
+        Console.WriteLine(p1Color);
         int p2Color = 0;
         if(p1Color == 0) { p2Color = 1; }
+
+        Console.WriteLine(p1Color + " === " + p1Token);
+        Console.WriteLine(p2Color + " === " + p2Token);
 
         MySQL db = new MySQL();
         string connectionString = ConnectionStrings.defaultConnectionString;
