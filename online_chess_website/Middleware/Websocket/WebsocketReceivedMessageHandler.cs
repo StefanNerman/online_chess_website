@@ -47,6 +47,12 @@ public class WebsocketReceivedMessageHandler
             await SendStringAsync(opponentSocket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
         }
 
+        if(clientMessage.protocol == "PROFILE_PIC")
+            {
+                Console.WriteLine(clientMessage.data.ToString());
+
+            }
+
         if(clientMessage.protocol == "CHECKMATE")
         {
             int matchId = clientMessage.data.matchId;

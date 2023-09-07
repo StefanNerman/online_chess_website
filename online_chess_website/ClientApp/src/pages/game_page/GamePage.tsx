@@ -9,6 +9,7 @@ import { whoseTurn } from './chess_game/gamelogic'
 import {useNavigate} from 'react-router-dom'
 import GameEndScreen from './GameEndScreen'
 import * as api from '../../api/http_calls'
+import { pfpMessage } from '../main_menu/matchmaking'
 
 type props = {
     
@@ -17,6 +18,8 @@ type props = {
 let _matchId = 0
 
 export function userMove(move: string){
+    console.log('move ==>', move)
+    console.log(whoseTurn, playerColor)
     if(whoseTurn === playerColor) return//to prevent form sending when your opponent moves
     let from = move.slice(7, 9)
     let to = move.slice(9, 11)
@@ -29,6 +32,17 @@ export function userMove(move: string){
         data: {
             from: parseInt(from),
             to: parseInt(to),
+            matchId: _matchId,
+            color: playerColor
+        }
+    }))
+}
+
+export function sendPfp(pfp: string){
+    defaultWebSocket?.send(JSON.stringify({
+        protocol: "PROFILE_PIC",
+        data: {
+            pic: parseInt(pfp),
             matchId: _matchId,
             color: playerColor
         }
@@ -71,7 +85,7 @@ const GamePage = ({...rest}: props) => {
     const [gameEndScreen, setGameEndScreen] = useState(false)
     setGameEnd = setGameEndScreen
 
-    const [opponentPfp, setOpponentPfp] = useState('3')
+    const [opponentPfp, setOpponentPfp] = useState(pfpMessage === '0' ? '3' : pfpMessage)
     setOpponentPicture = setOpponentPfp
 
     useEffect(() => {
@@ -98,7 +112,7 @@ const GamePage = ({...rest}: props) => {
             <div className='gamepage-content'>
                 <div className='playerinfo-container'>
                     {isOnlineGame && <PlayerInfoPanel username={sessionStorage.getItem('username')!} rank={parseInt(sessionStorage.getItem('userRank')!)} picture={sessionStorage.getItem('pfp')!}/>}
-                    {isOnlineGame && <PlayerInfoPanel username={opponentName} rank={opponentRank} picture={opponentPfp}/>}
+                    {isOnlineGame && <PlayerInfoPanel username={opponentName} rank={opponentRank} picture={'1'}/>}
                 </div>
                 <div className='gamepage-gamepanel'>
                     <GamePanel gamemode={gameMode} color={color}/>
@@ -111,14 +125,19 @@ const GamePage = ({...rest}: props) => {
 function assignWebSocketMethods(){
     defaultWebSocket!.onopen = ()=>{}
     defaultWebSocket!.onmessage = (e: MessageEvent) => {
-        console.log(e)
+        console.log('NEW ONMESSAGE METHOD', e)
         let serverMessage = JSON.parse(e.data)
         if(serverMessage.protocol === 'OPPONENT_MOVED'){
             console.log(serverMessage.data)
-            if(serverMessage.data.from === 99){
+            artificialMove(serverMessage.data.from, serverMessage.data.to)
+        }
+        if(serverMessage.protocol === 'PROFILE_PIC'){
+            console.log('PROFILE PICTURE RECEIVED ===> ', serverMessage.data)
+        }
+        if(serverMessage.protocol === 'MATCH_FOUND') {
+            if(serverMessage.data?.from === 99) {
                 setOpponentPicture(serverMessage.data.to.toString())
             }
-            artificialMove(serverMessage.data.from, serverMessage.data.to)
         }
         if(serverMessage.protocol === 'MATCH_ENDED'){
             defaultWebSocket?.close()

@@ -5,6 +5,8 @@ interface websocketServerMessage {
     data: object
 }
 
+export let pfpMessage = '0'
+
 export let defaultWebSocket: WebSocket | null
 
 export async function findQuickplayMatch(userId: number, userRank: number): Promise<Object>{
@@ -22,6 +24,11 @@ export async function findQuickplayMatch(userId: number, userRank: number): Prom
             if(serverMessage.protocol = "MATCH_FOUND"){
                 console.log('MATCH FOUND DATA ===>', serverMessage)
                 resolve(serverMessage.data)
+            }
+            if(serverMessage.protocol === 'PROFILE_PIC'){
+                console.log('OLD PROFILE PICTURE RECEIVED ===> ', serverMessage.data)
+                let data = JSON.parse(e.data)
+                pfpMessage = data.pic.toString()
             }
         }
         defaultWebSocket.onclose = (e: Event) => {

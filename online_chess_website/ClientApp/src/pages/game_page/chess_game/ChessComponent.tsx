@@ -3,7 +3,7 @@ import './style_chess.css'
 import { useEffect } from 'react'
 import { tileClick, tiles, whoseTurn, autoMove, setWhoseTurn } from './gamelogic'
 import {coordinateConverter} from '../../../utils/chessgame'
-import { userMove, userCheckmate } from '../GamePage'
+import { userMove, sendPfp, userCheckmate } from '../GamePage'
 
 interface TileObj {
     position: number,
@@ -55,6 +55,7 @@ async function handleMove(move: string){
     }
     if(moveNotYetMade) onMachStart()
 
+    console.log('alöksdjfölkajsdf', isMultiplayer)
     if(isMultiplayer) userMove(move)
 
     let coordinatesString = move.slice(move.length -4, move.length)
@@ -138,14 +139,18 @@ interface props {
 
 const Chess: React.FC<any> = ({gamemode, color}: props) => {
 
+    console.log('COMPONENT RE-RENDER ',  color)
+
     useEffect(() => {
+        console.log('useEffect running')
+
         if(gamemode === 'quickplay') isMultiplayer = true
         setIsLocalGame(gamemode === 'local'? true : false)
         playerColor = color
         createBoard()
         renderPieces(tiles.getPositions())
         if(color === 'black') rotateBoard()
-        userMove('012345699' + sessionStorage.getItem('pfp'))
+        sendPfp(sessionStorage.getItem('pfp')!)
     }, [])
 
     function rotateBoard() {

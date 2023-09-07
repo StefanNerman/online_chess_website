@@ -68,6 +68,7 @@ class Tiles {
         this.positions.forEach((e, i) => {
             if(e.position === from) {
                 movePiece = e.piece
+                console.log(e)
                 this.positions[i].piece = false
             }
         })
