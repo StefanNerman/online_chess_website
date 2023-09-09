@@ -93,7 +93,11 @@ const GamePage = ({...rest}: props) => {
             assignWebSocketMethods()
         }
         if(isOnlineGame && !defaultWebSocket) navigate('/main-menu')
-    })
+    }) 
+
+    useEffect(() => {
+        setOpponentPfp(pfpMessage)
+    }, [pfpMessage])
 
     const { state: {
         isOnlineGame,
@@ -112,7 +116,7 @@ const GamePage = ({...rest}: props) => {
             <div className='gamepage-content'>
                 <div className='playerinfo-container'>
                     {isOnlineGame && <PlayerInfoPanel username={sessionStorage.getItem('username')!} rank={parseInt(sessionStorage.getItem('userRank')!)} picture={sessionStorage.getItem('pfp')!}/>}
-                    {isOnlineGame && <PlayerInfoPanel username={opponentName} rank={opponentRank} picture={'1'}/>}
+                    {isOnlineGame && <PlayerInfoPanel username={opponentName} rank={opponentRank} picture={opponentPfp}/>}
                 </div>
                 <div className='gamepage-gamepanel'>
                     <GamePanel gamemode={gameMode} color={color}/>
@@ -133,11 +137,10 @@ function assignWebSocketMethods(){
         }
         if(serverMessage.protocol === 'PROFILE_PIC'){
             console.log('PROFILE PICTURE RECEIVED ===> ', serverMessage.data)
+            setOpponentPicture(serverMessage.data.pic.toString())
         }
         if(serverMessage.protocol === 'MATCH_FOUND') {
-            if(serverMessage.data?.from === 99) {
-                setOpponentPicture(serverMessage.data.to.toString())
-            }
+
         }
         if(serverMessage.protocol === 'MATCH_ENDED'){
             defaultWebSocket?.close()

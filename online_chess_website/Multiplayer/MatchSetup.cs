@@ -11,13 +11,11 @@ public class MatchSetup
 {
     public async Task<MatchSetupReturnInfo> CreateMatch(string p1Token, string p2Token)
     {
-        int p1Color = Random.Shared.Next(0, 1);
-        Console.WriteLine(p1Color);
+        int p1Color = Random.Shared.Next(0, 2);
+        Console.WriteLine("RANDOM NUMBER GENERATED ==> " + p1Color);
+
         int p2Color = 0;
         if(p1Color == 0) { p2Color = 1; }
-
-        Console.WriteLine(p1Color + " === " + p1Token);
-        Console.WriteLine(p2Color + " === " + p2Token);
 
         MySQL db = new MySQL();
         string connectionString = ConnectionStrings.defaultConnectionString;
@@ -51,7 +49,7 @@ public class MatchSetup
         }
         string sqlInsert = $"INSERT INTO ongoing_matches (player1_token, player2_token, match_status, match_log) VALUES ('{white}', '{black}', '', '')";
         await db.SaveData(sqlInsert, new { }, connectionString);
-        string sqlSelect = $"SELECT * FROM ongoing_matches WHERE player1_token = '{p1Token}'";
+        string sqlSelect = $"SELECT * FROM ongoing_matches WHERE player1_token = '{white}'";
         List<OngoingMatchInfo> matchInfo = await db.GetData<OngoingMatchInfo, dynamic>(sqlSelect, new { }, connectionString);
         int matchId = matchInfo.ToArray()[0].match_Id;
         return matchId;
