@@ -27,7 +27,7 @@ export function setIsLocalGame(bool: boolean) {isLocalGame = bool}
 export let playerColor = 'white'
 export function setPlayerColor(color: string) {playerColor = color}
 
-let isMultiplayer = false
+export let isMultiplayer = false
 
 export function artificialMove(from: number, to: number){
     let clickResult: actionInfoObj = autoMove(from, to)
@@ -55,7 +55,6 @@ async function handleMove(move: string){
     }
     if(moveNotYetMade) onMachStart()
 
-    console.log('alöksdjfölkajsdf', isMultiplayer)
     if(isMultiplayer) userMove(move)
 
     let coordinatesString = move.slice(move.length -4, move.length)
@@ -139,18 +138,22 @@ interface props {
 
 const Chess: React.FC<any> = ({gamemode, color}: props) => {
 
-    console.log('COMPONENT RE-RENDER ',  color)
+    console.log('COMPONENT RE-RENDER ',  color, playerColor, gamemode)
 
     useEffect(() => {
-        console.log('useEffect running')
 
+        console.log('useEffect running', playerColor, isLocalGame)
+        console.log("playercolor change in useeffect  (playerColor | color) =======>>>>" , playerColor, color)
+
+        playerColor = color
+        sendPfp(sessionStorage.getItem('pfp')!)
         if(gamemode === 'quickplay') isMultiplayer = true
         setIsLocalGame(gamemode === 'local'? true : false)
-        playerColor = color
         createBoard()
         renderPieces(tiles.getPositions())
         if(color === 'black') rotateBoard()
-        sendPfp(sessionStorage.getItem('pfp')!)
+
+        console.log('useEffect ran', playerColor, isLocalGame)
     }, [])
 
     function rotateBoard() {

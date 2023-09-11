@@ -18,7 +18,6 @@ type props = {
 let _matchId = 0
 
 export function userMove(move: string){
-    console.log('move ==>', move)
     console.log(whoseTurn, playerColor)
     if(whoseTurn === playerColor) return//to prevent form sending when your opponent moves
     let from = move.slice(7, 9)
@@ -39,6 +38,7 @@ export function userMove(move: string){
 }
 
 export function sendPfp(pfp: string){
+    console.log("PROFILE PICTURE SENT TO SERVER")
     defaultWebSocket?.send(JSON.stringify({
         protocol: "PROFILE_PIC",
         data: {
@@ -93,7 +93,7 @@ const GamePage = ({...rest}: props) => {
             assignWebSocketMethods()
         }
         if(isOnlineGame && !defaultWebSocket) navigate('/main-menu')
-    }) 
+    }, []) 
 
     useEffect(() => {
         setOpponentPfp(pfpMessage)

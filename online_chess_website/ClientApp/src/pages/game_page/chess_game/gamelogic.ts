@@ -1,4 +1,4 @@
-import { playerColor, setPlayerColor, isLocalGame } from './ChessComponent'
+import { playerColor, setPlayerColor, isLocalGame, isMultiplayer } from './ChessComponent'
 import MoveFinder, { moveOutcomes } from './moveFinder'
 
 /*===================================================================
@@ -80,7 +80,8 @@ class Tiles {
                 this.positions[i].piece = movePiece
             }
         })
-        if(isLocalGame){
+        if(isLocalGame && !isMultiplayer){
+            console.log('playercolor changed')
             playerColor === 'white' ? setPlayerColor('black') : setPlayerColor('white')
         }
     }
@@ -105,7 +106,7 @@ class Tiles {
                 if(e.position === parseInt(`${row}6`)) this.positions[i].piece = `${clr}11`
             }) 
         }
-        if(isLocalGame){
+        if(isLocalGame && !isMultiplayer){
             playerColor === 'white' ? setPlayerColor('black') : setPlayerColor('white')
         }
     }
