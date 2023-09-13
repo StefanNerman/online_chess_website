@@ -5,7 +5,7 @@ import React from 'react'
 const SettingsComponent = () => {
     return (  
         <div id='settings-frame'>
-            settings
+            PAGE NOT ADDED YET. 
         </div>
     )
 }
