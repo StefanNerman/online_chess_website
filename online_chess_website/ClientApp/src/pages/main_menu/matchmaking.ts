@@ -21,14 +21,11 @@ export async function findQuickplayMatch(userId: number, userRank: number): Prom
         defaultWebSocket.onmessage = (e: MessageEvent) => {
             console.log(e)
             let serverMessage: websocketServerMessage = JSON.parse(e.data)
-            console.log(serverMessage)
             if(serverMessage.protocol = "MATCH_FOUND"){
                 if('pic' in serverMessage.data){
-                    console.log('OLD PROFILE PICTURE RECEIVED ===> ', serverMessage)
                     pfpMessage = (serverMessage as any).data.pic.toString()
                 }
                 else {
-                    console.log('MATCH FOUND DATA ===>', serverMessage)
                     resolve(serverMessage.data)
                 }
             }

@@ -18,7 +18,6 @@ type props = {
 let _matchId = 0
 
 export function userMove(move: string){
-    console.log(whoseTurn, playerColor)
     if(whoseTurn === playerColor) return//to prevent form sending when your opponent moves
     let from = move.slice(7, 9)
     let to = move.slice(9, 11)
@@ -38,7 +37,6 @@ export function userMove(move: string){
 }
 
 export function sendPfp(pfp: string){
-    console.log("PROFILE PICTURE SENT TO SERVER")
     defaultWebSocket?.send(JSON.stringify({
         protocol: "PROFILE_PIC",
         data: {
@@ -129,14 +127,12 @@ const GamePage = ({...rest}: props) => {
 function assignWebSocketMethods(){
     defaultWebSocket!.onopen = ()=>{}
     defaultWebSocket!.onmessage = (e: MessageEvent) => {
-        console.log('NEW ONMESSAGE METHOD', e)
+        console.log(e)
         let serverMessage = JSON.parse(e.data)
         if(serverMessage.protocol === 'OPPONENT_MOVED'){
-            console.log(serverMessage.data)
             artificialMove(serverMessage.data.from, serverMessage.data.to)
         }
         if(serverMessage.protocol === 'PROFILE_PIC'){
-            console.log('PROFILE PICTURE RECEIVED ===> ', serverMessage.data)
             setOpponentPicture(serverMessage.data.pic.toString())
         }
         if(serverMessage.protocol === 'MATCH_FOUND') {

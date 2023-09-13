@@ -138,12 +138,7 @@ interface props {
 
 const Chess: React.FC<any> = ({gamemode, color}: props) => {
 
-    console.log('COMPONENT RE-RENDER ',  color, playerColor, gamemode)
-
     useEffect(() => {
-
-        console.log('useEffect running', playerColor, isLocalGame)
-        console.log("playercolor change in useeffect  (playerColor | color) =======>>>>" , playerColor, color)
 
         playerColor = color
         sendPfp(sessionStorage.getItem('pfp')!)
@@ -153,7 +148,6 @@ const Chess: React.FC<any> = ({gamemode, color}: props) => {
         renderPieces(tiles.getPositions())
         if(color === 'black') rotateBoard()
 
-        console.log('useEffect ran', playerColor, isLocalGame)
     }, [])
 
     function rotateBoard() {

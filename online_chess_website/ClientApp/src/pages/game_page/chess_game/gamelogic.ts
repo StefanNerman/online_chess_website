@@ -81,7 +81,6 @@ class Tiles {
             }
         })
         if(isLocalGame && !isMultiplayer){
-            console.log('playercolor changed')
             playerColor === 'white' ? setPlayerColor('black') : setPlayerColor('white')
         }
     }
