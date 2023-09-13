@@ -105,17 +105,24 @@
     background-image: url(../../../assets/chess_pieces/king_black.png);
 }
 
-@media screen and (min-width: 400px){
+@media screen and (max-width: 400px){
+    .chess-root {
+        --tile-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .chess-root {
+        --tile-size: 2.25rem;
+    }
+}
+
+@media screen and (max-width: 310px){
     .chess-root {
         --tile-size: 2rem;
     }
 }
 
-@media screen and (min-width: 400px){
-    .chess-root {
-        --tile-size: 2.5rem;
-    }
-}
 
 @media screen and (min-width: 400px){
     .chess-root {

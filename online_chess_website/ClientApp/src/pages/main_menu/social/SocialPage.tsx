@@ -4,7 +4,7 @@ const SocialPage = () => {
 
     return (  
         <div id='social-frame'>
-            SOCIAL
+            PAGE NOT ADDED YET. 
         </div>
     );
 }
