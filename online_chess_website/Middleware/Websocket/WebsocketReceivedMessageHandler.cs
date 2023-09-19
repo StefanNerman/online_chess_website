@@ -83,6 +83,23 @@ public class WebsocketReceivedMessageHandler
             ongoingMatches.RemoveOngoingMatch(matchId);
         }
 
+        if(clientMessage.protocol == "CREATE_PRIVATE_GAME")
+        {
+
+
+
+        }
+
+        if (clientMessage.protocol == "JOIN_PRIVATE_GAME")
+        {
+
+
+
+        }
+
+
+
+
 
 
         }
