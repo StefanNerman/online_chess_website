@@ -39,3 +39,55 @@ export async function findQuickplayMatch(userId: number, userRank: number): Prom
         }
     })
 }
+
+export async function createPrivateGame(userId: number): Promise<Object>{
+    return new Promise(async (resolve, reject) => {
+        defaultWebSocket = await createDefaultWebSocketConnection()
+        defaultWebSocket.onopen = (e: Event) => {
+            defaultWebSocket?.send(JSON.stringify({
+                protocol: "CREATE_PRIVATE_MATCH",
+                data: {userId: userId}
+            }))
+        }
+        defaultWebSocket.onmessage = (e: MessageEvent) => {
+            console.log(e)
+            let serverMessage: websocketServerMessage = JSON.parse(e.data)
+            if(serverMessage.protocol = "MATCH_FOUND"){
+                
+            }
+        }
+        defaultWebSocket.onclose = (e: Event) => {
+            reject("closed")
+        }
+        defaultWebSocket.onerror = (e: Event) => {
+            console.log("ERROR: An error occured while trying to connecto a websocket at matchmaking.ts" , e)
+            reject("failed")
+        }
+    })
+}
+
+export async function joinPrivateGame(userId: number, gameKey: number): Promise<Object>{
+    return new Promise(async (resolve, reject) => {
+        defaultWebSocket = await createDefaultWebSocketConnection()
+        defaultWebSocket.onopen = (e: Event) => {
+            defaultWebSocket?.send(JSON.stringify({
+                protocol: "JOIN_PRIVATE_MATCH",
+                data: {userId: userId, gameKey: gameKey}
+            }))
+        }
+        defaultWebSocket.onmessage = (e: MessageEvent) => {
+            console.log(e)
+            let serverMessage: websocketServerMessage = JSON.parse(e.data)
+            if(serverMessage.protocol = "MATCH_FOUND"){
+                
+            }
+        }
+        defaultWebSocket.onclose = (e: Event) => {
+            reject("closed")
+        }
+        defaultWebSocket.onerror = (e: Event) => {
+            console.log("ERROR: An error occured while trying to connecto a websocket at matchmaking.ts" , e)
+            reject("failed")
+        }
+    })
+}
