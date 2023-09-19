@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import GameSelectionComponent from './GameSelectionComponent'
 import {useNavigate} from 'react-router-dom'
-import {findQuickplayMatch, defaultWebSocket} from '../matchmaking'
+import {findQuickplayMatch, defaultWebSocket, createPrivateGame, joinPrivateGame} from '../matchmaking'
 import * as api from '../../../api/http_calls'
 import {getProfileByUserId} from '../../../utils/user_profile_info'
 import {isQueingController} from '../../../App'
@@ -68,12 +68,14 @@ const GamePanel = (props: props) => {
 
     function privateGame(){
         if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You have to be signed in to create private games!')
-        alert('This feature is not yet functional.')
+        let userId = sessionStorage.getItem('userId')!
+        createPrivateGame(parseInt(userId))
     }
 
-    function joinPrivateGame(){
+    function enterPrivateGame(){
         if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You have to be signed in to join private games!')
-        alert('This feature is not yet functional.')
+        let userId = sessionStorage.getItem('userId')!
+        joinPrivateGame(parseInt(userId), 123)
     }
 
     function localGame(){
@@ -110,7 +112,7 @@ const GamePanel = (props: props) => {
                         <GameSelectionComponent 
                         description='Join private game using a link.' 
                         buttonText='Join private game'
-                        onButtonClick={() => {joinPrivateGame()}}/>
+                        onButtonClick={() => {enterPrivateGame()}}/>
                     </div>
                     <div className='gamesearchpanel-button-container'>
                         <h5>Play offline</h5>
