@@ -68,7 +68,7 @@ public class MatchFinder
         return;
     }
 
-    private async Task Pairing(string token, string nestedToken)
+    public async Task Pairing(string token, string nestedToken)
     {
         MatchSetup setup = new MatchSetup();
         MatchSetupReturnInfo matchSetupInfo = await setup.CreateMatch(token, nestedToken);
