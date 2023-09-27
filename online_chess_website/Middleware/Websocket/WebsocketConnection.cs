@@ -23,12 +23,15 @@ public class WebsocketConnection
 
     private readonly OngoingMatches _ongoingMatches;
 
-    public WebsocketConnection(RequestDelegate next, WebsocketConnectionManager manager, QuemodeActions quemodeActions, OngoingMatches ongoingMatches)
+    private readonly PrivateQueActions _privateQueActions;
+
+    public WebsocketConnection(RequestDelegate next, WebsocketConnectionManager manager, QuemodeActions quemodeActions, OngoingMatches ongoingMatches, PrivateQueActions privateQueActions)
     {
         _next = next;
         _manager = manager;
         _quemodeActions = quemodeActions;
         _ongoingMatches = ongoingMatches;
+        _privateQueActions = privateQueActions;
     }
     
     public async Task InvokeAsync(HttpContext context)
@@ -50,7 +53,7 @@ public class WebsocketConnection
 
                         string clientMessage = Encoding.UTF8.GetString(buffer, 0, result.Count);
                         WebsocketReceivedMessageHandler messageHandler = new WebsocketReceivedMessageHandler();
-                        await messageHandler.HandleMessage(token, clientMessage, _manager, _quemodeActions, _ongoingMatches);
+                        await messageHandler.HandleMessage(token, clientMessage, _manager, _quemodeActions, _ongoingMatches, _privateQueActions);
                         return;
 
 

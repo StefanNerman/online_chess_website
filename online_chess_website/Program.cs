@@ -13,6 +13,11 @@ builder.Services.AddTransient<QuemodeActions>((context) =>
     QuemodeManager manager = context.GetService<QuemodeManager>();
     return new QuemodeActions(manager);
 });
+builder.Services.AddSingleton<PrivateQueManager>(); 
+builder.Services.AddTransient<PrivateQueActions>((context) => { 
+    PrivateQueManager manager = context.GetService<PrivateQueManager>();
+    return new PrivateQueActions(manager);
+});
 builder.Services.AddSingleton<OngoingMatches>();
 builder.Services.AddWebsocketManager();
 

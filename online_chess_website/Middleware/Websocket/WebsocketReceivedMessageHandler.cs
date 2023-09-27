@@ -15,7 +15,7 @@ namespace online_chess_website.Middleware.Websocket;
 
 public class WebsocketReceivedMessageHandler
 {
-    public async Task HandleMessage(string token, string message, WebsocketConnectionManager manager, QuemodeActions quemode, OngoingMatches ongoingMatches)
+    public async Task HandleMessage(string token, string message, WebsocketConnectionManager manager, QuemodeActions quemode, OngoingMatches ongoingMatches, PrivateQueActions privateQueActions)
     {
 
         if (message != null || message != "")
@@ -48,17 +48,17 @@ public class WebsocketReceivedMessageHandler
         }
 
         if(clientMessage.protocol == "PROFILE_PIC")
-            {
-                Console.WriteLine(clientMessage.data.ToString());
-                int pictureIndex = clientMessage.data.pic;
-                string playerColor = clientMessage.data.color;
-                int matchId = clientMessage.data.matchId;
-                MatchDataManager matchData = new MatchDataManager();
-                string opponentToken = await matchData.GetOpponentToken(matchId, playerColor);
-                WebSocket opponentSocket = manager.GetAllUsersConnected()[opponentToken].websocket;
-                MoveMessage serverMessage = new MoveMessage("PROFILE_PIC", new { pic = pictureIndex });
-                await SendStringAsync(opponentSocket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
-            }
+        {
+            Console.WriteLine(clientMessage.data.ToString());
+            int pictureIndex = clientMessage.data.pic;
+            string playerColor = clientMessage.data.color;
+            int matchId = clientMessage.data.matchId;
+            MatchDataManager matchData = new MatchDataManager();
+            string opponentToken = await matchData.GetOpponentToken(matchId, playerColor);
+            WebSocket opponentSocket = manager.GetAllUsersConnected()[opponentToken].websocket;
+            MoveMessage serverMessage = new MoveMessage("PROFILE_PIC", new { pic = pictureIndex });
+            await SendStringAsync(opponentSocket, Newtonsoft.Json.JsonConvert.SerializeObject(serverMessage));
+        }
 
         if(clientMessage.protocol == "CHECKMATE")
         {
@@ -85,15 +85,16 @@ public class WebsocketReceivedMessageHandler
 
         if(clientMessage.protocol == "CREATE_PRIVATE_GAME")
         {
-
-
+            // all you need to do is get both players tokens to launch MatchFinder.Pairing(token1, token2) method
+           
+            // use token as gameKey
 
         }
 
         if (clientMessage.protocol == "JOIN_PRIVATE_GAME")
         {
 
-
+            // the gameKey is the other users token so when its entered simply extract the info from the clientMessage (token) and move on to the pairing method
 
         }
 

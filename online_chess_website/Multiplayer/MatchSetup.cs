@@ -12,7 +12,6 @@ public class MatchSetup
     public async Task<MatchSetupReturnInfo> CreateMatch(string p1Token, string p2Token)
     {
         int p1Color = Random.Shared.Next(0, 2);
-        Console.WriteLine("RANDOM NUMBER GENERATED ==> " + p1Color);
 
         int p2Color = 0;
         if(p1Color == 0) { p2Color = 1; }
