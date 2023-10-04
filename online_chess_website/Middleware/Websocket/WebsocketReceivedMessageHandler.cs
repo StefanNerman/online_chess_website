@@ -10,6 +10,7 @@ using GenericClassesLibrary.Generic.ChessWebsite.USERDATA.Sessions;
 using online_chess_website.Data;
 using Org.BouncyCastle.Bcpg;
 using System.Threading.Tasks.Dataflow;
+using Mysqlx;
 
 namespace online_chess_website.Middleware.Websocket;
 
@@ -18,8 +19,8 @@ public class WebsocketReceivedMessageHandler
     public async Task HandleMessage(string token, string message, WebsocketConnectionManager manager, QuemodeActions quemode, OngoingMatches ongoingMatches, PrivateQueActions privateQueActions)
     {
 
-        if (message != null || message != "")
-        {
+      if (message != null || message != "")
+      {
 
 
 
@@ -86,16 +87,30 @@ public class WebsocketReceivedMessageHandler
         if(clientMessage.protocol == "CREATE_PRIVATE_GAME")
         {
             // all you need to do is get both players tokens to launch MatchFinder.Pairing(token1, token2) method
-           
+
             // use token as gameKey
 
+            privateQueActions.AddUserToQue(token, new UserQuedata(clientMessage.data.userId, 123));
+            WebSocket socket = manager.GetAllUsersConnected()[token].websocket;
+            await SendStringAsync(socket, Newtonsoft.Json.JsonConvert.SerializeObject(new { protocol = "SUCCESS" }));
         }
 
         if (clientMessage.protocol == "JOIN_PRIVATE_GAME")
         {
+                // the gameKey is the other users token so when its entered simply extract the info from the clientMessage (token) and move on to the pairing method
 
-            // the gameKey is the other users token so when its entered simply extract the info from the clientMessage (token) and move on to the pairing method
+            string key = clientMessage.data.gameKey;
 
+            int oppnentExists = privateQueActions.GetAllEntries()[key].userRank;
+            if(oppnentExists == 123)
+            {
+                await PrivatePairing(token, key, manager, ongoingMatches);
+            }
+            else
+            {
+                WebSocket socket = manager.GetAllUsersConnected()[token].websocket;
+                await SendStringAsync(socket, Newtonsoft.Json.JsonConvert.SerializeObject(new { protocol = "FAILURE" }));
+            }
         }
 
 
@@ -103,7 +118,25 @@ public class WebsocketReceivedMessageHandler
 
 
 
-        }
+      }
+    }
+
+    private async Task PrivatePairing(string p1Token, string p2Token, WebsocketConnectionManager manager, OngoingMatches ongoing)
+    {
+        MatchSetup setup = new MatchSetup();
+        MatchSetupReturnInfo matchSetupInfo = await setup.CreateMatch(p1Token, p2Token);
+
+        string[] matchSetupInfoMessage = matchSetupInfo.strings;
+        WebSocket p1Socket = manager.GetAllUsersConnected()[p1Token].websocket;
+        manager.GetAllUsersConnected()[p1Token].ongoingMatchId = matchSetupInfo.matchId;
+        WebSocket p2Socket = manager.GetAllUsersConnected()[p2Token].websocket;
+        manager.GetAllUsersConnected()[p2Token].ongoingMatchId = matchSetupInfo.matchId;
+        ongoing.AddOngoingMatch(matchSetupInfo.matchId, p1Token, p2Token);
+
+        Console.WriteLine(matchSetupInfoMessage[0]);
+        Console.WriteLine(matchSetupInfoMessage[1]);
+        await SendStringAsync(p1Socket, matchSetupInfoMessage[0]);
+        await SendStringAsync(p2Socket, matchSetupInfoMessage[1]);
     }
 
     private async Task SendStringAsync(WebSocket socket, string message)

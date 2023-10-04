@@ -1,4 +1,6 @@
-﻿namespace online_chess_website.Middleware.GameFinder;
+﻿using System.Collections.Concurrent;
+
+namespace online_chess_website.Middleware.GameFinder;
 
 public class PrivateQueActions
 {
@@ -8,6 +10,8 @@ public class PrivateQueActions
     {
         _manager = manager;
     }
+
+    public ConcurrentDictionary<string, UserQuedata> GetAllEntries() { return _manager.GetPrivateQueUserData(); }
 
     public bool AddUserToQue(string token, UserQuedata quedata)
     {

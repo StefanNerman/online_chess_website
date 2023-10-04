@@ -94,6 +94,7 @@ public class WebsocketConnection
                                 _ongoingMatches.RemoveOngoingMatch(userMatchId);
                             }
                         }
+                        _privateQueActions.RemoveUserFromQue(token);
                         _quemodeActions.RemoveUserFromQue(token);
                         _manager.RemoveConnection(token);
                         return;
