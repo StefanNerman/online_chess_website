@@ -84,6 +84,10 @@ public class WebsocketReceivedMessageHandler
             ongoingMatches.RemoveOngoingMatch(matchId);
         }
 
+        //================================== !!!!! NOTE  =========================== user websocket connection isnt removed properly when refreshing FIX!!!
+        //                                                                           problem might be in WebsocketConnection.cs line 62
+
+
         if(clientMessage.protocol == "CREATE_PRIVATE_GAME")
         {
             // all you need to do is get both players tokens to launch MatchFinder.Pairing(token1, token2) method
