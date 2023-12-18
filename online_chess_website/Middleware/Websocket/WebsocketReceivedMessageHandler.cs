@@ -112,6 +112,7 @@ public class WebsocketReceivedMessageHandler
             }
             else
             {
+                Console.WriteLine("private game failed");
                 WebSocket socket = manager.GetAllUsersConnected()[token].websocket;
                 await SendStringAsync(socket, Newtonsoft.Json.JsonConvert.SerializeObject(new { protocol = "FAILURE" }));
             }
