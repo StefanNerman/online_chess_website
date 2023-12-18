@@ -69,8 +69,10 @@ export async function createPrivateGame(userId: number): Promise<Object>{
     })
 }
 
-export async function joinPrivateGame(userId: number, gameKey: number): Promise<Object>{
+export async function joinPrivateGame(userId: number, gameKey: string): Promise<Object>{
+    console.log(gameKey)
     return new Promise(async (resolve, reject) => {
+        if(gameKey === "nokey") reject("failed")
         defaultWebSocket = await createDefaultWebSocketConnection()
         defaultWebSocket.onopen = (e: Event) => {
             defaultWebSocket?.send(JSON.stringify({

@@ -70,12 +70,20 @@ const GamePanel = (props: props) => {
         if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You have to be signed in to create private games!')
         let userId = sessionStorage.getItem('userId')!
         createPrivateGame(parseInt(userId))
+        .then(response => {
+            console.log(response)
+        })
+        .catch((e) => console.log(e))
     }
 
     function enterPrivateGame(){
         if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You have to be signed in to join private games!')
         let userId = sessionStorage.getItem('userId')!
-        joinPrivateGame(parseInt(userId), 123)
+        joinPrivateGame(parseInt(userId), prompt("Input game key", "") || "nokey")
+        .then(response => {
+            console.log(response)
+        })
+        .catch((e) => console.log(e))
     }
 
     function localGame(){
