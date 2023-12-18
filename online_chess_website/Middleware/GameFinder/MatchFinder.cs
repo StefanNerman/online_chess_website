@@ -65,6 +65,7 @@ public class MatchFinder
                 }
             }
         }
+        Console.WriteLine("MatchFinder - tick");
         return;
     }
 
