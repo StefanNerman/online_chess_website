@@ -90,11 +90,7 @@ public class WebsocketReceivedMessageHandler
 
         if(clientMessage.protocol == "CREATE_PRIVATE_MATCH")
         {
-                // all you need to do is get both players tokens to launch MatchFinder.Pairing(token1, token2) method
-
-                // use token as gameKey
             UserQuedata userQuedata = new UserQuedata(321, 123);
-            Console.WriteLine(userQuedata.GetType());
             privateQueActions.AddUserToQue(token, userQuedata);
             WebSocket socket = manager.GetAllUsersConnected()[token].websocket;
             await SendStringAsync(socket, Newtonsoft.Json.JsonConvert.SerializeObject(new { protocol = "SUCCESS" }));
@@ -102,11 +98,20 @@ public class WebsocketReceivedMessageHandler
 
         if (clientMessage.protocol == "JOIN_PRIVATE_MATCH")
         {
-                // the gameKey is the other users token so when its entered simply extract the info from the clientMessage (token) and move on to the pairing method
 
             string key = clientMessage.data.gameKey;
 
-            int oppnentExists = privateQueActions.GetAllEntries()[key].userRank;
+            int oppnentExists = 0;
+
+            try
+            {
+                oppnentExists = privateQueActions.GetAllEntries()[key].userRank;
+            }
+            catch (Exception ex) 
+            { 
+                WebSocket socket = manager.GetAllUsersConnected()[token].websocket;
+                await SendStringAsync(socket, Newtonsoft.Json.JsonConvert.SerializeObject(new { protocol = "FAILURE" }));
+            }
             if(oppnentExists == 123)
             {
                 await PrivatePairing(token, key, manager, ongoingMatches);
