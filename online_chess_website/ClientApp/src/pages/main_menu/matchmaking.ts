@@ -21,7 +21,7 @@ export async function findQuickplayMatch(userId: number, userRank: number): Prom
         defaultWebSocket.onmessage = (e: MessageEvent) => {
             console.log(e)
             let serverMessage: websocketServerMessage = JSON.parse(e.data)
-            if(serverMessage.protocol = "MATCH_FOUND"){
+            if(serverMessage.protocol == "MATCH_FOUND"){
                 if('pic' in serverMessage.data){
                     pfpMessage = (serverMessage as any).data.pic.toString()
                 }
@@ -52,10 +52,10 @@ export async function createPrivateGame(userId: number): Promise<Object>{
         defaultWebSocket.onmessage = (e: MessageEvent) => {
             console.log(e)
             let serverMessage: websocketServerMessage = JSON.parse(e.data)
-            if(serverMessage.protocol = "SUCCESS"){
+            if(serverMessage.protocol == "SUCCESS"){
                 console.log("your private game key is active")
             }
-            if(serverMessage.protocol = "MATCH_FOUND"){
+            if(serverMessage.protocol == "MATCH_FOUND"){
                 console.log("your private game call has been answered")
             }
         }
@@ -83,10 +83,10 @@ export async function joinPrivateGame(userId: number, gameKey: string): Promise<
         defaultWebSocket.onmessage = (e: MessageEvent) => {
             console.log(e)
             let serverMessage: websocketServerMessage = JSON.parse(e.data)
-            if(serverMessage.protocol = "MATCH_FOUND"){
+            if(serverMessage.protocol == "MATCH_FOUND"){
                 console.log("youve successfully joined the game")
             }
-            if(serverMessage.protocol = "FAILURE"){
+            if(serverMessage.protocol == "FAILURE"){
                 console.log("something went wrong when trying to connecto to the private game")
                 defaultWebSocket?.close()
             }

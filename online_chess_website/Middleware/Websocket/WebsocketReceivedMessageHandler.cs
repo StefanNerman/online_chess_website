@@ -88,18 +88,19 @@ public class WebsocketReceivedMessageHandler
         //                                                                           problem might be in WebsocketConnection.cs line 62
 
 
-        if(clientMessage.protocol == "CREATE_PRIVATE_GAME")
+        if(clientMessage.protocol == "CREATE_PRIVATE_MATCH")
         {
-            // all you need to do is get both players tokens to launch MatchFinder.Pairing(token1, token2) method
+                // all you need to do is get both players tokens to launch MatchFinder.Pairing(token1, token2) method
 
-            // use token as gameKey
-
-            privateQueActions.AddUserToQue(token, new UserQuedata(clientMessage.data.userId, 123));
+                // use token as gameKey
+            UserQuedata userQuedata = new UserQuedata(321, 123);
+            Console.WriteLine(userQuedata.GetType());
+            privateQueActions.AddUserToQue(token, userQuedata);
             WebSocket socket = manager.GetAllUsersConnected()[token].websocket;
             await SendStringAsync(socket, Newtonsoft.Json.JsonConvert.SerializeObject(new { protocol = "SUCCESS" }));
         }
 
-        if (clientMessage.protocol == "JOIN_PRIVATE_GAME")
+        if (clientMessage.protocol == "JOIN_PRIVATE_MATCH")
         {
                 // the gameKey is the other users token so when its entered simply extract the info from the clientMessage (token) and move on to the pairing method
 
