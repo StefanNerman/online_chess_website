@@ -55,11 +55,13 @@ export async function createPrivateGame(userId: number): Promise<Object>{
             if(serverMessage.protocol == "SUCCESS"){
                 console.log("your private game key is active")
             }
-            if(serverMessage.protocol == "MATCH_FOUND"){
-                console.log("your private game call has been answered")
+            if(serverMessage.protocol == "PROFILE_PIC"){
                 if('pic' in serverMessage.data){
                     pfpMessage = (serverMessage as any).data.pic.toString()
                 }
+            }
+            if(serverMessage.protocol == "MATCH_FOUND"){
+                console.log("your private game call has been answered")
                 resolve(serverMessage.data)
             }
         }
@@ -87,11 +89,13 @@ export async function joinPrivateGame(userId: number, gameKey: string): Promise<
         defaultWebSocket.onmessage = (e: MessageEvent) => {
             console.log(e)
             let serverMessage: websocketServerMessage = JSON.parse(e.data)
-            if(serverMessage.protocol == "MATCH_FOUND"){
-                console.log("youve successfully joined the game")
+            if(serverMessage.protocol == "PROFILE_PIC"){
                 if('pic' in serverMessage.data){
                     pfpMessage = (serverMessage as any).data.pic.toString()
                 }
+            }
+            if(serverMessage.protocol == "MATCH_FOUND"){
+                console.log("youve successfully joined the game")
                 resolve(serverMessage.data)
             }
             if(serverMessage.protocol == "FAILURE"){
