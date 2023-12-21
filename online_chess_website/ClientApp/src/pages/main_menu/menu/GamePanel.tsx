@@ -49,6 +49,7 @@ const GamePanel = (props: props) => {
         })
         .catch(result => console.log("Websocket connection: " + result))
     }
+
     async function openQuickplayGame(matchInfo: serverMessageData){
         isQueingController(false)
         sessionStorage.setItem('matchId', matchInfo.MATCH_ID.toString())
@@ -66,6 +67,8 @@ const GamePanel = (props: props) => {
         }})
     }
 
+    //add code to prevent from trying to enter quickplay or joining private game when a created private game is in action
+
     function privateGame(){
         if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You have to be signed in to create private games!')
         let userId = sessionStorage.getItem('userId')!
@@ -73,7 +76,7 @@ const GamePanel = (props: props) => {
         .then(response => {
             console.log(response)
         })
-        .catch((e) => console.log(e))
+        .catch((e) => console.log("ERROR: " + e))
     }
 
     function enterPrivateGame(){
@@ -83,7 +86,7 @@ const GamePanel = (props: props) => {
         .then(response => {
             console.log(response)
         })
-        .catch((e) => console.log(e))
+        .catch((e) => console.log("ERROR: " + e))
     }
 
     function localGame(){

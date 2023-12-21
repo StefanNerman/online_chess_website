@@ -106,19 +106,20 @@ public class WebsocketReceivedMessageHandler
             try
             {
                 oppnentExists = privateQueActions.GetAllEntries()[key].userRank;
+
+                if (oppnentExists == 123)
+                {
+                    await PrivatePairing(token, key, manager, ongoingMatches);
+                }
+                else
+                {
+                    WebSocket socket = manager.GetAllUsersConnected()[token].websocket;
+                    await SendStringAsync(socket, Newtonsoft.Json.JsonConvert.SerializeObject(new { protocol = "FAILURE" }));
+                }
             }
             catch (Exception ex) 
             { 
                 //maybe remove one of the senstringasync if only one is needed
-                WebSocket socket = manager.GetAllUsersConnected()[token].websocket;
-                await SendStringAsync(socket, Newtonsoft.Json.JsonConvert.SerializeObject(new { protocol = "FAILURE" }));
-            }
-            if(oppnentExists == 123)
-            {
-                await PrivatePairing(token, key, manager, ongoingMatches);
-            }
-            else
-            {
                 WebSocket socket = manager.GetAllUsersConnected()[token].websocket;
                 await SendStringAsync(socket, Newtonsoft.Json.JsonConvert.SerializeObject(new { protocol = "FAILURE" }));
             }

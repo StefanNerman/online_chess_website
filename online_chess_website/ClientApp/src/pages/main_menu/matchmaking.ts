@@ -57,6 +57,7 @@ export async function createPrivateGame(userId: number): Promise<Object>{
             }
             if(serverMessage.protocol == "MATCH_FOUND"){
                 console.log("your private game call has been answered")
+                resolve(serverMessage.data)
             }
         }
         defaultWebSocket.onclose = (e: Event) => {
@@ -85,6 +86,7 @@ export async function joinPrivateGame(userId: number, gameKey: string): Promise<
             let serverMessage: websocketServerMessage = JSON.parse(e.data)
             if(serverMessage.protocol == "MATCH_FOUND"){
                 console.log("youve successfully joined the game")
+                resolve(serverMessage.data)
             }
             if(serverMessage.protocol == "FAILURE"){
                 console.log("something went wrong when trying to connecto to the private game")
