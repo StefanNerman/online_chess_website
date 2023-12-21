@@ -65,7 +65,6 @@ public class MatchFinder
                 }
             }
         }
-        Console.WriteLine("---");
         return;
     }
 

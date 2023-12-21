@@ -45,12 +45,12 @@ const GamePanel = (props: props) => {
         let profile = await getProfileByUserId(parseInt(userId))
         findQuickplayMatch(parseInt(userId), profile.userRank)
         .then(response => {
-            openQuickplayGame((response as any))
+            openQuickplayGame((response as any), false)
         })
         .catch(result => console.log("Websocket connection: " + result))
     }
 
-    async function openQuickplayGame(matchInfo: serverMessageData){
+    async function openQuickplayGame(matchInfo: serverMessageData, isPrivateGame: boolean){
         isQueingController(false)
         sessionStorage.setItem('matchId', matchInfo.MATCH_ID.toString())
         let userId = sessionStorage.getItem('userId')
@@ -75,6 +75,7 @@ const GamePanel = (props: props) => {
         createPrivateGame(parseInt(userId))
         .then(response => {
             console.log(response)
+            openQuickplayGame((response as any), true)
         })
         .catch((e) => console.log("ERROR: " + e))
     }
@@ -85,6 +86,7 @@ const GamePanel = (props: props) => {
         joinPrivateGame(parseInt(userId), prompt("Input game key", "") || "nokey")
         .then(response => {
             console.log(response)
+            openQuickplayGame((response as any), true)
         })
         .catch((e) => console.log("ERROR: " + e))
     }
