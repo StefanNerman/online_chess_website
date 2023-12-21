@@ -23,6 +23,7 @@ export async function findQuickplayMatch(userId: number, userRank: number): Prom
             let serverMessage: websocketServerMessage = JSON.parse(e.data)
             if(serverMessage.protocol == "MATCH_FOUND"){
                 if('pic' in serverMessage.data){
+                    console.log("quickplay pic received in matchmaking.ts method")
                     pfpMessage = (serverMessage as any).data.pic.toString()
                 }
                 else {
