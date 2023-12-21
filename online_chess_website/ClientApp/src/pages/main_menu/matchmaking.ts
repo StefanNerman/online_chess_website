@@ -57,6 +57,9 @@ export async function createPrivateGame(userId: number): Promise<Object>{
             }
             if(serverMessage.protocol == "MATCH_FOUND"){
                 console.log("your private game call has been answered")
+                if('pic' in serverMessage.data){
+                    pfpMessage = (serverMessage as any).data.pic.toString()
+                }
                 resolve(serverMessage.data)
             }
         }
@@ -86,6 +89,9 @@ export async function joinPrivateGame(userId: number, gameKey: string): Promise<
             let serverMessage: websocketServerMessage = JSON.parse(e.data)
             if(serverMessage.protocol == "MATCH_FOUND"){
                 console.log("youve successfully joined the game")
+                if('pic' in serverMessage.data){
+                    pfpMessage = (serverMessage as any).data.pic.toString()
+                }
                 resolve(serverMessage.data)
             }
             if(serverMessage.protocol == "FAILURE"){

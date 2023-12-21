@@ -99,6 +99,7 @@ const GamePage = ({...rest}: props) => {
 
     const { state: {
         isOnlineGame,
+        isPrivateGame,
         gameMode,// (quickplay | private | local | bot + difficulty)
         color,
         matchId,

@@ -59,6 +59,7 @@ const GamePanel = (props: props) => {
         resetBoard()
         navigate('/game-page', { state: { 
             isOnlineGame: true,
+            isPrivateGame: isPrivateGame,
             gameMode: 'quickplay',
             color: matchInfo.color,
             matchId: matchInfo.MATCH_ID,
