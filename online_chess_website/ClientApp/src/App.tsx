@@ -50,6 +50,7 @@ const App = () => {
     return (
         <div className="App">
             {isQueing && <ScreenQueMode />}
+            {isPrivateGameActive && <PrivateGameWait />}
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/main-menu" element={<MainMenu />}>

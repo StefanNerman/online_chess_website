@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import {findQuickplayMatch, defaultWebSocket, createPrivateGame, joinPrivateGame} from '../matchmaking'
 import * as api from '../../../api/http_calls'
 import {getProfileByUserId} from '../../../utils/user_profile_info'
-import {isQueingController} from '../../../App'
+import {isQueingController, privateGameActive} from '../../../App'
 import { timeInterval } from '../../game_page/chess_game/ChessComponent'
 import { resetBoard } from '../../game_page/chess_game/gamelogic'
 
@@ -52,6 +52,7 @@ const GamePanel = (props: props) => {
 
     async function openQuickplayGame(matchInfo: serverMessageData, isPrivateGame: boolean){
         isQueingController(false)
+        privateGameActive(false)
         sessionStorage.setItem('matchId', matchInfo.MATCH_ID.toString())
         let userId = sessionStorage.getItem('userId')
         let profile: profileInfo = await api.axiosGet(`api/profiles/${userId}`)
@@ -73,6 +74,7 @@ const GamePanel = (props: props) => {
     function privateGame(){
         if(sessionStorage.getItem('loginOperation') === 'offline') return alert('You have to be signed in to create private games!')
         let userId = sessionStorage.getItem('userId')!
+        privateGameActive(true)
         createPrivateGame(parseInt(userId))
         .then(response => {
             console.log(response)

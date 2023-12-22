@@ -3,7 +3,7 @@ import { privateGameActive } from './App';
 import { defaultWebSocket } from './pages/main_menu/matchmaking';
 
 
-const ScreenQueMode = () => {
+const PrivateGameWait = () => {
 
     function handleClick(){
         privateGameActive(false)
@@ -13,11 +13,11 @@ const ScreenQueMode = () => {
     return (  
         <div className='screenquemode-frame'>
             <div className='screenquemode-content'>
-                <h2>Searching for a game...</h2>
+                <h2>Waiting for opponent...</h2>
                 <button onClick={handleClick}>Cancel</button>
             </div>
         </div>
     );
 }
  
-export default ScreenQueMode;
+export default PrivateGameWait;
