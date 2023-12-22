@@ -125,11 +125,11 @@ const GamePanel = (props: props) => {
                         buttonText='Quickplay'
                         onButtonClick={() => {quickPlay()}}/>
                         <GameSelectionComponent 
-                        description='Create a private game that your friend can join via link.' 
+                        description='Create a private game that your friend can join using a gamekey.' 
                         buttonText='Create private game'
                         onButtonClick={() => {privateGame()}}/>
                         <GameSelectionComponent 
-                        description='Join private game using a link.' 
+                        description='Join private game using a gamekey.' 
                         buttonText='Join private game'
                         onButtonClick={() => {enterPrivateGame()}}/>
                     </div>
