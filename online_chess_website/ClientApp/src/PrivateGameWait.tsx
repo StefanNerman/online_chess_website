@@ -10,10 +10,14 @@ const PrivateGameWait = () => {
         defaultWebSocket?.close()
     }
 
+    let gamekey = sessionStorage.getItem('sessionToken')
+
+    //make it so your gamekey (sessiontoken) is visible on this screen
+
     return (  
         <div className='screenquemode-frame'>
             <div className='screenquemode-content'>
-                <h2>Waiting for opponent...</h2>
+                <h2>Your gamekey is: {gamekey}</h2>
                 <button onClick={handleClick}>Cancel</button>
             </div>
         </div>
