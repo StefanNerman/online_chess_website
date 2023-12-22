@@ -11,6 +11,7 @@ import ProfilePage from './pages/main_menu/profile/ProfilePage'
 import NewsPage from './pages/main_menu/news/NewsPage'
 import SocialPage from './pages/main_menu/social/SocialPage'
 import SettingsPage from './pages/main_menu/settings/SettingsComponent'
+import PrivateGameWait from './PrivateGameWait'
 
 
 window.addEventListener('beforeunload', async () => {
@@ -31,6 +32,8 @@ window.addEventListener('beforeunload', async () => {
 
 export let isQueingController: Function
 
+export let privateGameActive: Function
+
 const App = () => {
 
     useEffect(() => {
@@ -40,6 +43,9 @@ const App = () => {
 
     const [isQueing, setIsQueing] = useState(false)
     isQueingController = setIsQueing
+
+    const [isPrivateGameActive, setIsPrivateGameActive] = useState(false)
+    privateGameActive = setIsPrivateGameActive
 
     return (
         <div className="App">
