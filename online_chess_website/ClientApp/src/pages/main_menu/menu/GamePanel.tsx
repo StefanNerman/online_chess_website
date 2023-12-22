@@ -89,7 +89,10 @@ const GamePanel = (props: props) => {
             console.log(response)
             openQuickplayGame((response as any), true)
         })
-        .catch((e) => console.log("ERROR: " + e))
+        .catch((e) => {
+            console.log("ERROR: " + e)
+            alert("Provided gamekey is invalid")
+        })
     }
 
     function localGame(){

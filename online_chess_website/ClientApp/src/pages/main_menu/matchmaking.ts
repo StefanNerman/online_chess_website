@@ -102,6 +102,7 @@ export async function joinPrivateGame(userId: number, gameKey: string): Promise<
             if(serverMessage.protocol == "FAILURE"){
                 console.log("something went wrong when trying to connecto to the private game")
                 defaultWebSocket?.close()
+                reject("failed")
             }
         }
         defaultWebSocket.onclose = (e: Event) => {
