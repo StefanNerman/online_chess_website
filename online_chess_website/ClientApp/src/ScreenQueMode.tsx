@@ -12,7 +12,7 @@ const ScreenQueMode = () => {
 
     return (  
         <div className='screenquemode-frame'>
-            <div className='screenquemode-content'>
+            <div className='screenquemode-content max-height-170'>
                 <h2>Searching for a game...</h2>
                 <button onClick={handleClick}>Cancel</button>
             </div>

@@ -16,7 +16,7 @@ const PrivateGameWait = () => {
 
     return (  
         <div className='screenquemode-frame'>
-            <div className='screenquemode-content'>
+            <div className='screenquemode-content max-height-205'>
                 <h2>Private lobby created</h2>
                 <p>Your gamekey is: {gamekey}</p>
                 <button onClick={handleClick}>Cancel</button>

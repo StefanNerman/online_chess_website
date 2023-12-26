@@ -164,8 +164,6 @@ function assignWebSocketMethods(){
     }
 }
 
-                    //   make it so private games dont change your rank
-
 async function onGameEnd(isVictory: boolean){
     const timer = document.getElementById('gamepanel-timetab')!
     let newRank = await api.axiosGet(`api/profiles/${sessionStorage.getItem('userId')}`)

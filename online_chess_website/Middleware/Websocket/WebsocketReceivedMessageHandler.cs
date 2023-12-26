@@ -84,10 +84,6 @@ public class WebsocketReceivedMessageHandler
             ongoingMatches.RemoveOngoingMatch(matchId);
         }
 
-        //================================== !!!!! NOTE  =========================== user websocket connection isnt removed properly when refreshing FIX!!!
-        //                                                                           problem might be in WebsocketConnection.cs line 62
-
-
         if(clientMessage.protocol == "CREATE_PRIVATE_MATCH")
         {
             UserQuedata userQuedata = new UserQuedata(321, 123);
@@ -119,7 +115,6 @@ public class WebsocketReceivedMessageHandler
             }
             catch (Exception ex) 
             { 
-                //maybe remove one of the senstringasync if only one is needed
                 WebSocket socket = manager.GetAllUsersConnected()[token].websocket;
                 await SendStringAsync(socket, Newtonsoft.Json.JsonConvert.SerializeObject(new { protocol = "FAILURE" }));
             }
