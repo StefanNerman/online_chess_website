@@ -12,6 +12,7 @@ public static class Sessions
 {
     public static async Task<string> CreateSession(int id, string connectionString)
     {
+        await HandleExistingSession(id, connectionString);
         Random random = new Random();
         long sessionNumber = random.NextInt64();
         MySQL db = new MySQL();
@@ -38,5 +39,14 @@ public static class Sessions
         return rows.ToArray()[0];
     }
 
-
+    private static async Task<bool> HandleExistingSession(int id, string connectionString)
+    {
+        MySQL db = new MySQL();
+        string sqlSelect = $"SELECT * FROM sessions WHERE userId = {id}";
+        List<Session> rows = await db.GetData<Session, dynamic>(sqlSelect, new { }, connectionString);
+        if (rows == null || rows.Count == 0) return false;
+        string sqlDelete = $"DELETE FROM sessions WHERE userId = {id}";
+        await db.DeleteData(sqlDelete, new { }, connectionString);
+        return true;
+    }
 }
