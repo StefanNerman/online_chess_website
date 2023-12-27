@@ -12,7 +12,7 @@ public static class Sessions
 {
     public static async Task<string> CreateSession(int id, string connectionString)
     {
-        await HandleExistingSession(id, connectionString);
+        bool didSessionExist = await HandleExistingSession(id, connectionString);
         Random random = new Random();
         long sessionNumber = random.NextInt64();
         MySQL db = new MySQL();
