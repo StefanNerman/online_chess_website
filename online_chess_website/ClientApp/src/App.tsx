@@ -14,21 +14,23 @@ import SettingsPage from './pages/main_menu/settings/SettingsComponent'
 import PrivateGameWait from './PrivateGameWait'
 
 
+
+//This method could be replaced by turning "ST" into a session cookie or store it in sessionStorage 
+//but you dont have to do it this method works just fine.
 window.addEventListener('beforeunload', async () => {
     if(sessionStorage.getItem('loginOperation') === 'offline') return window.close()
     document.cookie = `ST=0;expires=Fri, 18 September 2099 11:00:00 UTC; path=/`
 
-    /*
-    MAKE IT SO THAT SESSION GETS DELETED IF YOU SIGN OUT MANUALLY
 
-    await api.axiosPost('api/sessions/delete', 
-    {
-        userId: parseInt(sessionStorage.getItem('userId')!)
-    })
-    */
+    //await api.axiosPost('api/sessions/delete', 
+    //{
+    //    userId: parseInt(sessionStorage.getItem('userId')!)
+    //})
+    
 
     window.close()
 }, true)
+
 
 export let isQueingController: Function
 
